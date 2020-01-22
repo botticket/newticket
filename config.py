@@ -1,0 +1,2 @@
+line_secret = "4c1e01edc4879e28b9497d362a116702"
+line_access_token = "UJtWN7ExQWEYbZpeoLPubBccfxZT1U4GkygSqLycvSCwy7RZHi7obR7/nFGRNGbdr8osc2ZQxPC1aRFX3Wi7XGmDDezkvNBhckbN511ndDvP6zSLnUVqMEAwX4U3dR8ZBZWQlNYFzMFgyKIumJ5e3AdB04t89/1O/w1cDnyilFU="

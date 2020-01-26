@@ -540,7 +540,7 @@ def handle_message(event):
                     text2 = '\n' + text_request +'\n' + 'O ' + OpenM + ' ({} %)'.format(barM) +'\n' + 'B ' + stopM + ' ~ '+ buyM +'\n' + 'X ' + exitM1 + ' | ' + exitM2 + ' | ' + exitM3 
                     text3 = 'รอซื้อ'  + '\n' + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + 'B ' + stopY + ' ~ '+ buyY 
                     text4 = 'อย่าเพิ่งเข้า' + '\n'  + text_request +'\n' + 'O ' + OpenM + ' ({} %)'.format(barM) +'\n' + 'B ' + stopM + ' ~ '+ buyM 
-                    text5 = + 'ซื้อขายน้อย' +'\n' +text_request + '\n' + 'Val : ' + request_val + '\n' + 'Vol : ' + Volume
+                    text5 = 'ซื้อขายน้อย' +'\n' +text_request + '\n' + 'Val : ' + request_val + '\n' + 'Vol : ' + Volume
                     alert = 'ชนแนวต้าน'
                     notice = 'ซื้อ' 
 

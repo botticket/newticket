@@ -571,28 +571,13 @@ def handle_message(event):
                         word_to_reply2 = str(text5)
 
                     print(word_to_reply2)
+                    word_to_reply1 = '{} '.format(disname) + 'ค้นข้อมูล ' + text_from_user
 
-                    reply_flex = {
-                    "type": "template",
-                    "altText": "this is a buttons template",
-                    "template": {
-                        "type": "buttons",
-                        "actions": [
-                        {
-                            "type": "message",
-                            "label": "Thank you",
-                            "text": "Thank You"
-                        }
-                        ],
-                        "thumbnailImageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlSkyk1kKIg5lyTkhEOFayhWXHLc9m1Bq0GF1Lq0Gwf_nhAQwt&s",
-                        "title": "{}".format(text_request),
-                        "text": "{}".format(word_to_reply2)
-                    }
-                    }
-                    text_to_reply = TextSendMessage(text = reply_flex)
+                    text_to_reply1 = TextSendMessage(text = word_to_reply1)
+                    text_to_reply2 = TextSendMessage(text = word_to_reply2)
                     line_bot_api.reply_message(
                             event.reply_token,
-                            messages=[text_to_reply]
+                            messages=[text_to_reply2]
                         )
                     
             for symbol in symbols:

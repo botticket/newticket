@@ -446,7 +446,7 @@ def handle_message(event):
 
                     dfY = data.DataReader(f'{list}', data_source="yahoo", start='2020-01-01', end=end)
                     dfM = data.DataReader(f'{list}', data_source="yahoo", start='2020-01-01', end=end)
-                    dfW = data.DataReader(f'{list}', data_source="yahoo", start='2020-01-24', end=end)
+                    dfW = data.DataReader(f'{list}', data_source="yahoo", start='2020-01-27', end=end)
 
                     #2020-01-01 = Y M D
 
@@ -538,7 +538,7 @@ def handle_message(event):
 
                     text1 = '\n' + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + 'O ' + OpenM + ' ({} %)'.format(barM) +'\n' + 'B ' + stopM + ' ~ '+ buyM +'\n' + 'X ' + exitM1 + ' | ' + exitM2 + ' | ' + exitM3 
                     text2 = '\n' + text_request +'\n' + 'O ' + OpenM + ' ({} %)'.format(barM) +'\n' + 'B ' + stopM + ' ~ '+ buyM +'\n' + 'X ' + exitM1 + ' | ' + exitM2 + ' | ' + exitM3 
-                    text3 = 'รอซื้อ'  + '\n' + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + 'B ' + stopY + ' ~ '+ buyY 
+                    text3 = 'รอซื้อ'  + '\n' + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + 'O ' + OpenM + ' ({} %)'.format(barM) +'\n' + 'B ' + stopY + ' ~ '+ buyY 
                     text4 = 'อย่าเพิ่งเข้า' + '\n'  + text_request +'\n' + 'O ' + OpenM + ' ({} %)'.format(barM) +'\n' + 'B ' + stopM + ' ~ '+ buyM 
                     text5 = 'ซื้อขายน้อย' +'\n' +text_request + '\n' + 'Val : ' + request_val + '\n' + 'Vol : ' + Volume
                     alert = 'ชนแนวต้าน'
@@ -571,9 +571,7 @@ def handle_message(event):
                         word_to_reply2 = str(text5)
 
                     print(word_to_reply2)
-                    word_to_reply1 = '{} '.format(disname) + 'ค้นข้อมูล ' + text_from_user
 
-                    text_to_reply1 = TextSendMessage(text = word_to_reply1)
                     text_to_reply2 = TextSendMessage(text = word_to_reply2)
                     line_bot_api.reply_message(
                             event.reply_token,

@@ -550,12 +550,12 @@ def handle_message(event):
                             if barM > 6.00:
                                 word_to_reply2 = str(alert + text1)
                             elif 6.00 >= barM >= 3.00:
-                                if barW > 0:
+                                if barW >= 0:
                                     word_to_reply2 = str(alert2 + text2)
                                 else:
                                     word_to_reply2 = str(text3)
                             elif 3.00 > barM >= 0.00:
-                                if barW > 0:
+                                if barW >= 0:
                                     word_to_reply2 = str(notice + text1)
                                 else:
                                     word_to_reply2 = str(text3)
@@ -565,12 +565,12 @@ def handle_message(event):
                             if barM > 6.00:
                                 word_to_reply2 = str(alert + text2)
                             elif 6.00 >= barM >= 3.00:
-                                if barW > 0:
+                                if barW >= 0:
                                     word_to_reply2 = str(alert2 + text2)
                                 else:
                                     word_to_reply2 = str(text3)
                             elif 3.00 > barM >= 0.00:
-                                if barW > 0:
+                                if barW >= 0:
                                     word_to_reply2 = str(notice + text1)
                                 else:
                                     word_to_reply2 = str(text3)

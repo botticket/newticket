@@ -484,7 +484,9 @@ def handle_message(event):
                     barW = '%.2f'%barW
                     barW = float(barW)
 
-                    Volume = dfM['Volume'].iloc[-1]
+                    Volume1 = dfM['Volume'].iloc[-1]
+                    Volume2 = dfM['Volume'].iloc[-2]
+                    Volume = (float(Volume1)+float(Volume2))/2
                     Volume  = '%.0f'%Volume
                     Volume = str(Volume)
 

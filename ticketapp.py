@@ -538,7 +538,7 @@ def handle_message(event):
                     stopY = '%.2f'%stopY
                     stopY = str(stopY) 
 
-                    text1 = '\n' + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + 'M ' + OpenM + ' ({} %)'.format(barM) +'\n' + 'B ' + stopM + ' ~ '+ buyM +'\n' + 'X ' + exitM1 + ' | ' + exitM2 + ' | ' + exitM3 
+                    text1 = '\n' + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY +'\n' + 'M ' + OpenM + ' ({} %)'.format(barM) +'\n' + '> ' + stopM + ' ~ '+ buyM +'\n' + 'X ' + exitM1 + ' | ' + exitM2 + ' | ' + exitM3 
                     text2 = '\n' + text_request +'\n' + 'M ' + OpenM + ' ({} %)'.format(barM) +'\n' + 'B ' + stopM + ' ~ '+ buyM +'\n' + 'X ' + exitM1 + ' | ' + exitM2 + ' | ' + exitM3 
                     text3 = 'กำลังย่อ'  + '\n' + text_request +'\n' + 'M ' + OpenM + ' ({} %)'.format(barM) +'\n' + 'B ' + stopM + ' ~ '+ buyM 
                     text4 = 'อย่าเพิ่งเข้า' + '\n'  + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + 'B ' + stopY + ' ~ '+ buyY 

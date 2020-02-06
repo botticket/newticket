@@ -543,13 +543,16 @@ def handle_message(event):
                     text3 = 'กำลังย่อ'  + '\n' + text_request +'\n' + 'M ' + OpenM + ' ({} %)'.format(barM) +'\n' + '> ' + stopM + ' ~ '+ buyM 
                     text4 = 'อย่าเพิ่งเข้า' + '\n'  + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY 
                     text5 = 'ซื้อขายน้อย' +'\n' +text_request + '\n' + 'Val : ' + request_val + '\n' + 'Vol : ' + Volume
+                    text6 = 'น่าสนใจ' + '\n'  + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY +'\n' + 'X ' + exitY1 + ' | ' + exitY2 + ' | ' + exitY3 
                     alert = 'ชนแนวต้าน'
                     alert2 = 'ไปต่อ'
                     notice = 'ซื้อ'
 
                     if float(value) > 7500000:
                         if barY >= 0:
-                            if barM > 6.00:
+                            if 3.00 >= barY >= 0.00:
+                                word_to_reply2 = str(text6)
+                            elif barM > 6.00:
                                 word_to_reply2 = str(alert + text1)
                             elif 6.00 >= barM >= 3.00:
                                 if barW >= 0:
@@ -595,8 +598,8 @@ def handle_message(event):
                 stock(symbol).ticket()
     except:
         text_list = [
-            '{} พิมพ์ชื่อหุ้น {} ผิด ลองใหม่อีกครั้ง / บอตทำงาน 10.00 - 24.00 น.'.format(disname, text_from_user),
-            '{} ไม่มีในฐานข้อมูล {} ลองใหม่อีกครั้ง / บอตทำงาน 10.00 - 24.00 น.'.format(text_from_user,disname),
+            '{} พิมพ์ชื่อหุ้น {} ผิด ลองใหม่อีกครั้ง / working hrs 10.00 - 24.00 น.'.format(disname, text_from_user),
+            '{} ไม่มีในฐานข้อมูล {} ลองใหม่อีกครั้ง / working hrs 10.00 - 24.00 น.'.format(text_from_user,disname),
 
         ]
 

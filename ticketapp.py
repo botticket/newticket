@@ -446,7 +446,7 @@ def handle_message(event):
 
                     dfY = data.DataReader(f'{list}', data_source="yahoo", start='2020-01-01', end=end)
                     dfM = data.DataReader(f'{list}', data_source="yahoo", start='2020-02-01', end=end)
-                    dfW = data.DataReader(f'{list}', data_source="yahoo", start='2020-02-01', end=end)
+                    dfW = data.DataReader(f'{list}', data_source="yahoo", start='2020-02-10', end=end)
 
                     #2020-01-01 = Y M D
 
@@ -467,10 +467,6 @@ def handle_message(event):
                     Close = float(f'{r[1]}')
                     Close  = '%.2f'%Close
                     Close = str(Close)
-
-                    endday = float(f'{r[2]}')
-                    endday = '%.2f'%endday
-                    endday = str(endday)
 
                     barY = ((float(Close) - float(OpenY)) / float(OpenY) )*100
                     barY = '%.2f'%barY
@@ -549,10 +545,8 @@ def handle_message(event):
                     notice = 'ซื้อ'
 
                     if float(value) > 7500000:
-                        if barY >= 0:
-                            if 3.00 >= barY >= 0.00:
-                                word_to_reply2 = str(text6)
-                            elif barM > 6.00:
+                        if barY > 3.00:
+                            if barM > 6.00:
                                 word_to_reply2 = str(alert + text1)
                             elif 6.00 >= barM >= 3.00:
                                 if barW >= 0:
@@ -566,7 +560,12 @@ def handle_message(event):
                                     word_to_reply2 = str(text3)
                             else:
                                 word_to_reply2 = str(text4)
-                        elif barM >= 0:
+                        elif 3.00 > barY >= 0.00:
+                            if barM >= 0:
+                                word_to_reply2 = str(text6)
+                            else:
+                                word_to_reply2 = str(text3)              
+                        else:
                             if barM > 6.00:
                                 word_to_reply2 = str(alert + text2)
                             elif 6.00 >= barM >= 3.00:
@@ -580,9 +579,7 @@ def handle_message(event):
                                 else:
                                     word_to_reply2 = str(text3)
                             else:
-                                word_to_reply2 = str(text4)                  
-                        else:
-                            word_to_reply2 = str(text4)
+                                word_to_reply2 = str(text4)
                     else:
                         word_to_reply2 = str(text5)
 

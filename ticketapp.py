@@ -388,6 +388,7 @@ def handle_message(event):
             dailyset()
 
         elif 'UPDATE' in text_from_user:
+
             from pandas_datareader import data 
             from datetime import datetime
 
@@ -427,9 +428,9 @@ def handle_message(event):
                     text2 = '\n'+ text +'สถานะ : ---' + '\n' + OpenY + '\n' + Close
 
                     if 3.0 >= float(Chg) >= 0.0:
-                        word_to_reply2 = text1
+                        word_to_reply2 = str(text1)
                     else:
-                        word_to_reply1 = text2
+                        word_to_reply1 = str(text2)
 
                     print(word_to_reply2)
                     

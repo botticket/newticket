@@ -4,15 +4,15 @@ richdata = {
     "height": 843
   },
   "selected": True,
-  "name": "Rich Menu 1",
+  "name": "Menu",
   "chatBarText": "Menu",
   "areas": [
     {
       "bounds": {
-        "x": 4,
-        "y": 4,
+        "x": 8,
+        "y": 13,
         "width": 818,
-        "height": 407
+        "height": 398
       },
       "action": {
         "type": "message",
@@ -22,9 +22,9 @@ richdata = {
     {
       "bounds": {
         "x": 843,
-        "y": 4,
-        "width": 805,
-        "height": 415
+        "y": 17,
+        "width": 810,
+        "height": 386
       },
       "action": {
         "type": "message",
@@ -34,9 +34,9 @@ richdata = {
     {
       "bounds": {
         "x": 1669,
-        "y": 4,
-        "width": 818,
-        "height": 415
+        "y": 25,
+        "width": 823,
+        "height": 386
       },
       "action": {
         "type": "message",
@@ -45,10 +45,10 @@ richdata = {
     },
     {
       "bounds": {
-        "x": 373,
-        "y": 441,
-        "width": 449,
-        "height": 398
+        "x": 386,
+        "y": 453,
+        "width": 389,
+        "height": 378
       },
       "action": {
         "type": "message",
@@ -57,14 +57,26 @@ richdata = {
     },
     {
       "bounds": {
-        "x": 1669,
-        "y": 441,
-        "width": 433,
-        "height": 398
+        "x": 1686,
+        "y": 453,
+        "width": 386,
+        "height": 382
       },
       "action": {
         "type": "message",
         "text": "TFEX"
+      }
+    },
+    {
+      "bounds": {
+        "x": 2174,
+        "y": 496,
+        "width": 241,
+        "height": 212
+      },
+      "action": {
+        "type": "message",
+        "text": "UPDATE"
       }
     }
   ]

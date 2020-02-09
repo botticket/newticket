@@ -430,7 +430,7 @@ def handle_message(event):
                     if 3.0 >= float(Chg) >= 0.0:
                         word_to_reply2 = str(text1)
                     else:
-                        word_to_reply1 = str(text2)
+                        word_to_reply = str(text2)
 
                     print(word_to_reply2)
                     
@@ -439,7 +439,6 @@ def handle_message(event):
                             event.reply_token,
                             messages=[text_to_reply2]
                         )
-
             for symbol in symbols:
                 stock(symbol).ticket()
 
@@ -604,19 +603,19 @@ def handle_message(event):
                         if barY > 3.00:
                             if barM > 6.00:
                                 word_to_reply2 = str(alert + text1)
-                            elif 6.00 >= barM >= 3.00:
+                            elif barM >= 3.00:
                                 if barW >= 0:
                                     word_to_reply2 = str(alert2 + text1)
                                 else:
                                     word_to_reply2 = str(text3)
-                            elif 3.00 > barM >= 0.00:
+                            elif barM >= 0.00:
                                 if barW >= 0:
                                     word_to_reply2 = str(notice + text1)
                                 else:
                                     word_to_reply2 = str(text3)
                             else:
                                 word_to_reply2 = str(text4)
-                        elif 3.00 > barY >= 0.00:
+                        elif barY >= 0.00:
                             if barM >= 0:
                                 word_to_reply2 = str(text6)
                             else:
@@ -624,12 +623,12 @@ def handle_message(event):
                         else:
                             if barM > 6.00:
                                 word_to_reply2 = str(alert + text2)
-                            elif 6.00 >= barM >= 3.00:
+                            elif barM >= 3.00:
                                 if barW >= 0:
                                     word_to_reply2 = str(alert2 + text2)
                                 else:
                                     word_to_reply2 = str(text3)
-                            elif 3.00 > barM >= 0.00:
+                            elif barM >= 0.00:
                                 if barW >= 0:
                                     word_to_reply2 = str(notice + text2)
                                 else:
@@ -677,8 +676,10 @@ def RegisRichmenu(event):
     button_3 = QuickReplyButton(action=MessageAction(lable='IQXWTI',text='IQXWTI'))
     button_4 = QuickReplyButton(action=MessageAction(lable='SET',text='SET'))
     button_5 = QuickReplyButton(action=MessageAction(lable='TFEX',text='TFEX'))
+    button_6 = QuickReplyButton(action=MessageAction(lable='UPDATE',text='UPDATE'))
 
-    answer_button = QuickReply(items=[button_1,button_2,button_3,button_4,button_5])
+
+    answer_button = QuickReply(items=[button_1,button_2,button_3,button_4,button_5,button_6])
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))

@@ -595,7 +595,9 @@ def handle_message(event):
                     text4 = 'อย่าเพิ่งเข้า' + '\n'  + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY 
                     text5 = 'ซื้อขายน้อย' +'\n' +text_request + '\n' + 'Val : ' + request_val + '\n' + 'Vol : ' + Volume
                     text6 = 'น่าสนใจ' + '\n'  + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY +'\n' + 'X ' + exitY1 + ' | ' + exitY2 + ' | ' + exitY3 
-                    text6 = 'รอราคาต่ำ' + '\n'  + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY +'\n' + 'X ' + exitY1 + ' | ' + exitY2 + ' | ' + exitY3 
+                    text7 = 'รอราคาต่ำ' + '\n'  + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY +'\n' + 'X ' + exitY1 + ' | ' + exitY2 + ' | ' + exitY3 
+                    text8 = 'รอราคาต่ำ' + '\n'  + text_request +'\n' + 'M ' + OpenM + ' ({} %)'.format(barM) +'\n' + '> ' + stopM + ' ~ '+ buyM +'\n' + 'X ' + exitM1 + ' | ' + exitM2 + ' | ' + exitM3 
+
                     alert = 'ชนแนวต้าน'
                     alert2 = 'ไปต่อ'
                     notice = 'ซื้อ'
@@ -608,12 +610,12 @@ def handle_message(event):
                                 if barW >= 0:
                                     word_to_reply2 = str(alert2 + text1)
                                 else:
-                                    word_to_reply2 = str(text3)
+                                    word_to_reply2 = str(text7)
                             elif barM >= 0.00:
                                 if barW >= 0:
                                     word_to_reply2 = str(notice + text1)
                                 else:
-                                    word_to_reply2 = str(text3)
+                                    word_to_reply2 = str(text7)
                             else:
                                 word_to_reply2 = str(text4)
                         elif barY >= 0.00:
@@ -631,12 +633,12 @@ def handle_message(event):
                                 if barW >= 0:
                                     word_to_reply2 = str(alert2 + text2)
                                 else:
-                                    word_to_reply2 = str(text3)
+                                    word_to_reply2 = str(text8)
                             elif barM >= 0.00:
                                 if barW >= 0:
                                     word_to_reply2 = str(notice + text2)
                                 else:
-                                    word_to_reply2 = str(text3)
+                                    word_to_reply2 = str(text8)
                             else:
                                 word_to_reply2 = str(text4)
                     else:

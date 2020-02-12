@@ -595,6 +595,7 @@ def handle_message(event):
                     text4 = 'อย่าเพิ่งเข้า' + '\n'  + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY 
                     text5 = 'ซื้อขายน้อย' +'\n' +text_request + '\n' + 'Val : ' + request_val + '\n' + 'Vol : ' + Volume
                     text6 = 'น่าสนใจ' + '\n'  + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY +'\n' + 'X ' + exitY1 + ' | ' + exitY2 + ' | ' + exitY3 
+                    text6 = 'รอราคาต่ำ' + '\n'  + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY +'\n' + 'X ' + exitY1 + ' | ' + exitY2 + ' | ' + exitY3 
                     alert = 'ชนแนวต้าน'
                     alert2 = 'ไปต่อ'
                     notice = 'ซื้อ'
@@ -617,7 +618,10 @@ def handle_message(event):
                                 word_to_reply2 = str(text4)
                         elif barY >= 0.00:
                             if barM >= 0:
-                                word_to_reply2 = str(text6)
+                                if barW > 0:
+                                    word_to_reply2 = str(text6)
+                                else:
+                                    word_to_reply2 = str(text7)         
                             else:
                                 word_to_reply2 = str(text3)              
                         else:
@@ -650,8 +654,8 @@ def handle_message(event):
                 stock(symbol).ticket()
     except:
         text_list = [
-            '{} พิมพ์ชื่อหุ้น {} ผิด ลองใหม่อีกครั้ง / working hrs 10.00 - 24.00 น.'.format(disname, text_from_user),
-            '{} ไม่มีในฐานข้อมูล {} ลองใหม่อีกครั้ง / working hrs 10.00 - 24.00 น.'.format(text_from_user,disname),
+            '{} พิมพ์ชื่อหุ้น {} ผิด ลองใหม่อีกครั้ง / บอตทำงาน 10.00 - 24.00 น.'.format(disname, text_from_user),
+            '{} ไม่มีในฐานข้อมูล {} ลองใหม่อีกครั้ง / บอตทำงาน 10.00 - 24.00 น.'.format(text_from_user,disname),
 
         ]
 

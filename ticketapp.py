@@ -387,61 +387,6 @@ def handle_message(event):
                     )
             dailyset()
 
-        elif 'UPDATE' in text_from_user:
-
-            from pandas_datareader import data 
-            from datetime import datetime
-
-            ticket = ['AMATA','AOT', 'AU','BAM','BEM','BGRIM','BTS','CKP','COM7','CPALL','DOHOME','DTAC','EA','GPSC','GULF','HANA','IVL',
-                        'JMART','KCE','KTC','MEGA','MTC','OSP','PTG','PTT','PTTEP','SAWAD','STA','STEC','TASCO','TFG','TKN','TOP','TU']
-
-            symbols = list(map(lambda e: e + '.bk', ticket))
-
-            class stock:
-                def __init__(self,stock):
-                    self.stock = stock
-
-                def ticket(self):
-                    end = datetime.now()
-                    start = datetime(end.year -1,end.month,end.day)
-                    list = self.stock
-
-                    dfY = data.DataReader(f'{list}', data_source="yahoo", start='2020-01-01', end=end)
-
-                    list = list.replace('.bk','')
-
-                    OpenY = dfY['Open'].iloc[0]
-                    OpenY  = '%.2f'%OpenY
-                    OpenY = str(OpenY)
-
-                    Close = dfY['Close'].iloc[-1]
-                    Close  = '%.2f'%Close
-                    Close = str(Close)
-
-                    Chg = ((float(Close) - float(OpenY))/ float(OpenY))*100
-                    Chg  = '%.2f'%Chg
-                    Chg = str(Chg)
-
-                    text = f'{list}' + ' {} ({}%)'.format(Close,Chg) + '\n'
-
-                    text1 = '\n'+ text +'สถานะ : ห้ามพลาด' + '\n' + OpenY + '\n' + Close
-                    text2 = '\n'+ text +'สถานะ : ---' + '\n' + OpenY + '\n' + Close
-
-                    if 3.0 >= float(Chg) >= 0.0:
-                        word_to_reply2 = str(text1)
-                    else:
-                        word_to_reply = str(text2)
-
-                    print(word_to_reply2)
-                    
-                    text_to_reply2 = TextSendMessage(text = word_to_reply2)
-                    line_bot_api.reply_message(
-                            event.reply_token,
-                            messages=[text_to_reply2]
-                        )
-            for symbol in symbols:
-                stock(symbol).ticket()
-
         else:
                     
             from bs4 import BeautifulSoup as soup 
@@ -501,7 +446,7 @@ def handle_message(event):
 
                     dfY = data.DataReader(f'{list}', data_source="yahoo", start='2020-01-01', end=end)
                     dfM = data.DataReader(f'{list}', data_source="yahoo", start='2020-02-01', end=end)
-                    dfW = data.DataReader(f'{list}', data_source="yahoo", start='2020-02-10', end=end)
+                    dfW = data.DataReader(f'{list}', data_source="yahoo", start='2020-02-14', end=end)
 
                     #2020-01-01 = Y M D
 
@@ -682,10 +627,8 @@ def RegisRichmenu(event):
     button_3 = QuickReplyButton(action=MessageAction(lable='IQXWTI',text='IQXWTI'))
     button_4 = QuickReplyButton(action=MessageAction(lable='SET',text='SET'))
     button_5 = QuickReplyButton(action=MessageAction(lable='TFEX',text='TFEX'))
-    button_6 = QuickReplyButton(action=MessageAction(lable='UPDATE',text='UPDATE'))
 
-
-    answer_button = QuickReply(items=[button_1,button_2,button_3,button_4,button_5,button_6])
+    answer_button = QuickReply(items=[button_1,button_2,button_3,button_4,button_5])
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))

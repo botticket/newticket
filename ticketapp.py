@@ -59,7 +59,8 @@ def handle_message(event):
             from bs4 import BeautifulSoup as soup 
 
             def usdcheck():
-                IQXUSTHB = '31.21'
+                IQXUSTHB = '29.76'
+                #chg for Quarter : Jan Apr Jul Sep
                 #1.06 1.12 0.94 0.88
 
                 req = Request('https://th.investing.com/currencies/usd-thb', headers={'User-Agent': 'Chrome/78.0'})
@@ -117,7 +118,8 @@ def handle_message(event):
 
 
             def wticheck():
-                IQXWTI = '51.55'
+                IQXWTI = '61.35'
+                #chg for Quarter : Jan Apr Jul Sep
 
                 #1.06 1.12 0.94 0.88
 
@@ -181,7 +183,9 @@ def handle_message(event):
             from bs4 import BeautifulSoup as soup 
 
             def goldcheck():
-                IQXGL = '1589.69'
+                IQXGL = '1517.18'
+                #chg for Quarter : Jan Apr Jul Sep
+
                 #1.06 1.12 0.94 0.88
 
                 targetUp_01 = float(IQXGL) * 1.06
@@ -276,7 +280,8 @@ def handle_message(event):
                 return[tx,ux,cx]
 
             def dailytfex():
-                tfexx = '1013.20'
+                tfexx = '1065.20'
+                #chg for Quarter : Jan Apr Jul Sep
                 #1.007 1.015 0.993 0.986
                 tff = tfexcheck()
             
@@ -347,7 +352,8 @@ def handle_message(event):
                 return[st,chg]
 
             def dailyset():
-                sett = '1514.14'
+                sett = '1584.34'
+                #chg for Quarter : Jan Apr Jul Sep
                 #1.007 1.015 0.993 0.986
                 st = setcheck()
 
@@ -445,8 +451,10 @@ def handle_message(event):
                     list = self.stock
 
                     dfY = data.DataReader(f'{list}', data_source="yahoo", start='2020-01-01', end=end)
-                    dfM = data.DataReader(f'{list}', data_source="yahoo", start='2020-02-01', end=end)
-                    dfW = data.DataReader(f'{list}', data_source="yahoo", start='2020-02-17', end=end)
+                    dfQ = data.DataReader(f'{list}', data_source="yahoo", start='2020-01-01', end=end)
+                    #chg for Quarter : Jan Apr Jul Sep
+
+                    dfW = data.DataReader(f'{list}', data_source="yahoo", start='2020-02-24', end=end)
 
                     #2020-01-01 = Y M D
 
@@ -456,11 +464,11 @@ def handle_message(event):
                     OpenY  = '%.2f'%OpenY
                     OpenY = str(OpenY)
 
-                    OpenM = dfM['Open'].iloc[0]
-                    OpenM  = '%.2f'%OpenM
-                    OpenM = str(OpenM)
+                    OpenQ = dfQ['Open'].iloc[0]
+                    OpenQ  = '%.2f'%OpenQ
+                    OpenQ = str(OpenQ)
 
-                    OpenW = dfM['Open'].iloc[0]
+                    OpenW = dfQ['Open'].iloc[0]
                     OpenW  = '%.2f'%OpenW
                     OpenW = str(OpenW)
 
@@ -472,16 +480,16 @@ def handle_message(event):
                     barY = '%.2f'%barY
                     barY = float(barY)
 
-                    barM = ((float(Close) - float(OpenM)) / float(OpenM) )*100
-                    barM = '%.2f'%barM
-                    barM = float(barM)
+                    barQ = ((float(Close) - float(OpenQ)) / float(OpenQ) )*100
+                    barQ = '%.2f'%barQ
+                    barQ = float(barQ)
 
                     barW = ((float(Close) - float(OpenW)) / float(OpenW) )*100
                     barW = '%.2f'%barW
                     barW = float(barW)
 
-                    Volume1 = dfM['Volume'].iloc[-1]
-                    Volume2 = dfM['Volume'].iloc[-2]
+                    Volume1 = dfQ['Volume'].iloc[-1]
+                    Volume2 = dfQ['Volume'].iloc[-2]
                     Volume = (float(Volume1)+float(Volume2))/2
                     Volume  = '%.0f'%Volume
                     Volume = str(Volume)
@@ -494,25 +502,25 @@ def handle_message(event):
                     request_val  = '{:,.0f}'.format(request_val)
                     request_val = str(request_val)
                     
-                    exitM1 = float(OpenM) * 1.06
-                    exitM1 = '%.2f'%exitM1
-                    exitM1 = str(exitM1)
+                    exitQ1 = float(OpenQ) * 1.06
+                    exitQ1 = '%.2f'%exitQ1
+                    exitQ1 = str(exitQ1)
 
-                    exitM2 = float(OpenM) * 1.16
-                    exitM2 = '%.2f'%exitM2
-                    exitM2 = str(exitM2)
+                    exitQ2 = float(OpenQ) * 1.16
+                    exitQ2 = '%.2f'%exitQ2
+                    exitQ2 = str(exitQ2)
 
-                    exitM3 = float(OpenM) * 1.26
-                    exitM3 = '%.2f'%exitM3
-                    exitM3 = str(exitM3)
+                    exitQ3 = float(OpenQ) * 1.26
+                    exitQ3 = '%.2f'%exitQ3
+                    exitQ3 = str(exitQ3)
 
-                    buyM = float(OpenM) * 1.01
-                    buyM = '%.2f'%buyM
-                    buyM = str(buyM) 
+                    buyQ = float(OpenQ) * 1.01
+                    buyQ = '%.2f'%buyQ
+                    buyQ = str(buyQ) 
 
-                    stopM = float(OpenM) * 0.985
-                    stopM = '%.2f'%stopM
-                    stopM = str(stopM) 
+                    stopQ = float(OpenQ) * 0.985
+                    stopQ = '%.2f'%stopQ
+                    stopQ = str(stopQ) 
 
                     exitY1 = float(OpenY) * 1.06
                     exitY1 = '%.2f'%exitY1
@@ -534,14 +542,14 @@ def handle_message(event):
                     stopY = '%.2f'%stopY
                     stopY = str(stopY) 
 
-                    text1 = '\n' + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY +'\n' + 'M ' + OpenM + ' ({} %)'.format(barM) +'\n' + '> ' + stopM + ' ~ '+ buyM +'\n' + 'X ' + exitM1 + ' | ' + exitM2 + ' | ' + exitM3 
-                    text2 = '\n' + text_request +'\n' + 'M ' + OpenM + ' ({} %)'.format(barM) +'\n' + '> ' + stopM + ' ~ '+ buyM +'\n' + 'X ' + exitM1 + ' | ' + exitM2 + ' | ' + exitM3 
-                    text3 = 'กำลังย่อ'  + '\n' + text_request +'\n' + 'M ' + OpenM + ' ({} %)'.format(barM) +'\n' + '> ' + stopM + ' ~ '+ buyM 
+                    text1 = '\n' + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY +'\n' + 'M ' + OpenQ + ' ({} %)'.format(barQ) +'\n' + '> ' + stopQ + ' ~ '+ buyQ +'\n' + 'X ' + exitQ1 + ' | ' + exitQ2 + ' | ' + exitQ3 
+                    text2 = '\n' + text_request +'\n' + 'M ' + OpenQ + ' ({} %)'.format(barQ) +'\n' + '> ' + stopQ + ' ~ '+ buyQ +'\n' + 'X ' + exitQ1 + ' | ' + exitQ2 + ' | ' + exitQ3 
+                    text3 = 'กำลังย่อ'  + '\n' + text_request +'\n' + 'M ' + OpenQ + ' ({} %)'.format(barQ) +'\n' + '> ' + stopQ + ' ~ '+ buyQ 
                     text4 = 'อย่าเพิ่งเข้า' + '\n'  + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY 
                     text5 = 'ซื้อขายน้อย' +'\n' +text_request + '\n' + 'Val : ' + request_val + '\n' + 'Vol : ' + Volume
                     text6 = 'น่าสนใจ' + '\n'  + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY +'\n' + 'X ' + exitY1 + ' | ' + exitY2 + ' | ' + exitY3 
                     text7 = 'รอราคาต่ำ' + '\n'  + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY +'\n' + 'X ' + exitY1 + ' | ' + exitY2 + ' | ' + exitY3 
-                    text8 = 'รอราคาต่ำ' + '\n'  + text_request +'\n' + 'M ' + OpenM + ' ({} %)'.format(barM) +'\n' + '> ' + stopM + ' ~ '+ buyM +'\n' + 'X ' + exitM1 + ' | ' + exitM2 + ' | ' + exitM3 
+                    text8 = 'รอราคาต่ำ' + '\n'  + text_request +'\n' + 'M ' + OpenQ + ' ({} %)'.format(barQ) +'\n' + '> ' + stopQ + ' ~ '+ buyQ +'\n' + 'X ' + exitQ1 + ' | ' + exitQ2 + ' | ' + exitQ3 
 
                     alert = 'ชนแนวต้าน'
                     alert2 = 'ไปต่อ'
@@ -549,14 +557,14 @@ def handle_message(event):
 
                     if float(value) > 7500000:
                         if barY > 3.00:
-                            if barM > 6.00:
+                            if barQ > 6.00:
                                 word_to_reply2 = str(alert + text1)
-                            elif barM >= 3.00:
+                            elif barQ >= 3.00:
                                 if barW >= 0:
                                     word_to_reply2 = str(alert2 + text1)
                                 else:
                                     word_to_reply2 = str(text7)
-                            elif barM >= 0.00:
+                            elif barQ >= 0.00:
                                 if barW >= 0:
                                     word_to_reply2 = str(notice + text1)
                                 else:
@@ -564,7 +572,7 @@ def handle_message(event):
                             else:
                                 word_to_reply2 = str(text4)
                         elif barY >= 0.00:
-                            if barM >= 0:
+                            if barQ >= 0:
                                 if barW > 0:
                                     word_to_reply2 = str(text6)
                                 else:
@@ -572,14 +580,14 @@ def handle_message(event):
                             else:
                                 word_to_reply2 = str(text3)              
                         else:
-                            if barM > 6.00:
+                            if barQ > 6.00:
                                 word_to_reply2 = str(alert + text2)
-                            elif barM >= 3.00:
+                            elif barQ >= 3.00:
                                 if barW >= 0:
                                     word_to_reply2 = str(alert2 + text2)
                                 else:
                                     word_to_reply2 = str(text8)
-                            elif barM >= 0.00:
+                            elif barQ >= 0.00:
                                 if barW >= 0:
                                     word_to_reply2 = str(notice + text2)
                                 else:

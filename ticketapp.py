@@ -542,14 +542,14 @@ def handle_message(event):
                     stopY = '%.2f'%stopY
                     stopY = str(stopY) 
 
-                    text1 = '\n' + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY +'\n' + 'M ' + OpenQ + ' ({} %)'.format(barQ) +'\n' + '> ' + stopQ + ' ~ '+ buyQ +'\n' + 'X ' + exitQ1 + ' | ' + exitQ2 + ' | ' + exitQ3 
-                    text2 = '\n' + text_request +'\n' + 'M ' + OpenQ + ' ({} %)'.format(barQ) +'\n' + '> ' + stopQ + ' ~ '+ buyQ +'\n' + 'X ' + exitQ1 + ' | ' + exitQ2 + ' | ' + exitQ3 
-                    text3 = 'กำลังย่อ'  + '\n' + text_request +'\n' + 'M ' + OpenQ + ' ({} %)'.format(barQ) +'\n' + '> ' + stopQ + ' ~ '+ buyQ 
-                    text4 = 'อย่าเพิ่งเข้า' + '\n'  + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY 
+                    text1 = '\n' + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY +'\n' + 'Q ' + OpenQ + ' ({} %)'.format(barQ) +'\n' + '> ' + stopQ + ' ~ '+ buyQ +'\n' + 'X ' + exitQ1 + ' | ' + exitQ2 + ' | ' + exitQ3 
+                    text2 = '\n' + text_request +'\n' + 'Q ' + OpenQ + ' ({} %)'.format(barQ) +'\n' + '> ' + stopQ + ' ~ '+ buyQ +'\n' + 'X ' + exitQ1 + ' | ' + exitQ2 + ' | ' + exitQ3 
+                    text3 = 'กำลังย่อ'  + '\n' + text_request +'\n' + 'Q ' + OpenQ + ' ({} %)'.format(barQ) +'\n' + '> ' + stopQ + ' ~ '+ buyQ 
+                    text4 = 'อย่าเพิ่งเข้า' + '\n'  + text_request +'\n' + 'Q ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY 
                     text5 = 'ซื้อขายน้อย' +'\n' +text_request + '\n' + 'Val : ' + request_val + '\n' + 'Vol : ' + Volume
                     text6 = 'น่าสนใจ' + '\n'  + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY +'\n' + 'X ' + exitY1 + ' | ' + exitY2 + ' | ' + exitY3 
-                    text7 = 'รอราคาต่ำ' + '\n'  + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY +'\n' + 'X ' + exitY1 + ' | ' + exitY2 + ' | ' + exitY3 
-                    text8 = 'รอราคาต่ำ' + '\n'  + text_request +'\n' + 'M ' + OpenQ + ' ({} %)'.format(barQ) +'\n' + '> ' + stopQ + ' ~ '+ buyQ +'\n' + 'X ' + exitQ1 + ' | ' + exitQ2 + ' | ' + exitQ3 
+                    text7 = 'รอราคาต่ำ' + '\n'  + text_request +'\n' + 'Q ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY +'\n' + 'X ' + exitY1 + ' | ' + exitY2 + ' | ' + exitY3 
+                    text8 = 'รอราคาต่ำ' + '\n'  + text_request +'\n' + 'Q ' + OpenQ + ' ({} %)'.format(barQ) +'\n' + '> ' + stopQ + ' ~ '+ buyQ +'\n' + 'X ' + exitQ1 + ' | ' + exitQ2 + ' | ' + exitQ3 
 
                     alert = 'ชนแนวต้าน'
                     alert2 = 'ไปต่อ'

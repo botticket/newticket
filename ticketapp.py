@@ -63,6 +63,18 @@ def handle_message(event):
                 #chg for Quarter : Jan Apr Jul Sep
                 #1.06 1.12 0.94 0.88
 
+                targetUp_01 = float(IQXUSTHB) * 1.06
+                targetUp_01 = '%.2f'%targetUp_01
+
+                targetUp_02 = float(IQXUSTHB) * 1.12
+                targetUp_02 = '%.2f'%targetUp_02
+                
+                targetDown_01 = float(IQXUSTHB) * 0.94
+                targetDown_01 = '%.2f'%targetDown_01
+
+                targetDown_02 = float(IQXUSTHB) * 0.88
+                targetDown_02 = '%.2f'%targetDown_02
+
                 req = Request('https://th.investing.com/currencies/usd-thb', headers={'User-Agent': 'Chrome/78.0'})
                 webopen = urlopen(req).read()
 
@@ -90,13 +102,15 @@ def handle_message(event):
                 sale = float(usthbspot) - 0.06 #dif rate sale
                 sale = '%.2f'%sale
 
+
                 text1 = 'IQXUSTB >> ' 
-                text2 = '\n' + IQXUSTHB +' >> ' + usthbrate + ' (' + xusthbrate + ')' + '\n' + 'ซื้อ ' + sale + ' / ขาย '+ buy
+                text2 = '\n' + IQXUSTHB +' >> ' + usthbrate + ' (' + xusthbrate + ')' + '\n' + 'ซื้อ ' + sale + ' / ขาย '+ buy + '\n' + 'X : {} / {}'.format(targetUp_01,targetUp_02)
+                text3 = '\n' + IQXUSTHB +' >> ' + usthbrate + ' (' + xusthbrate + ')' + '\n' + 'ซื้อ ' + sale + ' / ขาย '+ buy + '\n' + 'X : {} / {}'.format(targetDown_01,targetDown_02)
 
                 if float(usthbspot) >= float(IQXUSTHB):
                     word_to_reply2 = text1 + 'ค่าเงินอ่อน' + text2
                 else:
-                    word_to_reply2 = text1 + 'ค่าเงินแข็ง' + text2
+                    word_to_reply2 = text1 + 'ค่าเงินแข็ง' + text3
                 
                 print(word_to_reply2)
                 word_to_reply1 = '{} '.format(disname) + 'ค้นข้อมูล ' + text_from_user

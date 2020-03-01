@@ -516,15 +516,15 @@ def handle_message(event):
                     request_val  = '{:,.0f}'.format(request_val)
                     request_val = str(request_val)
                     
-                    exitQ1 = float(OpenQ) * 1.06
+                    exitQ1 = float(r[1]) * 1.06
                     exitQ1 = '%.2f'%exitQ1
                     exitQ1 = str(exitQ1)
 
-                    exitQ2 = float(OpenQ) * 1.16
+                    exitQ2 = float(r[1]) * 1.12
                     exitQ2 = '%.2f'%exitQ2
                     exitQ2 = str(exitQ2)
 
-                    exitQ3 = float(OpenQ) * 1.26
+                    exitQ3 = float(r[1]) * 1.18
                     exitQ3 = '%.2f'%exitQ3
                     exitQ3 = str(exitQ3)
 
@@ -536,15 +536,15 @@ def handle_message(event):
                     stopQ = '%.2f'%stopQ
                     stopQ = str(stopQ) 
 
-                    exitY1 = float(OpenY) * 1.06
+                    exitY1 = float(r[1]) * 1.06
                     exitY1 = '%.2f'%exitY1
                     exitY1 = str(exitY1)
 
-                    exitY2 = float(OpenY) * 1.16
+                    exitY2 = float(r[1]) * 1.12
                     exitY2 = '%.2f'%exitY2
                     exitY2 = str(exitY2)
 
-                    exitY3 = float(OpenY) * 1.26
+                    exitY3 = float(r[1]) * 1.18
                     exitY3 = '%.2f'%exitY3
                     exitY3 = str(exitY3)
 
@@ -556,14 +556,14 @@ def handle_message(event):
                     stopY = '%.2f'%stopY
                     stopY = str(stopY) 
 
-                    text1 = '\n' + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY +'\n' + 'Q ' + OpenQ + ' ({} %)'.format(barQ) +'\n' + '> ' + stopQ + ' ~ '+ buyQ +'\n' + 'X ' + exitQ1 + ' | ' + exitQ2 + ' | ' + exitQ3 
+                    text1 = '\n' + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY  + 'X ' + exitY1 + ' | ' + exitY2 + ' | ' + exitY3 
                     text2 = '\n' + text_request +'\n' + 'Q ' + OpenQ + ' ({} %)'.format(barQ) +'\n' + '> ' + stopQ + ' ~ '+ buyQ +'\n' + 'X ' + exitQ1 + ' | ' + exitQ2 + ' | ' + exitQ3 
                     text3 = 'กำลังย่อ'  + '\n' + text_request +'\n' + 'Q ' + OpenQ + ' ({} %)'.format(barQ) +'\n' + '> ' + stopQ + ' ~ '+ buyQ 
-                    text4 = 'อย่าเพิ่งเข้า' + '\n'  + text_request +'\n' + 'Q ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY 
+                    text4 = 'อย่าเพิ่งเข้า' + '\n'  + text_request +'\n' + 'Q ' + OpenQ + ' ({} %)'.format(barY) 
                     text5 = 'ซื้อขายน้อย' +'\n' +text_request + '\n' + 'Val : ' + request_val + '\n' + 'Vol : ' + Volume
                     text6 = 'น่าสนใจ' + '\n'  + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY +'\n' + 'X ' + exitY1 + ' | ' + exitY2 + ' | ' + exitY3 
-                    text7 = 'รอราคาต่ำ' + '\n'  + text_request +'\n' + 'Q ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY +'\n' + 'X ' + exitY1 + ' | ' + exitY2 + ' | ' + exitY3 
-                    text8 = 'รอราคาต่ำ' + '\n'  + text_request +'\n' + 'Q ' + OpenQ + ' ({} %)'.format(barQ) +'\n' + '> ' + stopQ + ' ~ '+ buyQ +'\n' + 'X ' + exitQ1 + ' | ' + exitQ2 + ' | ' + exitQ3 
+                    text7 = 'รอราคาต่ำ' + '\n'  + text_request +'\n' + 'Q ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY 
+                    text8 = 'รอราคาต่ำ' + '\n'  + text_request +'\n' + 'Q ' + OpenQ + ' ({} %)'.format(barQ) +'\n' + '> ' + stopQ + ' ~ '+ buyQ
 
                     alert = 'ชนแนวต้าน'
                     alert2 = 'ไปต่อ'
@@ -623,8 +623,8 @@ def handle_message(event):
                 stock(symbol).ticket()
     except:
         text_list = [
-            '{} พิมพ์ชื่อหุ้น {} ผิด ลองใหม่อีกครั้ง / บอตทำงาน 10.00 - 24.00 น.'.format(disname, text_from_user),
-            '{} ไม่มีในฐานข้อมูล {} ลองใหม่อีกครั้ง / บอตทำงาน 10.00 - 24.00 น.'.format(text_from_user,disname),
+            '{} สะกดชื่อหุ้น {} ผิด ลองใหม่นะ / บอตทำงาน 10.00 - 24.00 น.'.format(disname, text_from_user),
+            '{} ไม่มีในฐานข้อมูล {} ลองใหม่นะ / บอตทำงาน 10.00 - 24.00 น.'.format(text_from_user,disname),
 
         ]
 

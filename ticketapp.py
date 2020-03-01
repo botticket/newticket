@@ -58,61 +58,65 @@ def handle_message(event):
             from urllib.request import Request, urlopen
             from bs4 import BeautifulSoup as soup 
 
-            def usdcheck():
-                IQXUSTHB = '29.76'
-                #chg for Quarter : Jan Apr Jul Sep
-                #1.06 1.12 0.94 0.88
+        def usdscrapt():
+            req = Request('https://th.investing.com/currencies/usd-thb', headers={'User-Agent': 'Chrome/78.0'})
+            webopen = urlopen(req).read()
 
-                targetUp_01 = float(IQXUSTHB) * 1.06
-                targetUp_01 = '%.2f'%targetUp_01
+            data = soup(webopen, 'html.parser')
 
-                targetUp_02 = float(IQXUSTHB) * 1.12
-                targetUp_02 = '%.2f'%targetUp_02
-                
-                targetDown_01 = float(IQXUSTHB) * 0.94
-                targetDown_01 = '%.2f'%targetDown_01
+            usthbrate = data.findAll('div',{'class':'top bold inlineblock'})
+            usthbrate = usthbrate[0].text
+            usthbrate = usthbrate.replace('\n',' ')
+            usthbrate = usthbrate.replace(',','')
+            usthbrate = usthbrate[1:]
+            usthbrate = usthbrate[0:6]
 
-                targetDown_02 = float(IQXUSTHB) * 0.88
-                targetDown_02 = '%.2f'%targetDown_02
+            xusthbrate = data.findAll('div',{'class':'top bold inlineblock'})
+            xusthbrate = xusthbrate[0].text
+            xusthbrate = xusthbrate.replace('\n',' ')
+            xusthbrate = xusthbrate.replace(',','')
+            xusthbrate = xusthbrate[1:]
+            xusthbrate = xusthbrate[7:13]
 
-                req = Request('https://th.investing.com/currencies/usd-thb', headers={'User-Agent': 'Chrome/78.0'})
-                webopen = urlopen(req).read()
+            return[usthbrate,xusthbrate]
 
-                data = soup(webopen, 'html.parser')
+        def usdcheck():
+            IQXUSTHB = '29.76'
+            #chg for Quarter : Jan Apr Jul Sep
+            #1.06 1.12 0.94 0.88
+            uu = usdscrapt()
 
-                usthbrate = data.findAll('div',{'class':'top bold inlineblock'})
-                usthbrate = usthbrate[0].text
-                usthbrate = usthbrate.replace('\n',' ')
-                usthbrate = usthbrate.replace(',','')
-                usthbrate = usthbrate[1:]
-                usthbrate = usthbrate[0:6]
+            targetUp_01 = float(uu[0]) * 1.015
+            targetUp_01 = '%.2f'%targetUp_01
 
-                xusthbrate = data.findAll('div',{'class':'top bold inlineblock'})
-                xusthbrate = xusthbrate[0].text
-                xusthbrate = xusthbrate.replace('\n',' ')
-                xusthbrate = xusthbrate.replace(',','')
-                xusthbrate = xusthbrate[1:]
-                xusthbrate = xusthbrate[7:13]
+            targetUp_02 = float(uu[0]) * 1.03
+            targetUp_02 = '%.2f'%targetUp_02
+            
+            targetDown_01 = float(uu[0]) * 0.985
+            targetDown_01 = '%.2f'%targetDown_01
 
-                usthbspot = float(usthbrate)
-                usthbspot = '%.2f'%usthbspot
-
-                buy = float(usthbspot) + 0.02 #dif rate buy
-                buy = '%.2f'%buy
-                sale = float(usthbspot) - 0.06 #dif rate sale
-                sale = '%.2f'%sale
+            targetDown_02 = float(uu[0]) * 0.97
+            targetDown_02 = '%.2f'%targetDown_02
 
 
-                text1 = 'IQXUSTB >> ' 
-                text2 = '\n' + IQXUSTHB +' >> ' + usthbrate + ' (' + xusthbrate + ')' + '\n' + 'ซื้อ ' + sale + ' / ขาย '+ buy + '\n' + 'X : {} / {}'.format(targetUp_01,targetUp_02)
-                text3 = '\n' + IQXUSTHB +' >> ' + usthbrate + ' (' + xusthbrate + ')' + '\n' + 'ซื้อ ' + sale + ' / ขาย '+ buy + '\n' + 'X : {} / {}'.format(targetDown_01,targetDown_02)
+            usthbspot = float(uu[0])
+            usthbspot = '%.2f'%usthbspot
 
-                if float(usthbspot) >= float(IQXUSTHB):
-                    word_to_reply2 = text1 + 'ค่าเงินอ่อน' + text2
-                else:
-                    word_to_reply2 = text1 + 'ค่าเงินแข็ง' + text3
-                
-                print(word_to_reply2)
+            buy = float(usthbspot) + 0.02 #dif rate buy
+            buy = '%.2f'%buy
+            sale = float(usthbspot) - 0.06 #dif rate sale
+            sale = '%.2f'%sale
+
+            text1 = 'IQXUSTB >> ' 
+            text2 = '\n' + IQXUSTHB +' >> ' + usthbspot + ' (' + uu[1] + ')' + '\n' + 'ซื้อ ' + sale + ' / ขาย '+ buy + '\n' + 'X : {} / {}'.format(targetUp_01,targetUp_02)
+            text3 = '\n' + IQXUSTHB +' >> ' + usthbspot + ' (' + uu[1] + ')' + '\n' + 'ซื้อ ' + sale + ' / ขาย '+ buy + '\n' + 'X : {} / {}'.format(targetDown_01,targetDown_02)
+
+            if float(usthbspot) >= float(IQXUSTHB):
+                word_to_reply2 = text1 + 'ค่าเงินอ่อน' + text2
+            else:
+                word_to_reply2 = text1 + 'ค่าเงินแข็ง' + text3
+            
+            print(word_to_reply2)
                 word_to_reply1 = '{} '.format(disname) + 'ค้นข้อมูล ' + text_from_user
 
                 text_to_reply1 = TextSendMessage(text = word_to_reply1)

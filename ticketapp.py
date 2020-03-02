@@ -468,7 +468,7 @@ def handle_message(event):
                     dfQ = data.DataReader(f'{list}', data_source="yahoo", start='2020-01-01', end=end)
                     #chg for Quarter : Jan Apr Jul Sep
 
-                    dfW = data.DataReader(f'{list}', data_source="yahoo", start='2020-02-24', end=end)
+                    dfW = data.DataReader(f'{list}', data_source="yahoo", start='2020-03-01', end=end)
 
                     #2020-01-01 = Y M D
 
@@ -623,8 +623,8 @@ def handle_message(event):
                 stock(symbol).ticket()
     except:
         text_list = [
-            '{} สะกดชื่อหุ้น {} ผิด ลองใหม่นะ / บอตทำงาน 10.00 - 24.00 น.'.format(disname, text_from_user),
-            '{} ไม่มีในฐานข้อมูล {} ลองใหม่นะ / บอตทำงาน 10.00 - 24.00 น.'.format(text_from_user,disname),
+            '{} สะกดชื่อหุ้น {} ผิด ลองใหม่นะ / บอตพัก 05.00 - 10.00 น.'.format(disname, text_from_user),
+            '{} ไม่มีในฐานข้อมูล {} ลองใหม่นะ / บอตพัก 05.00 - 10.00 น.'.format(text_from_user,disname),
 
         ]
 

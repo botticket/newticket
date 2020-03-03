@@ -562,8 +562,8 @@ def handle_message(event):
                     text4 = 'อย่าเพิ่งเข้า' + '\n'  + text_request +'\n' + 'Q ' + OpenQ + ' ({} %)'.format(barY) 
                     text5 = 'ซื้อขายน้อย' +'\n' +text_request + '\n' + 'Val : ' + request_val + '\n' + 'Vol : ' + Volume
                     text6 = 'น่าสนใจ' + '\n'  + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY +'\n' + 'X ' + exitY1 + ' | ' + exitY2 + ' | ' + exitY3 
-                    text7 = 'รอราคาต่ำ' + '\n'  + text_request +'\n' + 'Q ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY 
-                    text8 = 'รอราคาต่ำ' + '\n'  + text_request +'\n' + 'Q ' + OpenQ + ' ({} %)'.format(barQ) +'\n' + '> ' + stopQ + ' ~ '+ buyQ
+                    text7 = 'รอเข้า' + '\n'  + text_request +'\n' + 'Q ' + OpenQ + ' ({} %)'.format(barQ) +'\n' + '> ' + stopQ + ' ~ '+ buyQ 
+                    text8 = 'รอต่ำ' + '\n'  + text_request +'\n' + 'Q ' + OpenQ + ' ({} %)'.format(barQ) +'\n' + '> ' + stopQ + ' ~ '+ buyQ
 
                     alert = 'ชนแนวต้าน'
                     alert2 = 'ไปต่อ'

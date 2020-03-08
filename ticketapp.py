@@ -9,7 +9,6 @@ from linebot.models import MessageEvent, TextMessage, TextSendMessage,FollowEven
 from line_notify import LineNotify
 from reply import reply_msg , SetMessage_Object
 from flex_stock import *
-from dialogflow_uncle import detect_intent_texts
 
 app = Flask(__name__)
 
@@ -55,27 +54,6 @@ def handle_message(event):
     print(request_text)
     linechat(request_text)
 
-    result_from_dialogflow = detect_intent_texts(project_id="worldstock-iardyn",
-                                        session_id=userid ,
-                                        text=text_from_user , 
-                                        language_code="th")
-    
-    action = result_from_dialogflow["action"]
-    response = result_from_dialogflow["fulfillment_messages"] #as list
-
-    print("action : " + action)
-    print("response : " + str(response))
-        
-    if action == "Welcome_response":
-        all_text = []
-        for each in response:
-            text = TextSendMessage(text=each)
-            all_text.append(text)
-    
-        line_bot_api.reply_message(reply_token,messages=all_text) #reply messageกลับไป
-        
-        return 'OK'
-    
     try:
         if 'IQXUSTB' in text_from_user:
 
@@ -752,7 +730,6 @@ def RegisRichmenu(event):
     answer_button = QuickReply(items=[button_1,button_2,button_3,button_4,button_5])
             
 if __name__ == '__main__':
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "Credentials.json"
-    os.environ["DIALOGFLOW_PROJECT_ID"] = "worldstock-iardyn"
-    port = int(os.getenv('PORT', 2000))
+    port = int(os.getenv('PORT', 5000))
+    #print("Starting app on port %d" % port)
     app.run(debug=False, port=port, host='0.0.0.0', threaded=True)

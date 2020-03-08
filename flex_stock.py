@@ -1,4 +1,5 @@
 def flex_THB(text,word_to_reply,usthbspot,Percent,IQXUSTHB,comment):
+  Change_color = ['#EE0000' if '-' in str(Percent) else '#23D500'][0]
   bubble = {
     "type": "flex",
     "altText": "Flex Message",
@@ -35,7 +36,7 @@ def flex_THB(text,word_to_reply,usthbspot,Percent,IQXUSTHB,comment):
             "margin": "none",
             "size": "xl",
             "weight": "bold",
-            "color": "#000000"
+            "color": "{}".format(Change_color)
           },
           {
             "type": "box",
@@ -48,7 +49,7 @@ def flex_THB(text,word_to_reply,usthbspot,Percent,IQXUSTHB,comment):
                 "margin": "sm",
                 "size": "lg",
                 "weight": "bold",
-                "color": "#000000"
+                "color": "{}".format(Change_color)
               },
               {
                 "type": "text",
@@ -56,7 +57,7 @@ def flex_THB(text,word_to_reply,usthbspot,Percent,IQXUSTHB,comment):
                 "size": "lg",
                 "align": "start",
                 "weight": "bold",
-                "color": "#000000",
+                "color": "{}".format(Change_color),
                 "wrap": True
               }
             ]
@@ -79,7 +80,7 @@ def flex_THB(text,word_to_reply,usthbspot,Percent,IQXUSTHB,comment):
                 "size": "md",
                 "align": "end",
                 "weight": "bold",
-                "color": "#000000"
+                "color": "{}".format(Change_color)
               },
               {
                 "type": "text",
@@ -87,7 +88,7 @@ def flex_THB(text,word_to_reply,usthbspot,Percent,IQXUSTHB,comment):
                 "size": "md",
                 "align": "start",
                 "weight": "bold",
-                "color": "#000000",
+                "color": "{}".format(Change_color),
                 "wrap": True
               }
             ]
@@ -149,6 +150,7 @@ def flex_THB(text,word_to_reply,usthbspot,Percent,IQXUSTHB,comment):
   return bubble
 
 def flex_WTI(text,word_to_reply,wtispot,Percent,IQXWTI,comment):
+  Change_color = ['#EE0000' if '-' in str(Percent) else '#23D500'][0]
   bubble = {
     "type": "flex",
     "altText": "Flex Message",
@@ -185,7 +187,7 @@ def flex_WTI(text,word_to_reply,wtispot,Percent,IQXWTI,comment):
             "margin": "none",
             "size": "xl",
             "weight": "bold",
-            "color": "#000000"
+            "color": "{}".format(Change_color)
           },
           {
             "type": "box",
@@ -198,7 +200,7 @@ def flex_WTI(text,word_to_reply,wtispot,Percent,IQXWTI,comment):
                 "margin": "sm",
                 "size": "lg",
                 "weight": "bold",
-                "color": "#000000"
+                "color": "{}".format(Change_color)
               },
               {
                 "type": "text",
@@ -206,7 +208,7 @@ def flex_WTI(text,word_to_reply,wtispot,Percent,IQXWTI,comment):
                 "size": "lg",
                 "align": "end",
                 "weight": "bold",
-                "color": "#000000"
+                "color": "{}".format(Change_color)
               },
               {
                 "type": "text",
@@ -234,7 +236,7 @@ def flex_WTI(text,word_to_reply,wtispot,Percent,IQXWTI,comment):
                 "size": "md",
                 "align": "end",
                 "weight": "bold",
-                "color": "#000000"
+                "color": "{}".format(Change_color)
               },
               {
                 "type": "text",
@@ -242,7 +244,7 @@ def flex_WTI(text,word_to_reply,wtispot,Percent,IQXWTI,comment):
                 "size": "md",
                 "align": "start",
                 "weight": "bold",
-                "color": "#000000"
+                "color": "{}".format(Change_color)
               }
             ]
           },
@@ -302,6 +304,7 @@ def flex_WTI(text,word_to_reply,wtispot,Percent,IQXWTI,comment):
   return bubble
 
 def flex_gold(text,word_to_reply,gspot,Percent,IQXGL,comment):
+  Change_color = ['#EE0000' if '-' in str(Percent) else '#23D500'][0]
   bubble = {
     "type": "flex",
     "altText": "Flex Message",
@@ -338,7 +341,7 @@ def flex_gold(text,word_to_reply,gspot,Percent,IQXGL,comment):
             "margin": "none",
             "size": "xl",
             "weight": "bold",
-            "color": "#000000"
+            "color": "{}".format(Change_color)
           },
           {
             "type": "box",
@@ -351,7 +354,7 @@ def flex_gold(text,word_to_reply,gspot,Percent,IQXGL,comment):
                 "margin": "sm",
                 "size": "lg",
                 "weight": "bold",
-                "color": "#000000"
+                "color": "{}".format(Change_color)
               },
               {
                 "type": "text",
@@ -359,7 +362,7 @@ def flex_gold(text,word_to_reply,gspot,Percent,IQXGL,comment):
                 "size": "lg",
                 "align": "end",
                 "weight": "bold",
-                "color": "#000000"
+                "color": "{}".format(Change_color)
               },
               {
                 "type": "text",
@@ -387,7 +390,7 @@ def flex_gold(text,word_to_reply,gspot,Percent,IQXGL,comment):
                 "size": "md",
                 "align": "end",
                 "weight": "bold",
-                "color": "#000000"
+                "color": "{}".format(Change_color)
               },
               {
                 "type": "text",
@@ -395,7 +398,7 @@ def flex_gold(text,word_to_reply,gspot,Percent,IQXGL,comment):
                 "size": "md",
                 "align": "start",
                 "weight": "bold",
-                "color": "#000000"
+                "color": "{}".format(Change_color)
               }
             ]
           },
@@ -455,6 +458,7 @@ def flex_gold(text,word_to_reply,gspot,Percent,IQXGL,comment):
   return bubble
 
 def flex_tfex(text,word_to_reply,tfex_now,Percent,tfexx,comment):
+  Change_color = ['#EE0000' if '-' in str(Percent) else '#23D500'][0]
   bubble = {
     "type": "flex",
     "altText": "Flex Message",
@@ -491,7 +495,7 @@ def flex_tfex(text,word_to_reply,tfex_now,Percent,tfexx,comment):
             "margin": "none",
             "size": "xl",
             "weight": "bold",
-            "color": "#000000"
+            "color": "{}".format(Change_color)
           },
           {
             "type": "box",
@@ -504,7 +508,7 @@ def flex_tfex(text,word_to_reply,tfex_now,Percent,tfexx,comment):
                 "margin": "sm",
                 "size": "lg",
                 "weight": "bold",
-                "color": "#000000"
+                "color": "{}".format(Change_color)
               },
               {
                 "type": "text",
@@ -512,7 +516,7 @@ def flex_tfex(text,word_to_reply,tfex_now,Percent,tfexx,comment):
                 "size": "lg",
                 "align": "end",
                 "weight": "bold",
-                "color": "#000000"
+                "color": "{}".format(Change_color)
               },
               {
                 "type": "text",
@@ -540,7 +544,7 @@ def flex_tfex(text,word_to_reply,tfex_now,Percent,tfexx,comment):
                 "size": "md",
                 "align": "end",
                 "weight": "bold",
-                "color": "#000000"
+                "color": "{}".format(Change_color)
               },
               {
                 "type": "text",
@@ -548,7 +552,7 @@ def flex_tfex(text,word_to_reply,tfex_now,Percent,tfexx,comment):
                 "size": "md",
                 "align": "start",
                 "weight": "bold",
-                "color": "#000000"
+                "color": "{}".format(Change_color)
               }
             ]
           },
@@ -608,6 +612,7 @@ def flex_tfex(text,word_to_reply,tfex_now,Percent,tfexx,comment):
   return bubble
 
 def flex_set(text,word_to_reply,set_now,Percent,sett,comment):
+  Change_color = ['#EE0000' if '-' in str(Percent) else '#23D500'][0]
   bubble = {
     "type": "flex",
     "altText": "Flex Message",
@@ -644,7 +649,7 @@ def flex_set(text,word_to_reply,set_now,Percent,sett,comment):
             "margin": "none",
             "size": "xl",
             "weight": "bold",
-            "color": "#000000"
+            "color": "{}".format(Change_color)
           },
           {
             "type": "box",
@@ -657,7 +662,7 @@ def flex_set(text,word_to_reply,set_now,Percent,sett,comment):
                 "margin": "sm",
                 "size": "lg",
                 "weight": "bold",
-                "color": "#000000"
+                "color": "{}".format(Change_color)
               },
               {
                 "type": "text",
@@ -665,7 +670,7 @@ def flex_set(text,word_to_reply,set_now,Percent,sett,comment):
                 "size": "lg",
                 "align": "end",
                 "weight": "bold",
-                "color": "#000000"
+                "color": "{}".format(Change_color)
               },
               {
                 "type": "text",
@@ -693,7 +698,7 @@ def flex_set(text,word_to_reply,set_now,Percent,sett,comment):
                 "size": "md",
                 "align": "end",
                 "weight": "bold",
-                "color": "#000000"
+                "color": "{}".format(Change_color)
               },
               {
                 "type": "text",
@@ -701,7 +706,7 @@ def flex_set(text,word_to_reply,set_now,Percent,sett,comment):
                 "size": "md",
                 "align": "start",
                 "weight": "bold",
-                "color": "#000000"
+                "color": "{}".format(Change_color)
               }
             ]
           },
@@ -761,6 +766,7 @@ def flex_set(text,word_to_reply,set_now,Percent,sett,comment):
   return bubble
 
 def flex_stock(notice,text,stop,open,buy,price_now,change,target):
+  Change_color = ['#EE0000' if '-' in str(change) else '#23D500'][0]
   bubble = {
     "type": "flex",
     "altText": "Flex Message",
@@ -810,7 +816,7 @@ def flex_stock(notice,text,stop,open,buy,price_now,change,target):
                 "size": "lg",
                 "align": "start",
                 "weight": "bold",
-                "color": "#000000",
+                "color": "{}".format(Change_color),
                 "wrap": True
               }
             ]
@@ -824,7 +830,7 @@ def flex_stock(notice,text,stop,open,buy,price_now,change,target):
                 "text": "Now",
                 "size": "lg",
                 "weight": "bold",
-                "color": "#000000"
+                "color": "{}".format(Change_color)
               },
               {
                 "type": "text",
@@ -832,7 +838,7 @@ def flex_stock(notice,text,stop,open,buy,price_now,change,target):
                 "size": "lg",
                 "align": "start",
                 "weight": "bold",
-                "color": "#000000"
+                "color": "{}".format(Change_color)
               },
               {
                 "type": "text",
@@ -840,7 +846,7 @@ def flex_stock(notice,text,stop,open,buy,price_now,change,target):
                 "size": "lg",
                 "align": "start",
                 "weight": "bold",
-                "color": "#000000"
+                "color": "{}".format(Change_color)
               }
             ]
           },

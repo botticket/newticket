@@ -7,6 +7,9 @@ from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage,FollowEvent,QuickReply,QuickReplyButton,MessageAction
 from line_notify import LineNotify
+from reply import reply_msg , SetMessage_Object
+from flex_stock import *
+from dialogflow_uncle import detect_intent_texts
 
 app = Flask(__name__)
 
@@ -43,15 +46,36 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     text_from_user = event.message.text
-    Reply_token = event.reply_token
-
+    reply_token = event.reply_token
     userid = event.source.user_id
-    disname = line_bot_api.get_profile(user_id=userid).display_name
-    request_text= (' ticket'+'\n' + '>> {} : {}').format(disname,text_from_user)
     
+    disname = line_bot_api.get_profile(user_id=userid).display_name
+    request_text= (' mybot'+'\n' + '>> {} : {}').format(disname,text_from_user)
+
     print(request_text)
     linechat(request_text)
 
+    result_from_dialogflow = detect_intent_texts(project_id="worldstock-iardyn",
+                                        session_id=userid ,
+                                        text=text_from_user , 
+                                        language_code="th")
+    
+    action = result_from_dialogflow["action"]
+    response = result_from_dialogflow["fulfillment_messages"] #as list
+
+    print("action : " + action)
+    print("response : " + str(response))
+        
+    if action == "Welcome_response":
+        all_text = []
+        for each in response:
+            text = TextSendMessage(text=each)
+            all_text.append(text)
+    
+        line_bot_api.reply_message(reply_token,messages=all_text) #reply messageกลับไป
+        
+        return 'OK'
+    
     try:
         if 'IQXUSTB' in text_from_user:
 
@@ -104,28 +128,28 @@ def handle_message(event):
                 sale = float(usthbspot) - 0.06 #dif rate sale
                 sale = '%.2f'%sale
 
-                text1 = 'IQXUSTB >> ' 
-                text2 = '\n' + IQXUSTHB +' >> ' + usthbspot + ' (' + uu[1] + ')' + '\n' + 'ซื้อ ' + sale + ' / ขาย '+ buy + '\n' + 'X : {} / {}'.format(targetUp_01,targetUp_02)
-                text3 = '\n' + IQXUSTHB +' >> ' + usthbspot + ' (' + uu[1] + ')' + '\n' + 'ซื้อ ' + sale + ' / ขาย '+ buy + '\n' + 'X : {} / {}'.format(targetDown_01,targetDown_02)
+                text = 'IQXUSTB' 
+                text2 = 'ค่าเงินอ่อน'
+                text3 = 'ค่าเงินแข็ง' 
+                Percent = ' (' + uu[1] + ')'
+                comment = 'ซื้อ ' + sale + ' / ขาย '+ buy + '\n' + 'X : {} / {}'.format(targetUp_01,targetUp_02)
 
                 if float(usthbspot) >= float(IQXUSTHB):
-                    word_to_reply2 = text1 + 'ค่าเงินอ่อน' + text2
+                    word_to_reply = text2
                 else:
-                    word_to_reply2 = text1 + 'ค่าเงินแข็ง' + text3
+                    word_to_reply = text3
                 
-                print(word_to_reply2)
-                word_to_reply1 = '{} '.format(disname) + 'ค้นข้อมูล ' + text_from_user
+                print(word_to_reply)
 
-                text_to_reply1 = TextSendMessage(text = word_to_reply1)
-                text_to_reply2 = TextSendMessage(text = word_to_reply2)
+                bubbles = []
+                bubble = flex_THB(text,word_to_reply,usthbspot,Percent,IQXUSTHB,comment)
+                
+                flex_to_reply = SetMessage_Object(bubble)
+                reply_msg(reply_token,data=flex_to_reply,bot_access_key=channel_access_token)
+                return 'OK'
 
-                line_bot_api.reply_message(
-                        event.reply_token,
-                        messages=[text_to_reply2]
-                    )
-
-            usdcheck()
-
+            usdcheck()  
+            
         elif 'IQXWTI' in text_from_user:
 
             from urllib.request import Request, urlopen
@@ -172,24 +196,29 @@ def handle_message(event):
                 wtispot = float(wti[0])
                 wtispot = '%.2f'%wtispot
 
-                text1 = 'IQXWTI >> Long' + '\n' + IQXWTI +' >> ' + wtispot + ' (' + wti[1] + ')' + '\n' + 'X : {} / {}'.format(targetUp_01,targetUp_02)
-                text2 = 'IQXWTI >> Short' + '\n' + IQXWTI +' >> ' + wtispot + ' (' + wti[1] + ')' + '\n' + 'X : {} / {}'.format(targetDown_01,targetDown_02)
+                text = 'IQXWTI'
+                text1 = 'Long' 
+                text2 = 'Short'
+                Percent = ' (' + wti[1] + ')'
+                target_Up = 'X : {} / {}'.format(targetUp_01,targetUp_02)
+                target_Down = 'X : {} / {}'.format(targetDown_01,targetDown_02)
 
                 if float(wtispot) >= float(IQXWTI):
-                    word_to_reply3 = text1 
+                    word_to_reply = text1 
+                    comment = target_Up
                 else:
-                    word_to_reply3 = text2
+                    word_to_reply = text2
+                    comment = target_Down
                 
-                print(word_to_reply3)
-                word_to_reply1 = '{} '.format(disname) + 'ค้นข้อมูล ' + text_from_user
+                print(word_to_reply,comment)
 
-                text_to_reply1 = TextSendMessage(text = word_to_reply1)
-                text_to_reply3 = TextSendMessage(text = word_to_reply3)
+                bubbles = []
+                bubble = flex_WTI(text,word_to_reply,wtispot,Percent,IQXWTI,comment)
+                
+                flex_to_reply = SetMessage_Object(bubble)
+                reply_msg(reply_token,data=flex_to_reply,bot_access_key=channel_access_token)
+                return 'OK'
 
-                line_bot_api.reply_message(
-                        event.reply_token,
-                        messages=[text_to_reply3]
-                    )
             wticheck()
 
         elif 'IQXGL' in text_from_user:
@@ -215,7 +244,6 @@ def handle_message(event):
                 xgoldrate = xgoldrate.replace(',','')
                 xgoldrate = xgoldrate[9:]
                 xgoldrate = xgoldrate[0:5]
-
                 return[goldrate,xgoldrate]
 
             def goldcheck():
@@ -240,25 +268,29 @@ def handle_message(event):
                 gspot = '%.2f'%gspot
                 gspot = str(gspot)
 
-                text1 = 'IQXGL >> ' 
-                text2 = '\n' + IQXGL +' >> ' + gspot + ' (' + gg[1] + ')' + '\n' + 'X : {} / {}'.format(targetUp_01,targetUp_02)
-                text3 = '\n' + IQXGL +' >> ' + gspot + ' (' + gg[1] + ')' + '\n' + 'X : {} / {}'.format(targetDown_01,targetDown_02)
+                text = 'IQXGL' 
+                text2 = 'Long' 
+                text3 = 'Short' 
+                Percent = ' (' + gg[1] + ')'
+                target_Up = 'X : {} / {}'.format(targetUp_01,targetUp_02)
+                target_Down = 'X : {} / {}'.format(targetDown_01,targetDown_02)
 
                 if float(gspot) >= float(IQXGL):
-                    word_to_reply4 = text1 + 'Long' + text2                
+                    word_to_reply = text2    
+                    comment = target_Up            
                 else:
-                    word_to_reply4 = text1 + 'Short' + text3
+                    word_to_reply = text3
+                    comment = target_Down            
 
-                print(word_to_reply4)
-                word_to_reply1 = '{} '.format(disname) + 'ค้นข้อมูล ' + text_from_user
+                print(word_to_reply,comment)
 
-                text_to_reply1 = TextSendMessage(text = word_to_reply1)
-                text_to_reply4 = TextSendMessage(text = word_to_reply4)
+                bubbles = []
+                bubble = flex_gold(text,word_to_reply,gspot,Percent,IQXGL,comment)
+                
+                flex_to_reply = SetMessage_Object(bubble)
+                reply_msg(reply_token,data=flex_to_reply,bot_access_key=channel_access_token)
+                return 'OK'
 
-                line_bot_api.reply_message(
-                        event.reply_token,
-                        messages=[text_to_reply4]
-                    )
             goldcheck()
 
         elif 'TFEX' in text_from_user:
@@ -266,7 +298,6 @@ def handle_message(event):
             from bs4 import BeautifulSoup as soup 
 
             def tfexcheck():
-
                 url = 'https://www.tfex.co.th/tfex/dailySeriesQuotation.html?locale=th_TH&symbol=S50H20'
                 webopen = req(url)
                 page_html = webopen.read()
@@ -291,7 +322,6 @@ def handle_message(event):
                 cx = cx.replace('\n','')
                 cx = cx.replace('\r','')
                 cx = cx.replace(' ','')
-
                 return[tx,ux,cx]
 
             def dailytfex():
@@ -313,25 +343,34 @@ def handle_message(event):
                 targetDown_02 = float(tff[0]) * 0.986
                 targetDown_02 = '%.2f'%targetDown_02
 
-                text3 = 'S50H20 Today :' + '\n'+ tfexx +' > '+ tff[0] +' ('+ tff[1] +') ' + '\n'+'Status : Long' + '\n' + 'X : {} / {}'.format(targetUp_01,targetUp_02)
-                text4 = 'S50H20 Today :' + '\n'+ tfexx +' > '+ tff[0] +' ('+ tff[1] +') ' + '\n'+ 'Status : Short' + '\n' + 'X : {} / {}'.format(targetDown_01,targetDown_02)
+                text3 = 'S50H20' + '\n'+ tfexx +' > '+ tff[0] +' ('+ tff[1] +') ' + '\n'+'Status : Long' + '\n' + 'X : {} / {}'.format(targetUp_01,targetUp_02)
+                text4 = 'S50H20' + '\n'+ tfexx +' > '+ tff[0] +' ('+ tff[1] +') ' + '\n'+ 'Status : Short' + '\n' + 'X : {} / {}'.format(targetDown_01,targetDown_02)
                 
+                text = 'S50H20'
+                text2 = 'Long' 
+                text3 = 'Short' 
+                tfex_now = tff[0] 
+                Percent = ' (' + tff[1] + ')'
+                target_Up = 'X : {} / {}'.format(targetUp_01,targetUp_02)
+                target_Down = 'X : {} / {}'.format(targetDown_01,targetDown_02)
+
                 float(tff[0])
                 if float(tff[0]) >= float(tfexx): 
-                    word_to_reply2 = text3 
+                    word_to_reply = text2 
+                    comment = target_Up          
                 else:
-                    word_to_reply2 = text4
+                    word_to_reply = text3
+                    comment = target_Down
 
-                print(word_to_reply2)
-                word_to_reply1 = '{} '.format(disname) + 'ค้นข้อมูล ' + text_from_user
+                print(word_to_reply)
 
-                text_to_reply1 = TextSendMessage(text = word_to_reply1)
-                text_to_reply2 = TextSendMessage(text = word_to_reply2)
+                bubbles = []
+                bubble = flex_tfex(text,word_to_reply,tfex_now,Percent,tfexx,comment)
+                
+                flex_to_reply = SetMessage_Object(bubble)
+                reply_msg(reply_token,data=flex_to_reply,bot_access_key=channel_access_token)
+                return 'OK'
 
-                line_bot_api.reply_message(
-                        event.reply_token,
-                        messages=[text_to_reply2]
-                    )
             dailytfex()
 
         elif 'SET' in text_from_user:
@@ -340,7 +379,6 @@ def handle_message(event):
             from bs4 import BeautifulSoup as soup 
 
             def setcheck():
-
                 url = 'https://www.settrade.com/C13_MarketSummary.jsp?detail=SET'
                 webopen = req(url)
                 page_html = webopen.read()
@@ -363,7 +401,6 @@ def handle_message(event):
                 chg = chg.replace('\n',' ')
                 chg = chg[3325:]
                 chg = chg[0:5]
-
                 return[st,chg]
 
             def dailyset():
@@ -386,34 +423,41 @@ def handle_message(event):
 
                 text1 = 'SET Today :' + '\n' + sett +' > '+ st[0] +' ('+st[1]+') ' + '\n' + 'Status : Buy' + '\n' + 'X : {} / {}'.format(targetUp_01,targetUp_02)
                 text2 = 'SET Today :' + '\n' + sett +' > '+ st[0] +' ('+st[1]+') ' + '\n' + 'Status : Hold' + '\n' + 'X : {} / {}'.format(targetDown_01,targetDown_02)
+                
+                text = 'SET'
+                text2 = 'Long' 
+                text3 = 'Short' 
+                set_now = st[0] 
+                Percent = ' (' + st[1] + ')'
+                target_Up = 'X : {} / {}'.format(targetUp_01,targetUp_02)
+                target_Down = 'X : {} / {}'.format(targetDown_01,targetDown_02)
 
                 float(st[0])
 
                 if float(st[0]) >= float(sett): 
-                    word_to_reply2 = text1 
-
+                    word_to_reply = text2
+                    comment = target_Up          
                 else:
-                    word_to_reply2 = text2
+                    word_to_reply = text3
+                    comment = target_Down         
 
-                print(word_to_reply2)
-                word_to_reply1 = '{} '.format(disname) + 'ค้นข้อมูล ' + text_from_user
+                print(word_to_reply, comment)
+                bubbles = []
+                bubble = flex_set(text,word_to_reply,set_now,Percent,sett,comment)
+                
+                flex_to_reply = SetMessage_Object(bubble)
+                reply_msg(reply_token,data=flex_to_reply,bot_access_key=channel_access_token)
+                return 'OK'
 
-                text_to_reply1 = TextSendMessage(text = word_to_reply1)
-                text_to_reply2 = TextSendMessage(text = word_to_reply2)
-
-                line_bot_api.reply_message(
-                        event.reply_token,
-                        messages=[text_to_reply2]
-                    )
             dailyset()
-
+        
         else:
-                    
-            from bs4 import BeautifulSoup as soup 
-            from urllib.request import urlopen as req
-            from pandas_datareader import data 
-            from datetime import datetime
 
+            from bs4 import BeautifulSoup as soup
+            from urllib.request import urlopen as req
+            from pandas_datareader import data
+            from datetime import datetime
+                    
             code = text_from_user
             ticket = [text_from_user]
             symbols = list(map(lambda e: e + '.bk', ticket))
@@ -425,9 +469,7 @@ def handle_message(event):
                 webopen.close()
 
                 data = soup(page_html, 'html.parser')
-
                 price = data.findAll('div',{'class':'col-xs-6'})
-
                 title = price[0].text
                 stockprice = price[2].text
 
@@ -469,7 +511,6 @@ def handle_message(event):
                     #chg for Quarter : Jan Apr Jul Sep
 
                     dfW = data.DataReader(f'{list}', data_source="yahoo", start='2020-03-01', end=end)
-
                     #2020-01-01 = Y M D
 
                     list = list.replace('.bk','')
@@ -516,17 +557,17 @@ def handle_message(event):
                     request_val  = '{:,.0f}'.format(request_val)
                     request_val = str(request_val)
                     
-                    exitQ1 = float(r[1]) * 1.06
-                    exitQ1 = '%.2f'%exitQ1
-                    exitQ1 = str(exitQ1)
+                    exit1 = float(r[1]) * 1.06
+                    exit1 = '%.2f'%exit1
+                    exit1 = str(exit1)
 
-                    exitQ2 = float(r[1]) * 1.12
-                    exitQ2 = '%.2f'%exitQ2
-                    exitQ2 = str(exitQ2)
+                    exit2 = float(r[1]) * 1.12
+                    exit2 = '%.2f'%exit2
+                    exit2 = str(exit2)
 
-                    exitQ3 = float(r[1]) * 1.18
-                    exitQ3 = '%.2f'%exitQ3
-                    exitQ3 = str(exitQ3)
+                    exit3 = float(r[1]) * 1.18
+                    exit3 = '%.2f'%exit3
+                    exit3 = str(exit3)
 
                     buyQ = float(OpenQ) * 1.01
                     buyQ = '%.2f'%buyQ
@@ -536,18 +577,6 @@ def handle_message(event):
                     stopQ = '%.2f'%stopQ
                     stopQ = str(stopQ) 
 
-                    exitY1 = float(r[1]) * 1.06
-                    exitY1 = '%.2f'%exitY1
-                    exitY1 = str(exitY1)
-
-                    exitY2 = float(r[1]) * 1.12
-                    exitY2 = '%.2f'%exitY2
-                    exitY2 = str(exitY2)
-
-                    exitY3 = float(r[1]) * 1.18
-                    exitY3 = '%.2f'%exitY3
-                    exitY3 = str(exitY3)
-
                     buyY = float(OpenY) * 1.01
                     buyY = '%.2f'%buyY
                     buyY = str(buyY) 
@@ -556,75 +585,145 @@ def handle_message(event):
                     stopY = '%.2f'%stopY
                     stopY = str(stopY) 
 
-                    text1 = '\n' + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY +'\n' + 'X ' + exitY1 + ' | ' + exitY2 + ' | ' + exitY3 
-                    text2 = '\n' + text_request +'\n' + 'Q ' + OpenQ + ' ({} %)'.format(barQ) +'\n' + '> ' + stopQ + ' ~ '+ buyQ +'\n' + 'X ' + exitQ1 + ' | ' + exitQ2 + ' | ' + exitQ3 
-                    text3 = 'กำลังย่อ'  + '\n' + text_request +'\n' + 'Q ' + OpenQ + ' ({} %)'.format(barQ) +'\n' + '> ' + stopQ + ' ~ '+ buyQ 
-                    text4 = 'อย่าเพิ่งเข้า' + '\n'  + text_request +'\n' + 'Q ' + OpenQ + ' ({} %)'.format(barY) 
-                    text5 = 'ซื้อขายน้อย' +'\n' +text_request + '\n' + 'Val : ' + request_val + '\n' + 'Vol : ' + Volume
-                    text6 = 'น่าสนใจ' + '\n'  + text_request +'\n' + 'Y ' + OpenY + ' ({} %)'.format(barY) +'\n' + '> ' + stopY + ' ~ '+ buyY +'\n' + 'X ' + exitY1 + ' | ' + exitY2 + ' | ' + exitY3 
-                    text7 = 'รอเข้า' + '\n'  + text_request +'\n' + 'Q ' + OpenQ + ' ({} %)'.format(barQ) +'\n' + '> ' + stopQ + ' ~ '+ buyQ 
-                    text8 = 'รอต่ำ' + '\n'  + text_request +'\n' + 'Q ' + OpenQ + ' ({} %)'.format(barQ) +'\n' + '> ' + stopQ + ' ~ '+ buyQ
+                    text1 = exit1 + ' | ' + exit2 + ' | ' + exit3 
+                    text2 = '----'
 
-                    alert = 'ชนแนวต้าน'
+                    alert1 = 'ชนแนวต้าน'
                     alert2 = 'ไปต่อ'
-                    notice = 'ซื้อ'
+                    alert3 = 'ซื้อ'
+                    alert4 = 'อย่าเพิ่งเข้า'
+                    alert5 = 'กำลังย่อ'
+                    alert6 = 'น่าสนใจ'
+                    alert7 = 'รอเข้า'
+                    alert8 = 'รอต่ำ'
+                    alert9 = 'ซื้อขายน้อย'
+
+                    text = r[0]
+                    price_now = r[1] 
+                    change = ' (' + r[2] + ')'
 
                     if float(value) > 7500000:
                         if barY > 3.00:
                             if barQ > 6.00:
-                                word_to_reply2 = str(alert + text1)
+                                notice = alert1
+                                stop = stopQ
+                                open = OpenQ
+                                buy = buyQ
+                                target = text1
                             elif barQ >= 3.00:
                                 if barW >= 0:
-                                    word_to_reply2 = str(alert2 + text1)
+                                    notice = alert2
+                                    stop = stopQ
+                                    open = OpenQ
+                                    buy = buyQ
+                                    target = text1
                                 else:
-                                    word_to_reply2 = str(text7)
+                                    notice = alert7
+                                    stop = stopQ
+                                    open = OpenQ
+                                    buy = buyQ
+                                    target = text1
                             elif barQ >= 0.00:
                                 if barW >= 0:
-                                    word_to_reply2 = str(notice + text1)
+                                    notice = alert3
+                                    stop = stopQ
+                                    open = OpenQ
+                                    buy = buyQ
+                                    target = text1
                                 else:
-                                    word_to_reply2 = str(text7)
+                                    notice = alert7
+                                    stop = stopQ
+                                    open = OpenQ
+                                    buy = buyQ
+                                    target = text1
                             else:
-                                word_to_reply2 = str(text4)
+                                notice = alert4
+                                stop = stopQ
+                                open = OpenQ
+                                buy = buyQ
+                                target = text2
                         elif barY >= 0.00:
                             if barQ >= 0:
                                 if barW > 0:
-                                    word_to_reply2 = str(text6)
+                                    notice = alert6
+                                    stop = stopY
+                                    open = OpenY
+                                    buy = buyY
+                                    target = text1
                                 else:
-                                    word_to_reply2 = str(text7)         
+                                    notice = alert7
+                                    stop = stopY
+                                    open = OpenY
+                                    buy = buyY
+                                    target = text1
                             else:
-                                word_to_reply2 = str(text3)              
+                                notice = alert5
+                                stop = stopY
+                                open = OpenY
+                                buy = buyY
+                                target = text2
                         else:
                             if barQ > 6.00:
-                                word_to_reply2 = str(alert + text2)
+                                notice = alert1
+                                stop = stopQ
+                                open = OpenQ
+                                buy = buyQ
+                                target = text1
                             elif barQ >= 3.00:
                                 if barW >= 0:
-                                    word_to_reply2 = str(alert2 + text2)
+                                    notice = alert2
+                                    stop = stopQ
+                                    open = OpenQ
+                                    buy = buyQ
+                                    target = text1
                                 else:
-                                    word_to_reply2 = str(text8)
+                                    notice = alert8
+                                    stop = stopQ
+                                    open = OpenQ
+                                    buy = buyQ
+                                    target = text1
                             elif barQ >= 0.00:
                                 if barW >= 0:
-                                    word_to_reply2 = str(notice + text2)
+                                    notice = alert3
+                                    stop = stopQ
+                                    open = OpenQ
+                                    buy = buyQ
+                                    target = text1
                                 else:
-                                    word_to_reply2 = str(text8)
+                                    notice = alert8
+                                    stop = stopQ
+                                    open = OpenQ
+                                    buy = buyQ
+                                    target = text1
                             else:
-                                word_to_reply2 = str(text4)
+                                notice = alert4
+                                stop = stopQ
+                                open = OpenQ
+                                buy = buyQ
+                                target = text2
                     else:
-                        word_to_reply2 = str(text5)
+                        notice = alert9
+                        stop = stopQ
+                        open = OpenQ
+                        buy = buyQ
+                        target = text2
 
-                    print(word_to_reply2)
-
-                    text_to_reply2 = TextSendMessage(text = word_to_reply2)
-                    line_bot_api.reply_message(
-                            event.reply_token,
-                            messages=[text_to_reply2]
-                        )
+                    word_to_reply = str('{} {}'.format(text,notice))
+                    print(word_to_reply)
+                    bubbles = []
+                    bubble = flex_stock(notice,text,stop,open,buy,price_now,change,target)
+                    
+                    flex_to_reply = SetMessage_Object(bubble)
+                    reply_msg(reply_token,data=flex_to_reply,bot_access_key=channel_access_token)
+                    return 'OK'
                     
             for symbol in symbols:
                 stock(symbol).ticket()
+
     except:
         text_list = [
-            '{} สะกดชื่อหุ้น {} ผิด ลองใหม่นะ / บอตพัก 05.00 - 10.00 น.'.format(disname, text_from_user),
-            '{} ไม่มีในฐานข้อมูล {} ลองใหม่นะ / บอตพัก 05.00 - 10.00 น.'.format(text_from_user,disname),
+            '{} ไม่มีในฐานข้อมูล {} ลองใหม่อีกครั้ง'.format(text_from_user,disname),
+            '{} ค้นหาหุ้น {} ไม่ถูกต้อง ลองใหม่อีกครั้ง'.format(disname, text_from_user),
 
         ]
 
@@ -642,7 +741,7 @@ def handle_message(event):
 def RegisRichmenu(event):
     userid = event.source.user_id
     disname = line_bot_api.get_profile(user_id=userid).display_name
-    line_bot_api.link_rich_menu_to_user(userid,'richmenu-e4f2b71b3c0de034442b8a6d5bad4e8e')
+    line_bot_api.link_rich_menu_to_user(userid,'richmenu-d503ea71dbb45fdc0fb7a4ff99c0bc00')
 
     button_1 = QuickReplyButton(action=MessageAction(lable='IQXUSTB',text='IQXUSTB'))
     button_2 = QuickReplyButton(action=MessageAction(lable='IQXGL',text='IQXGL'))
@@ -651,8 +750,9 @@ def RegisRichmenu(event):
     button_5 = QuickReplyButton(action=MessageAction(lable='TFEX',text='TFEX'))
 
     answer_button = QuickReply(items=[button_1,button_2,button_3,button_4,button_5])
-
+            
 if __name__ == '__main__':
-    port = int(os.getenv('PORT', 5000))
-    #print("Starting app on port %d" % port)
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "Credentials.json"
+    os.environ["DIALOGFLOW_PROJECT_ID"] = "worldstock-iardyn"
+    port = int(os.getenv('PORT', 2000))
     app.run(debug=False, port=port, host='0.0.0.0', threaded=True)

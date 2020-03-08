@@ -72,7 +72,7 @@ def flex_THB(text,word_to_reply,usthbspot,Percent,IQXUSTHB,comment):
                 "text": "Today",
                 "size": "lg",
                 "weight": "bold",
-                "color": "#000000"
+                "color": "{}".format(Change_color)
               },
               {
                 "type": "text",
@@ -228,7 +228,7 @@ def flex_WTI(text,word_to_reply,wtispot,Percent,IQXWTI,comment):
                 "text": "Today",
                 "size": "lg",
                 "weight": "bold",
-                "color": "#000000"
+                "color": "{}".format(Change_color)
               },
               {
                 "type": "text",
@@ -382,7 +382,7 @@ def flex_gold(text,word_to_reply,gspot,Percent,IQXGL,comment):
                 "text": "Today",
                 "size": "lg",
                 "weight": "bold",
-                "color": "#000000"
+                "color": "{}".format(Change_color)
               },
               {
                 "type": "text",
@@ -536,7 +536,7 @@ def flex_tfex(text,word_to_reply,tfex_now,Percent,tfexx,comment):
                 "text": "Today",
                 "size": "lg",
                 "weight": "bold",
-                "color": "#000000"
+                "color": "{}".format(Change_color)
               },
               {
                 "type": "text",
@@ -690,7 +690,7 @@ def flex_set(text,word_to_reply,set_now,Percent,sett,comment):
                 "text": "Today",
                 "size": "lg",
                 "weight": "bold",
-                "color": "#000000"
+                "color": "{}".format(Change_color)
               },
               {
                 "type": "text",

@@ -689,7 +689,7 @@ def handle_message(event):
                     word_to_reply = str('{} {}'.format(text,notice))
                     print(word_to_reply)
                     bubbles = []
-                    bubble = flex_stock(notice,text,stop,open,buy,price_now,change,target)
+                    bubble = flex_stock(text,notice,price_now,change,open,buy,stop,target)
                     
                     flex_to_reply = SetMessage_Object(bubble)
                     reply_msg(reply_token,data=flex_to_reply,bot_access_key=channel_access_token)

@@ -49,7 +49,7 @@ def handle_message(event):
     userid = event.source.user_id
     
     disname = line_bot_api.get_profile(user_id=userid).display_name
-    request_text= (' mybot'+'\n' + '>> {} : {}').format(disname,text_from_user)
+    request_text= (' ticket'+'\n' + '>> {} : {}').format(disname,text_from_user)
 
     print(request_text)
     linechat(request_text)
@@ -488,7 +488,7 @@ def handle_message(event):
                     dfQ = data.DataReader(f'{list}', data_source="yahoo", start='2020-01-01', end=end)
                     #chg for Quarter : Jan Apr Jul Sep
 
-                    dfW = data.DataReader(f'{list}', data_source="yahoo", start='2020-03-06', end=end)
+                    dfW = data.DataReader(f'{list}', data_source="yahoo", start='2020-03-09', end=end)
                     #2020-01-01 = Y M D
 
                     list = list.replace('.bk','')
@@ -574,7 +574,7 @@ def handle_message(event):
                     alert6 = 'น่าสนใจ'
                     alert7 = 'รอเข้า'
                     alert8 = 'รอต่ำ'
-                    alert9 = 'ซื้อขายน้อย'
+                    alert9 = 'Vol น้อย'
 
                     text = r[0]
                     price_now = r[1] 

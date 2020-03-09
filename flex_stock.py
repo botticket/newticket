@@ -5,143 +5,108 @@ def flex_THB(text,word_to_reply,usthbspot,Percent,IQXUSTHB,comment):
     "altText": "Flex Message",
     "contents": {
       "type": "bubble",
-      "hero": {
-        "type": "image",
-        "url": "https://assets.brandinside.asia/uploads/2019/01/shutterstock-222371167-1.jpg",
-        "align": "center",
-        "gravity": "top",
-        "size": "full",
-        "aspectRatio": "2:1",
-        "aspectMode": "cover",
-        "backgroundColor": "#000000",
-        "action": {
-          "type": "uri",
-          "label": "Action",
-          "uri": "https://linecorp.com"
-        }
-      },
       "body": {
         "type": "box",
         "layout": "vertical",
-        "spacing": "md",
-        "action": {
-          "type": "uri",
-          "label": "Action",
-          "uri": "https://linecorp.com"
-        },
         "contents": [
           {
-            "type": "text",
-            "text": "{}".format(text),
-            "margin": "none",
-            "size": "xl",
-            "weight": "bold",
-            "color": "{}".format(Change_color)
-          },
-          {
             "type": "box",
-            "layout": "baseline",
-            "spacing": "none",
+            "layout": "horizontal",
+            "spacing": "lg",
+            "margin": "lg",
             "contents": [
               {
                 "type": "text",
-                "text": "Position",
-                "margin": "sm",
-                "size": "lg",
+                "text": "{}".format(text),
+                "size": "xl",
                 "weight": "bold",
-                "color": "{}".format(Change_color)
+                "color": "{}".format(Change_color)                
               },
               {
                 "type": "text",
                 "text": "{}".format(word_to_reply),
                 "size": "lg",
                 "align": "start",
+                "gravity": "bottom",
                 "weight": "bold",
                 "color": "{}".format(Change_color),
                 "wrap": True
               }
             ]
-          },
+          } ,
           {
             "type": "box",
-            "layout": "baseline",
-            "spacing": "none",
+            "layout": "vertical",
+            "spacing": "sm",
+            "margin": "lg",
             "contents": [
               {
-                "type": "text",
-                "text": "Today",
-                "size": "lg",
-                "weight": "bold",
-                "color": "{}".format(Change_color)
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Today",
+                    "flex": 1,
+                    "size": "sm",
+                    "color": "#010101"
+                  },
+                  {
+                    "type": "text",
+                    "text": "{} {}".format(usthbspot, Percent),
+                    "flex": 3,
+                    "size": "lg",
+                    "color": "{}".format(Change_color),
+                    "wrap": True
+                  }
+                ]
               },
               {
-                "type": "text",
-                "text": "{}".format(usthbspot),
-                "size": "md",
-                "align": "end",
-                "weight": "bold",
-                "color": "{}".format(Change_color)
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Start",
+                    "flex": 1,
+                    "size": "sm",
+                    "color": "#010101"
+                  },
+                  {
+                    "type": "text",
+                    "text": "{}".format(IQXUSTHB),
+                    "flex": 3,
+                    "size": "lg",
+                    "color": "#666666",
+                    "wrap": True
+                  }
+                ]
               },
               {
-                "type": "text",
-                "text": "{}".format(Percent),
-                "size": "md",
-                "align": "start",
-                "weight": "bold",
-                "color": "{}".format(Change_color),
-                "wrap": True
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Target",
+                    "flex": 1,
+                    "size": "sm",
+                    "color": "#010101"
+                  },
+                  {
+                    "type": "text",
+                    "text": "{}".format(comment),
+                    "flex": 3,
+                    "size": "lg",
+                    "color": "#666666",
+                    "wrap": True
+                  }
+                ]
               }
             ]
-          },
-          {
-            "type": "box",
-            "layout": "baseline",
-            "spacing": "none",
-            "contents": [
-              {
-                "type": "text",
-                "text": "Qtr",
-                "size": "lg",
-                "weight": "bold",
-                "color": "#000000"
-              },
-              {
-                "type": "text",
-                "text": "{}".format(IQXUSTHB),
-                "size": "md",
-                "align": "end",
-                "weight": "bold",
-                "color": "#000000"
-              },
-              {
-                "type": "text",
-                "text": "THB",
-                "size": "xxs",
-                "align": "start",
-                "weight": "bold",
-                "color": "#FFFFFF",
-                "wrap": True
-              }
-            ]
-          },
-          {
-            "type": "text",
-            "text": "{}".format(comment),
-            "size": "lg",
-            "align": "start",
-            "weight": "bold",
-            "color": "#000000",
-            "wrap": True
-          }
-        ]
-      },
-      "footer": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "spacer",
-            "size": "xs"
           }
         ]
       }
@@ -156,49 +121,20 @@ def flex_WTI(text,word_to_reply,wtispot,Percent,IQXWTI,comment):
     "altText": "Flex Message",
     "contents": {
       "type": "bubble",
-      "hero": {
-        "type": "image",
-        "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7icaWqM8AO9KUzxO6hfd6zhu6_ADj0YXjuUVjRhSJeFgkdKsT",
-        "align": "center",
-        "gravity": "top",
-        "size": "full",
-        "aspectRatio": "2:1",
-        "aspectMode": "cover",
-        "backgroundColor": "#000000",
-        "action": {
-          "type": "uri",
-          "label": "Action",
-          "uri": "https://linecorp.com"
-        }
-      },
       "body": {
         "type": "box",
         "layout": "vertical",
-        "spacing": "md",
-        "action": {
-          "type": "uri",
-          "label": "Action",
-          "uri": "https://linecorp.com"
-        },
         "contents": [
           {
-            "type": "text",
-            "text": "{}".format(text),
-            "margin": "none",
-            "size": "xl",
-            "weight": "bold",
-            "color": "{}".format(Change_color)
-          },
-          {
             "type": "box",
-            "layout": "baseline",
-            "spacing": "none",
+            "layout": "horizontal",
+            "spacing": "lg",
+            "margin": "lg",
             "contents": [
               {
                 "type": "text",
-                "text": "Position",
-                "margin": "sm",
-                "size": "lg",
+                "text": "{}".format(text),
+                "size": "xl",
                 "weight": "bold",
                 "color": "{}".format(Change_color)
               },
@@ -206,96 +142,87 @@ def flex_WTI(text,word_to_reply,wtispot,Percent,IQXWTI,comment):
                 "type": "text",
                 "text": "{}".format(word_to_reply),
                 "size": "lg",
-                "align": "end",
+                "align": "start",
+                "gravity": "bottom",
                 "weight": "bold",
-                "color": "{}".format(Change_color)
-              },
-              {
-                "type": "text",
-                "text": "gold",
-                "size": "sm",
-                "color": "#FFFEFE"
+                "color": "{}".format(Change_color),
+                "wrap": True
               }
             ]
           },
           {
             "type": "box",
-            "layout": "baseline",
-            "spacing": "none",
+            "layout": "vertical",
+            "spacing": "sm",
+            "margin": "lg",
             "contents": [
               {
-                "type": "text",
-                "text": "Today",
-                "size": "lg",
-                "weight": "bold",
-                "color": "{}".format(Change_color)
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Today",
+                    "flex": 1,
+                    "size": "sm",
+                    "color": "#010101"
+                  },
+                  {
+                    "type": "text",
+                    "text": "{} {}".format(wtispot, Percent),
+                    "flex": 3,
+                    "size": "lg",
+                    "color": "{}".format(Change_color),
+                    "wrap": True
+                  }
+                ]
               },
               {
-                "type": "text",
-                "text": "{}".format(wtispot),
-                "size": "md",
-                "align": "end",
-                "weight": "bold",
-                "color": "{}".format(Change_color)
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Start",
+                    "flex": 1,
+                    "size": "sm",
+                    "color": "#010101"
+                  },
+                  {
+                    "type": "text",
+                    "text": "{}".format(IQXWTI),
+                    "flex": 3,
+                    "size": "lg",
+                    "color": "#666666",
+                    "wrap": True
+                  }
+                ]
               },
               {
-                "type": "text",
-                "text": "{}".format(Percent),
-                "size": "md",
-                "align": "start",
-                "weight": "bold",
-                "color": "{}".format(Change_color)
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Target",
+                    "flex": 1,
+                    "size": "sm",
+                    "color": "#010101"
+                  },
+                  {
+                    "type": "text",
+                    "text": "{}".format(comment),
+                    "flex": 3,
+                    "size": "lg",
+                    "color": "#666666",
+                    "wrap": True
+                  }
+                ]
               }
             ]
-          },
-          {
-            "type": "box",
-            "layout": "baseline",
-            "spacing": "none",
-            "contents": [
-              {
-                "type": "text",
-                "text": "Qtr",
-                "size": "lg",
-                "weight": "bold",
-                "color": "#000000"
-              },
-              {
-                "type": "text",
-                "text": "{}".format(IQXWTI),
-                "size": "md",
-                "align": "end",
-                "weight": "bold",
-                "color": "#000000"
-              },
-              {
-                "type": "text",
-                "text": "G",
-                "size": "xxs",
-                "align": "start",
-                "weight": "bold",
-                "color": "#FFFFFF"
-              }
-            ]
-          },
-          {
-            "type": "text",
-            "text": "{}".format(comment),
-            "size": "lg",
-            "align": "start",
-            "weight": "bold",
-            "color": "#000000",
-            "wrap": True
-          }
-        ]
-      },
-      "footer": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "spacer",
-            "size": "xs"
           }
         ]
       }
@@ -310,49 +237,20 @@ def flex_gold(text,word_to_reply,gspot,Percent,IQXGL,comment):
     "altText": "Flex Message",
     "contents": {
       "type": "bubble",
-      "hero": {
-        "type": "image",
-        "url": "https://siamblockchain.com/wp-content/uploads/2020/01/inbound6085994153059343074.jpg",
-        "align": "center",
-        "gravity": "top",
-        "size": "full",
-        "aspectRatio": "2:1",
-        "aspectMode": "cover",
-        "backgroundColor": "#000000",
-        "action": {
-          "type": "uri",
-          "label": "Action",
-          "uri": "https://linecorp.com"
-        }
-      },
       "body": {
         "type": "box",
         "layout": "vertical",
-        "spacing": "md",
-        "action": {
-          "type": "uri",
-          "label": "Action",
-          "uri": "https://linecorp.com"
-        },
         "contents": [
           {
-            "type": "text",
-            "text": "{}".format(text),
-            "margin": "none",
-            "size": "xl",
-            "weight": "bold",
-            "color": "{}".format(Change_color)
-          },
-          {
             "type": "box",
-            "layout": "baseline",
-            "spacing": "none",
+            "layout": "horizontal",
+            "spacing": "lg",
+            "margin": "lg",
             "contents": [
               {
                 "type": "text",
-                "text": "Position",
-                "margin": "sm",
-                "size": "lg",
+                "text": "{}".format(text),
+                "size": "xl",
                 "weight": "bold",
                 "color": "{}".format(Change_color)
               },
@@ -360,96 +258,87 @@ def flex_gold(text,word_to_reply,gspot,Percent,IQXGL,comment):
                 "type": "text",
                 "text": "{}".format(word_to_reply),
                 "size": "lg",
-                "align": "end",
+                "align": "start",
+                "gravity": "bottom",
                 "weight": "bold",
-                "color": "{}".format(Change_color)
-              },
-              {
-                "type": "text",
-                "text": "gold",
-                "size": "sm",
-                "color": "#FFFEFE"
+                "color": "{}".format(Change_color),
+                "wrap": True
               }
             ]
           },
           {
             "type": "box",
-            "layout": "baseline",
-            "spacing": "none",
+            "layout": "vertical",
+            "spacing": "sm",
+            "margin": "lg",
             "contents": [
               {
-                "type": "text",
-                "text": "Today",
-                "size": "lg",
-                "weight": "bold",
-                "color": "{}".format(Change_color)
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Today",
+                    "flex": 1,
+                    "size": "sm",
+                    "color": "#010101"
+                  },
+                  {
+                    "type": "text",
+                    "text": "{} {}".format(gspot, Percent),
+                    "flex": 3,
+                    "size": "lg",
+                    "color": "{}".format(Change_color),
+                    "wrap": True
+                  }
+                ]
               },
               {
-                "type": "text",
-                "text": "{}".format(gspot),
-                "size": "md",
-                "align": "end",
-                "weight": "bold",
-                "color": "{}".format(Change_color)
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Start",
+                    "flex": 1,
+                    "size": "sm",
+                    "color": "#010101"
+                  },
+                  {
+                    "type": "text",
+                    "text": "{}".format(IQXGL),
+                    "flex": 3,
+                    "size": "lg",
+                    "color": "#666666",
+                    "wrap": True
+                  }
+                ]
               },
               {
-                "type": "text",
-                "text": "{}".format(Percent),
-                "size": "md",
-                "align": "start",
-                "weight": "bold",
-                "color": "{}".format(Change_color)
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Target",
+                    "flex": 1,
+                    "size": "sm",
+                    "color": "#010101"
+                  },
+                  {
+                    "type": "text",
+                    "text": "{}".format(comment),
+                    "flex": 3,
+                    "size": "lg",
+                    "color": "#666666",
+                    "wrap": True
+                  }
+                ]
               }
             ]
-          },
-          {
-            "type": "box",
-            "layout": "baseline",
-            "spacing": "none",
-            "contents": [
-              {
-                "type": "text",
-                "text": "Qtr",
-                "size": "lg",
-                "weight": "bold",
-                "color": "#000000"
-              },
-              {
-                "type": "text",
-                "text": "{}".format(IQXGL),
-                "size": "md",
-                "align": "end",
-                "weight": "bold",
-                "color": "#000000"
-              },
-              {
-                "type": "text",
-                "text": "G",
-                "size": "xxs",
-                "align": "start",
-                "weight": "bold",
-                "color": "#FFFFFF"
-              }
-            ]
-          },
-          {
-            "type": "text",
-            "text": "{}".format(comment),
-            "size": "lg",
-            "align": "start",
-            "weight": "bold",
-            "color": "#000000",
-            "wrap": True
-          }
-        ]
-      },
-      "footer": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "spacer",
-            "size": "xs"
           }
         ]
       }
@@ -464,49 +353,20 @@ def flex_tfex(text,word_to_reply,tfex_now,Percent,tfexx,comment):
     "altText": "Flex Message",
     "contents": {
       "type": "bubble",
-      "hero": {
-        "type": "image",
-        "url": "https://vnn-imgs-f.vgcloud.vn/2019/12/27/19/10-important-hallmarks-of-vietnam-s-stock-market-in-2019.jpg",
-        "align": "center",
-        "gravity": "top",
-        "size": "full",
-        "aspectRatio": "2:1",
-        "aspectMode": "cover",
-        "backgroundColor": "#000000",
-        "action": {
-          "type": "uri",
-          "label": "Action",
-          "uri": "https://linecorp.com"
-        }
-      },
       "body": {
         "type": "box",
         "layout": "vertical",
-        "spacing": "md",
-        "action": {
-          "type": "uri",
-          "label": "Action",
-          "uri": "https://linecorp.com"
-        },
         "contents": [
           {
-            "type": "text",
-            "text": "{}".format(text),
-            "margin": "none",
-            "size": "xl",
-            "weight": "bold",
-            "color": "{}".format(Change_color)
-          },
-          {
             "type": "box",
-            "layout": "baseline",
-            "spacing": "none",
+            "layout": "horizontal",
+            "spacing": "lg",
+            "margin": "lg",
             "contents": [
               {
                 "type": "text",
-                "text": "Position",
-                "margin": "sm",
-                "size": "lg",
+                "text": "{}".format(text),
+                "size": "xl",
                 "weight": "bold",
                 "color": "{}".format(Change_color)
               },
@@ -514,96 +374,87 @@ def flex_tfex(text,word_to_reply,tfex_now,Percent,tfexx,comment):
                 "type": "text",
                 "text": "{}".format(word_to_reply),
                 "size": "lg",
-                "align": "end",
+                "align": "start",
+                "gravity": "bottom",
                 "weight": "bold",
-                "color": "{}".format(Change_color)
-              },
-              {
-                "type": "text",
-                "text": "gold",
-                "size": "sm",
-                "color": "#FFFEFE"
+                "color": "{}".format(Change_color),
+                "wrap": True
               }
             ]
           },
           {
             "type": "box",
-            "layout": "baseline",
-            "spacing": "none",
+            "layout": "vertical",
+            "spacing": "sm",
+            "margin": "lg",
             "contents": [
               {
-                "type": "text",
-                "text": "Today",
-                "size": "lg",
-                "weight": "bold",
-                "color": "{}".format(Change_color)
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Today",
+                    "flex": 1,
+                    "size": "sm",
+                    "color": "#010101"
+                  },
+                  {
+                    "type": "text",
+                    "text": "{} {}".format(tfex_now, Percent),
+                    "flex": 3,
+                    "size": "lg",
+                    "color": "{}".format(Change_color),
+                    "wrap": True
+                  }
+                ]
               },
               {
-                "type": "text",
-                "text": "{}".format(tfex_now),
-                "size": "md",
-                "align": "end",
-                "weight": "bold",
-                "color": "{}".format(Change_color)
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Start",
+                    "flex": 1,
+                    "size": "sm",
+                    "color": "#010101"
+                  },
+                  {
+                    "type": "text",
+                    "text": "{}".format(tfexx),
+                    "flex": 3,
+                    "size": "lg",
+                    "color": "#666666",
+                    "wrap": True
+                  }
+                ]
               },
               {
-                "type": "text",
-                "text": "{}".format(Percent),
-                "size": "md",
-                "align": "start",
-                "weight": "bold",
-                "color": "{}".format(Change_color)
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Target",
+                    "flex": 1,
+                    "size": "sm",
+                    "color": "#010101"
+                  },
+                  {
+                    "type": "text",
+                    "text": "{}".format(comment),
+                    "flex": 3,
+                    "size": "lg",
+                    "color": "#666666",
+                    "wrap": True
+                  }
+                ]
               }
             ]
-          },
-          {
-            "type": "box",
-            "layout": "baseline",
-            "spacing": "none",
-            "contents": [
-              {
-                "type": "text",
-                "text": "Qtr",
-                "size": "lg",
-                "weight": "bold",
-                "color": "#000000"
-              },
-              {
-                "type": "text",
-                "text": "{}".format(tfexx),
-                "size": "md",
-                "align": "end",
-                "weight": "bold",
-                "color": "#000000"
-              },
-              {
-                "type": "text",
-                "text": "F",
-                "size": "xxs",
-                "align": "start",
-                "weight": "bold",
-                "color": "#FFFFFF"
-              }
-            ]
-          },
-          {
-            "type": "text",
-            "text": "{}".format(comment),
-            "size": "lg",
-            "align": "start",
-            "weight": "bold",
-            "color": "#000000",
-            "wrap": True
-          }
-        ]
-      },
-      "footer": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "spacer",
-            "size": "xs"
           }
         ]
       }
@@ -618,49 +469,20 @@ def flex_set(text,word_to_reply,set_now,Percent,sett,comment):
     "altText": "Flex Message",
     "contents": {
       "type": "bubble",
-      "hero": {
-        "type": "image",
-        "url": "https://southerntimesafrica.com/uploads/intro.jpg",
-        "align": "center",
-        "gravity": "top",
-        "size": "full",
-        "aspectRatio": "2:1",
-        "aspectMode": "cover",
-        "backgroundColor": "#000000",
-        "action": {
-          "type": "uri",
-          "label": "Action",
-          "uri": "https://linecorp.com"
-        }
-      },
       "body": {
         "type": "box",
         "layout": "vertical",
-        "spacing": "md",
-        "action": {
-          "type": "uri",
-          "label": "Action",
-          "uri": "https://linecorp.com"
-        },
         "contents": [
           {
-            "type": "text",
-            "text": "{}".format(text),
-            "margin": "none",
-            "size": "xl",
-            "weight": "bold",
-            "color": "{}".format(Change_color)
-          },
-          {
             "type": "box",
-            "layout": "baseline",
-            "spacing": "none",
+            "layout": "horizontal",
+            "spacing": "lg",
+            "margin": "lg",
             "contents": [
               {
                 "type": "text",
-                "text": "Position",
-                "margin": "sm",
-                "size": "lg",
+                "text": "{}".format(text),
+                "size": "xl",
                 "weight": "bold",
                 "color": "{}".format(Change_color)
               },
@@ -668,153 +490,8 @@ def flex_set(text,word_to_reply,set_now,Percent,sett,comment):
                 "type": "text",
                 "text": "{}".format(word_to_reply),
                 "size": "lg",
-                "align": "end",
-                "weight": "bold",
-                "color": "{}".format(Change_color)
-              },
-              {
-                "type": "text",
-                "text": "gold",
-                "size": "sm",
-                "color": "#FFFEFE"
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "baseline",
-            "spacing": "none",
-            "contents": [
-              {
-                "type": "text",
-                "text": "Today",
-                "size": "lg",
-                "weight": "bold",
-                "color": "{}".format(Change_color)
-              },
-              {
-                "type": "text",
-                "text": "{}".format(set_now),
-                "size": "md",
-                "align": "end",
-                "weight": "bold",
-                "color": "{}".format(Change_color)
-              },
-              {
-                "type": "text",
-                "text": "{}".format(Percent),
-                "size": "md",
                 "align": "start",
-                "weight": "bold",
-                "color": "{}".format(Change_color)
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "baseline",
-            "spacing": "none",
-            "contents": [
-              {
-                "type": "text",
-                "text": "Qtr",
-                "size": "lg",
-                "weight": "bold",
-                "color": "#000000"
-              },
-              {
-                "type": "text",
-                "text": "{}".format(sett),
-                "size": "md",
-                "align": "end",
-                "weight": "bold",
-                "color": "#000000"
-              },
-              {
-                "type": "text",
-                "text": "S",
-                "size": "xxs",
-                "align": "start",
-                "weight": "bold",
-                "color": "#FFFFFF"
-              }
-            ]
-          },
-          {
-            "type": "text",
-            "text": "{}".format(comment),
-            "size": "lg",
-            "align": "start",
-            "weight": "bold",
-            "color": "#000000",
-            "wrap": True
-          }
-        ]
-      },
-      "footer": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "spacer",
-            "size": "xs"
-          }
-        ]
-      }
-    }
-  }
-  return bubble
-
-def flex_stock(notice,text,stop,open,buy,price_now,change,target):
-  Change_color = ['#EE0000' if '-' in str(change) else '#23D500'][0]
-  bubble = {
-    "type": "flex",
-    "altText": "Flex Message",
-    "contents": {
-      "type": "bubble",
-      "hero": {
-        "type": "image",
-        "url": "https://vnn-imgs-f.vgcloud.vn/2019/12/27/19/10-important-hallmarks-of-vietnam-s-stock-market-in-2019.jpg",
-        "align": "center",
-        "gravity": "top",
-        "size": "full",
-        "aspectRatio": "2:1",
-        "aspectMode": "cover",
-        "backgroundColor": "#000000",
-        "action": {
-          "type": "uri",
-          "label": "Action",
-          "uri": "https://linecorp.com"
-        }
-      },
-      "body": {
-        "type": "box",
-        "layout": "vertical",
-        "spacing": "md",
-        "action": {
-          "type": "uri",
-          "label": "Action",
-          "uri": "https://linecorp.com"
-        },
-        "contents": [
-          {
-            "type": "text",
-            "text": "{}".format(notice),
-            "margin": "none",
-            "size": "xl",
-            "weight": "bold",
-            "color": "#000000"
-          },
-          {
-            "type": "box",
-            "layout": "baseline",
-            "spacing": "none",
-            "contents": [
-              {
-                "type": "text",
-                "text": "{}".format(text),
-                "size": "lg",
-                "align": "start",
+                "gravity": "bottom",
                 "weight": "bold",
                 "color": "{}".format(Change_color),
                 "wrap": True
@@ -823,131 +500,215 @@ def flex_stock(notice,text,stop,open,buy,price_now,change,target):
           },
           {
             "type": "box",
-            "layout": "baseline",
+            "layout": "vertical",
+            "spacing": "sm",
+            "margin": "lg",
             "contents": [
               {
-                "type": "text",
-                "text": "Now",
-                "size": "lg",
-                "weight": "bold",
-                "color": "{}".format(Change_color)
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Today",
+                    "flex": 1,
+                    "size": "sm",
+                    "color": "#010101"
+                  },
+                  {
+                    "type": "text",
+                    "text": "{} {}".format(set_now, Percent),
+                    "flex": 3,
+                    "size": "lg",
+                    "color": "{}".format(Change_color),
+                    "wrap": True
+                  }
+                ]
               },
               {
-                "type": "text",
-                "text": "{}".format(price_now),
-                "size": "lg",
-                "align": "start",
-                "weight": "bold",
-                "color": "{}".format(Change_color)
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Start",
+                    "flex": 1,
+                    "size": "sm",
+                    "color": "#010101"
+                  },
+                  {
+                    "type": "text",
+                    "text": "{}".format(sett),
+                    "flex": 3,
+                    "size": "lg",
+                    "color": "#666666",
+                    "wrap": True
+                  }
+                ]
               },
               {
-                "type": "text",
-                "text": "{}".format(change),
-                "size": "lg",
-                "align": "start",
-                "weight": "bold",
-                "color": "{}".format(Change_color)
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "baseline",
-            "spacing": "none",
-            "contents": [
-              {
-                "type": "text",
-                "text": "Buy",
-                "size": "lg",
-                "weight": "bold",
-                "color": "#000000"
-              },
-              {
-                "type": "text",
-                "text": "{}".format(open),
-                "size": "lg",
-                "align": "start",
-                "weight": "bold",
-                "color": "#000000",
-                "wrap": True
-              },
-              {
-                "type": "text",
-                "text": "{}".format(buy),
-                "size": "lg",
-                "align": "start",
-                "weight": "bold",
-                "color": "#000000",
-                "wrap": True
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "baseline",
-            "spacing": "none",
-            "contents": [
-              {
-                "type": "text",
-                "text": "Stop",
-                "margin": "sm",
-                "size": "lg",
-                "weight": "bold",
-                "color": "#000000"
-              },
-              {
-                "type": "text",
-                "text": "{}".format(stop),
-                "size": "lg",
-                "align": "start",
-                "weight": "bold",
-                "color": "#000000"
-              },
-              {
-                "type": "text",
-                "text": "gold",
-                "size": "sm",
-                "color": "#FFFEFE"
-              }
-            ]
-          },
-          {
-            "type": "box",
-            "layout": "baseline",
-            "contents": [
-              {
-                "type": "text",
-                "text": "Target",
-                "size": "lg",
-                "weight": "bold",
-                "color": "#000000"
-              },
-              {
-                "type": "text",
-                "text": "{}".format(target),
-                "size": "lg",
-                "align": "start",
-                "weight": "bold",
-                "color": "#000000",
-                "wrap": True
-              },
-              {
-                "type": "text",
-                "text": ".",
-                "size": "sm",
-                "color": "#FFFEFE"
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Target",
+                    "flex": 1,
+                    "size": "sm",
+                    "color": "#010101"
+                  },
+                  {
+                    "type": "text",
+                    "text": "{}".format(comment),
+                    "flex": 3,
+                    "size": "lg",
+                    "color": "#666666",
+                    "wrap": True
+                  }
+                ]
               }
             ]
           }
         ]
-      },
-      "footer": {
+      }
+    }
+  }
+  return bubble
+
+def flex_stock(text,notice,price_now,change,open,buy,stop,target):
+  Change_color = ['#EE0000' if '-' in str(change) else '#23D500'][0]
+  bubble = {
+    "type": "flex",
+    "altText": "Flex Message",
+    "contents": {
+      "type": "bubble",
+      "body": {
         "type": "box",
         "layout": "vertical",
         "contents": [
           {
-            "type": "spacer",
-            "size": "xs"
+            "type": "box",
+            "layout": "horizontal",
+            "spacing": "lg",
+            "margin": "lg",
+            "contents": [
+              {
+                "type": "text",
+                "text": "{}".format(text),
+                "size": "xl",
+                "weight": "bold",
+                "color": "{}".format(Change_color)
+              },
+              {
+                "type": "text",
+                "text": "{}".format(notice),
+                "size": "lg",
+                "align": "start",
+                "gravity": "bottom",
+                "weight": "bold",
+                "color": "{}".format(Change_color),
+                "wrap": True
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "spacing": "sm",
+            "margin": "lg",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Today",
+                    "flex": 1,
+                    "size": "sm",
+                    "color": "#010101"
+                  },
+                  {
+                    "type": "text",
+                    "text": "{} {}".format(price_now, change),
+                    "flex": 3,
+                    "size": "lg",
+                    "color": "{}".format(Change_color),
+                    "wrap": True
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Buy",
+                    "flex": 1,
+                    "size": "sm",
+                    "color": "#010101"
+                  },
+                  {
+                    "type": "text",
+                    "text": "{} ~ {}".format(open, buy),
+                    "flex": 3,
+                    "size": "lg",
+                    "color": "#666666",
+                    "wrap": True
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Stop",
+                    "flex": 1,
+                    "size": "sm",
+                    "color": "#010101"
+                  },
+                  {
+                    "type": "text",
+                    "text": "{}".format(stop),
+                    "flex": 3,
+                    "size": "lg",
+                    "color": "#666666",
+                    "wrap": True
+                  }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Target",
+                    "flex": 1,
+                    "size": "sm",
+                    "color": "#010101"
+                  },
+                  {
+                    "type": "text",
+                    "text": "{}".format(target),
+                    "flex": 3,
+                    "size": "lg",
+                    "color": "#666666",
+                    "wrap": True
+                  }
+                ]
+              }
+            ]
           }
         ]
       }

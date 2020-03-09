@@ -488,7 +488,7 @@ def handle_message(event):
                     dfQ = data.DataReader(f'{list}', data_source="yahoo", start='2020-01-01', end=end)
                     #chg for Quarter : Jan Apr Jul Sep
 
-                    dfW = data.DataReader(f'{list}', data_source="yahoo", start='2020-03-09', end=end)
+                    dfW = data.DataReader(f'{list}', data_source="yahoo", start='2020-03-06', end=end)
                     #2020-01-01 = Y M D
 
                     list = list.replace('.bk','')

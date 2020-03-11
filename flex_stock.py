@@ -580,7 +580,7 @@ def flex_set(text,word_to_reply,set_now,Percent,sett,comment):
 
 def flex_stock(text,price_now,notice,change,open,buy,stop,target,avg):
   Change_color = ['#EE0000' if '-' in str(change) else '#23D500'][0]
-    bubble = {
+  bubble = {
     "type": "bubble",
     "size": "giga",
     "body": {
@@ -812,4 +812,5 @@ def flex_stock(text,price_now,notice,change,open,buy,stop,target,avg):
       "paddingAll": "0px"
     }
   }
+
   return bubble

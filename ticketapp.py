@@ -1,6 +1,5 @@
 import os
 import sys
-
 from config import line_secret, line_access_token
 from flask import Flask, request, abort, send_from_directory, render_template
 from linebot import LineBotApi, WebhookHandler

@@ -588,7 +588,6 @@ def handle_message(event):
                                 open = OpenQ
                                 buy = buyQ
                                 target = text1
-                                avg = barQ
                             elif barQ >= 3.00:
                                 if barW >= 0:
                                     notice = alert2
@@ -596,14 +595,12 @@ def handle_message(event):
                                     open = OpenQ
                                     buy = buyQ
                                     target = text1
-                                    avg = barQ
                                 else:
                                     notice = alert7
                                     stop = stopQ
                                     open = OpenQ
                                     buy = buyQ
                                     target = text1
-                                    avg = barQ
                             elif barQ >= 0.00:
                                 if barW >= 0:
                                     notice = alert3
@@ -611,21 +608,18 @@ def handle_message(event):
                                     open = OpenQ
                                     buy = buyQ
                                     target = text1
-                                    avg = barQ
                                 else:
                                     notice = alert7
                                     stop = stopQ
                                     open = OpenQ
                                     buy = buyQ
                                     target = text1
-                                    avg = barQ
                             else:
                                 notice = alert4
                                 stop = stopQ
                                 open = OpenQ
                                 buy = buyQ
                                 target = text2
-                                avg = barQ
                         elif barY >= 0.00:
                             if barQ >= 0:
                                 if barW > 0:
@@ -634,21 +628,18 @@ def handle_message(event):
                                     open = OpenY
                                     buy = buyY
                                     target = text1
-                                    avg = barY
                                 else:
                                     notice = alert7
                                     stop = stopY
                                     open = OpenY
                                     buy = buyY
                                     target = text1
-                                    avg = barY
                             else:
                                 notice = alert5
                                 stop = stopY
                                 open = OpenY
                                 buy = buyY
                                 target = text2
-                                avg = barY
                         else:
                             if barQ > 6.00:
                                 notice = alert1
@@ -656,7 +647,6 @@ def handle_message(event):
                                 open = OpenQ
                                 buy = buyQ
                                 target = text1
-                                avg = barQ
                             elif barQ >= 3.00:
                                 if barW >= 0:
                                     notice = alert2
@@ -664,14 +654,12 @@ def handle_message(event):
                                     open = OpenQ
                                     buy = buyQ
                                     target = text1
-                                    avg = barQ
                                 else:
                                     notice = alert8
                                     stop = stopQ
                                     open = OpenQ
                                     buy = buyQ
                                     target = text1
-                                    avg = barQ
                             elif barQ >= 0.00:
                                 if barW >= 0:
                                     notice = alert3
@@ -679,33 +667,29 @@ def handle_message(event):
                                     open = OpenQ
                                     buy = buyQ
                                     target = text1
-                                    avg = barQ
                                 else:
                                     notice = alert8
                                     stop = stopQ
                                     open = OpenQ
                                     buy = buyQ
                                     target = text1
-                                    avg = barQ
                             else:
                                 notice = alert4
                                 stop = stopQ
                                 open = OpenQ
                                 buy = buyQ
                                 target = text2
-                                avg = barQ
                     else:
                         notice = alert9
                         stop = stopQ
                         open = OpenQ
                         buy = buyQ
                         target = text2
-                        avg = barQ
 
                     word_to_reply = str('{} {}'.format(text,notice))
                     print(word_to_reply)
                     bubbles = []
-                    bubble = flex_stock(text,price_now,notice,change,open,buy,stop,target,avg)
+                    bubble = flex_stock(text,notice,price_now,change,open,buy,stop,target)
                     
                     flex_to_reply = SetMessage_Object(bubble)
                     reply_msg(reply_token,data=flex_to_reply,bot_access_key=channel_access_token)

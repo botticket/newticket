@@ -201,7 +201,7 @@ def flex_WTI(text,wtispot,Percent,word_to_reply,IQXWTI,comment):
               "contents": [
                 {
                   "type": "image",
-                  "url": "https://s.isanook.com/mn/0/rp/r/w728/ya0xa0m1w0/aHR0cHM6Ly9zLmlzYW5vb2suY29tL21uLzAvdWQvMzUvMTc4NjU4L2NvaW4uanBn.jpg",
+                  "url": "https://static.posttoday.com/media/content/2014/06/19/09FD4903F4224438B6C49E1817EBE7BF.jpg",
                   "aspectMode": "cover"
                 }
               ],
@@ -365,7 +365,7 @@ def flex_gold(text,gspot,Percent,word_to_reply,IQXGL,comment):
               "contents": [
                 {
                   "type": "image",
-                  "url": "https://s.isanook.com/mn/0/rp/r/w728/ya0xa0m1w0/aHR0cHM6Ly9zLmlzYW5vb2suY29tL21uLzAvdWQvMzUvMTc4NjU4L2NvaW4uanBn.jpg",
+                  "url": "https://www.thehindubusinessline.com/economy/agri-business/z0ldjz/article26390048.ece/alternates/LANDSCAPE_435/BL28COMMGOLD1",
                   "aspectMode": "cover"
                 }
               ],
@@ -529,7 +529,7 @@ def flex_tfex(text,tfex_now,Percent,word_to_reply,tfexx,comment):
               "contents": [
                 {
                   "type": "image",
-                  "url": "https://s.isanook.com/mn/0/rp/r/w728/ya0xa0m1w0/aHR0cHM6Ly9zLmlzYW5vb2suY29tL21uLzAvdWQvMzUvMTc4NjU4L2NvaW4uanBn.jpg",
+                  "url": "https://akm-img-a-in.tosshub.com/sites/btmt/images/stories/shares_1280_20180404115810324_660x450_020120061652.jpg",
                   "aspectMode": "cover"
                 }
               ],
@@ -693,7 +693,7 @@ def flex_set(text,set_now,Percent,word_to_reply,sett,comment):
               "contents": [
                 {
                   "type": "image",
-                  "url": "https://s.isanook.com/mn/0/rp/r/w728/ya0xa0m1w0/aHR0cHM6Ly9zLmlzYW5vb2suY29tL21uLzAvdWQvMzUvMTc4NjU4L2NvaW4uanBn.jpg",
+                  "url": "https://d1sr9z1pdl3mb7.cloudfront.net/wp-content/uploads/2018/03/09172121/stock-market.jpg",
                   "aspectMode": "cover"
                 }
               ],
@@ -858,7 +858,7 @@ def flex_stock(text,price_now,notice,change,open,buy,stop,avg,target):
             "contents": [
               {
                 "type": "image",
-                "url": "https://www.montsame.mn/files/5c8768fea4d6e.jpeg",
+                "url": "https://media.brstatic.com/2017/03/20172321/stock-market-ticker-charts_573x300.jpg",
                 "aspectMode": "cover",
                 "size": "sm"
               }

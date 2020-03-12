@@ -378,7 +378,7 @@ def handle_message(event):
                 chg = chg.replace('\r',' ')
                 chg = chg.replace('\n',' ')
                 chg = chg[3325:]
-                chg = chg[0:5]
+                chg = chg[0:7]
                 return[st,chg]
 
             def dailyset():

@@ -120,7 +120,7 @@ def handle_message(event):
                 print(word_to_reply)
 
                 bubbles = []
-                bubble = flex_THB(text,word_to_reply,usthbspot,Percent,IQXUSTHB,comment)
+                bubble = flex_THB(text,usthbspot,Percent,word_to_reply,IQXUSTHB,comment)
                 
                 flex_to_reply = SetMessage_Object(bubble)
                 reply_msg(reply_token,data=flex_to_reply,bot_access_key=channel_access_token)
@@ -191,7 +191,7 @@ def handle_message(event):
                 print(word_to_reply,comment)
 
                 bubbles = []
-                bubble = flex_WTI(text,word_to_reply,wtispot,Percent,IQXWTI,comment)
+                bubble = flex_WTI(text,wtispot,Percent,word_to_reply,IQXWTI,comment)
                 
                 flex_to_reply = SetMessage_Object(bubble)
                 reply_msg(reply_token,data=flex_to_reply,bot_access_key=channel_access_token)
@@ -263,7 +263,7 @@ def handle_message(event):
                 print(word_to_reply,comment)
 
                 bubbles = []
-                bubble = flex_gold(text,word_to_reply,gspot,Percent,IQXGL,comment)
+                bubble = flex_gold(text,gspot,Percent,word_to_reply,IQXGL,comment)
                 
                 flex_to_reply = SetMessage_Object(bubble)
                 reply_msg(reply_token,data=flex_to_reply,bot_access_key=channel_access_token)
@@ -343,7 +343,7 @@ def handle_message(event):
                 print(word_to_reply)
 
                 bubbles = []
-                bubble = flex_tfex(text,word_to_reply,tfex_now,Percent,tfexx,comment)
+                bubble = flex_tfex(text,tfex_now,Percent,word_to_reply,tfexx,comment)
                 
                 flex_to_reply = SetMessage_Object(bubble)
                 reply_msg(reply_token,data=flex_to_reply,bot_access_key=channel_access_token)
@@ -421,7 +421,7 @@ def handle_message(event):
 
                 print(word_to_reply, comment)
                 bubbles = []
-                bubble = flex_set(text,word_to_reply,set_now,Percent,sett,comment)
+                bubble = flex_set(text,set_now,Percent,word_to_reply,sett,comment)
                 
                 flex_to_reply = SetMessage_Object(bubble)
                 reply_msg(reply_token,data=flex_to_reply,bot_access_key=channel_access_token)
@@ -588,6 +588,7 @@ def handle_message(event):
                                 open = OpenQ
                                 buy = buyQ
                                 target = text1
+                                avg = barQ
                             elif barQ >= 3.00:
                                 if barW >= 0:
                                     notice = alert2
@@ -595,12 +596,14 @@ def handle_message(event):
                                     open = OpenQ
                                     buy = buyQ
                                     target = text1
+                                    avg = barQ
                                 else:
                                     notice = alert7
                                     stop = stopQ
                                     open = OpenQ
                                     buy = buyQ
                                     target = text1
+                                    avg = barQ
                             elif barQ >= 0.00:
                                 if barW >= 0:
                                     notice = alert3
@@ -608,18 +611,21 @@ def handle_message(event):
                                     open = OpenQ
                                     buy = buyQ
                                     target = text1
+                                    avg = barQ
                                 else:
                                     notice = alert7
                                     stop = stopQ
                                     open = OpenQ
                                     buy = buyQ
                                     target = text1
+                                    avg = barQ
                             else:
                                 notice = alert4
                                 stop = stopQ
                                 open = OpenQ
                                 buy = buyQ
                                 target = text2
+                                avg = barQ
                         elif barY >= 0.00:
                             if barQ >= 0:
                                 if barW > 0:
@@ -628,18 +634,21 @@ def handle_message(event):
                                     open = OpenY
                                     buy = buyY
                                     target = text1
+                                    avg = barY
                                 else:
                                     notice = alert7
                                     stop = stopY
                                     open = OpenY
                                     buy = buyY
                                     target = text1
+                                    avg = barY
                             else:
                                 notice = alert5
                                 stop = stopY
                                 open = OpenY
                                 buy = buyY
                                 target = text2
+                                avg = barY
                         else:
                             if barQ > 6.00:
                                 notice = alert1
@@ -647,6 +656,7 @@ def handle_message(event):
                                 open = OpenQ
                                 buy = buyQ
                                 target = text1
+                                avg = barQ
                             elif barQ >= 3.00:
                                 if barW >= 0:
                                     notice = alert2
@@ -654,12 +664,14 @@ def handle_message(event):
                                     open = OpenQ
                                     buy = buyQ
                                     target = text1
+                                    avg = barQ
                                 else:
                                     notice = alert8
                                     stop = stopQ
                                     open = OpenQ
                                     buy = buyQ
                                     target = text1
+                                    avg = barQ
                             elif barQ >= 0.00:
                                 if barW >= 0:
                                     notice = alert3
@@ -667,29 +679,33 @@ def handle_message(event):
                                     open = OpenQ
                                     buy = buyQ
                                     target = text1
+                                    avg = barQ
                                 else:
                                     notice = alert8
                                     stop = stopQ
                                     open = OpenQ
                                     buy = buyQ
                                     target = text1
+                                    avg = barQ
                             else:
                                 notice = alert4
                                 stop = stopQ
                                 open = OpenQ
                                 buy = buyQ
                                 target = text2
+                                avg = barQ
                     else:
                         notice = alert9
                         stop = stopQ
                         open = OpenQ
                         buy = buyQ
                         target = text2
+                        avg = barQ
 
                     word_to_reply = str('{} {}'.format(text,notice))
                     print(word_to_reply)
                     bubbles = []
-                    bubble = flex_stock(text,notice,price_now,change,open,buy,stop,target)
+                    bubble = flex_stock(text,price_now,notice,change,open,buy,stop,avg,target)
                     
                     flex_to_reply = SetMessage_Object(bubble)
                     reply_msg(reply_token,data=flex_to_reply,bot_access_key=channel_access_token)

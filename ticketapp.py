@@ -55,8 +55,24 @@ def handle_message(event):
     linechat(request_text)
 
     try:
+        if 'บอตตื่นอยู่ไหม' in text_from_user:
+        
+            text_list = [
+                'สวัสดีค่ะ คุณ {} วันนี้อยากได้ข้อมูลตัวไหนคะ'.format(disname),
+                'คุณ{} อยากหาข้อมูลตัวไหน กรุณากรอกข้อมูลได้เลยนะคะ'.format(disname),
+            ]
 
-        if 'IQXUSTB' in text_from_user:
+            from random import choice
+            word_to_reply = choice(text_list)
+            
+            text_to_reply = TextSendMessage(text = word_to_reply)
+
+            line_bot_api.reply_message(
+                    event.reply_token,
+                    messages=[text_to_reply]
+                )
+
+        elif 'IQXUSTB' in text_from_user:
             from urllib.request import Request, urlopen
             from bs4 import BeautifulSoup as soup 
             from pandas_datareader import data
@@ -667,7 +683,6 @@ def handle_message(event):
             setcheck()
 
         else:
-
             from bs4 import BeautifulSoup as soup
             from urllib.request import urlopen as req
             from pandas_datareader import data
@@ -710,7 +725,7 @@ def handle_message(event):
 
             r = request(code)
 
-            text_request = '{} {} ({})'.format(r[0], r[1], r[2])
+            # text_request = '{} {} ({})'.format(r[0], r[1], r[2])
 
             class stock:
                 def __init__(self,stock):
@@ -800,6 +815,8 @@ def handle_message(event):
                     stopY = '%.2f'%stopY
                     stopY = str(stopY) 
 
+                    chgp = str(r[3])
+
                     text1 = exit1 + ' | ' + exit2 + ' | ' + exit3 
                     text2 = '----'
 
@@ -815,14 +832,14 @@ def handle_message(event):
 
                     text = r[0]
                     price_now = r[1] 
-                    change = r[2] +' ({})'.format(r[3])
+                    change = r[2] 
 
                     if float(value) > 7500000:
                         if barY > 3.00:
                             if barQ > 6.00:
                                 notice = alert1
                                 stop = stopQ
-                                open = OpenQ
+                                start = OpenQ
                                 buy = buyQ
                                 target = text1
                                 avg = barQ
@@ -830,14 +847,14 @@ def handle_message(event):
                                 if barW >= 0:
                                     notice = alert2
                                     stop = stopQ
-                                    open = OpenQ
+                                    start = OpenQ
                                     buy = buyQ
                                     target = text1
                                     avg = barQ
                                 else:
                                     notice = alert7
                                     stop = stopQ
-                                    open = OpenQ
+                                    start = OpenQ
                                     buy = buyQ
                                     target = text1
                                     avg = barQ
@@ -845,21 +862,21 @@ def handle_message(event):
                                 if barW >= 0:
                                     notice = alert3
                                     stop = stopQ
-                                    open = OpenQ
+                                    start = OpenQ
                                     buy = buyQ
                                     target = text1
                                     avg = barQ
                                 else:
                                     notice = alert7
                                     stop = stopQ
-                                    open = OpenQ
+                                    start = OpenQ
                                     buy = buyQ
                                     target = text1
                                     avg = barQ
                             else:
                                 notice = alert4
                                 stop = stopQ
-                                open = OpenQ
+                                start = OpenQ
                                 buy = buyQ
                                 target = text2
                                 avg = barQ
@@ -868,21 +885,21 @@ def handle_message(event):
                                 if barW > 0:
                                     notice = alert6
                                     stop = stopY
-                                    open = OpenY
+                                    start = OpenY
                                     buy = buyY
                                     target = text1
                                     avg = barY
                                 else:
                                     notice = alert7
                                     stop = stopY
-                                    open = OpenY
+                                    start = OpenY
                                     buy = buyY
                                     target = text1
                                     avg = barY
                             else:
                                 notice = alert5
                                 stop = stopY
-                                open = OpenY
+                                start = OpenY
                                 buy = buyY
                                 target = text2
                                 avg = barY
@@ -890,7 +907,7 @@ def handle_message(event):
                             if barQ > 6.00:
                                 notice = alert1
                                 stop = stopQ
-                                open = OpenQ
+                                start = OpenQ
                                 buy = buyQ
                                 target = text1
                                 avg = barQ
@@ -898,14 +915,14 @@ def handle_message(event):
                                 if barW >= 0:
                                     notice = alert2
                                     stop = stopQ
-                                    open = OpenQ
+                                    start = OpenQ
                                     buy = buyQ
                                     target = text1
                                     avg = barQ
                                 else:
                                     notice = alert8
                                     stop = stopQ
-                                    open = OpenQ
+                                    start = OpenQ
                                     buy = buyQ
                                     target = text1
                                     avg = barQ
@@ -913,28 +930,28 @@ def handle_message(event):
                                 if barW >= 0:
                                     notice = alert3
                                     stop = stopQ
-                                    open = OpenQ
+                                    start = OpenQ
                                     buy = buyQ
                                     target = text1
                                     avg = barQ
                                 else:
                                     notice = alert8
                                     stop = stopQ
-                                    open = OpenQ
+                                    start = OpenQ
                                     buy = buyQ
                                     target = text1
                                     avg = barQ
                             else:
                                 notice = alert4
                                 stop = stopQ
-                                open = OpenQ
+                                start = OpenQ
                                 buy = buyQ
                                 target = text2
                                 avg = barQ
                     else:
                         notice = alert9
                         stop = stopQ
-                        open = OpenQ
+                        start = OpenQ
                         buy = buyQ
                         target = text2
                         avg = barQ
@@ -942,14 +959,14 @@ def handle_message(event):
                     word_to_reply = str('{} {}'.format(text,notice))
                     print(word_to_reply)
                     bubbles = []
-                    bubble = flex_stock(text,price_now,notice,change,open,buy,stop,avg,target)
+                    bubble = flex_stock(text,price_now,change,chgp,notice,start,buy,stop,target,avg)
                     
                     flex_to_reply = SetMessage_Object(bubble)
                     reply_msg(reply_token,data=flex_to_reply,bot_access_key=channel_access_token)
                     return 'OK'
                     
             for symbol in symbols:
-                stock(symbol).ticket()
+                stock(symbol).ticket()  
 
     except:
         text_list = [
@@ -972,15 +989,16 @@ def handle_message(event):
 def RegisRichmenu(event):
     userid = event.source.user_id
     disname = line_bot_api.get_profile(user_id=userid).display_name
-    line_bot_api.link_rich_menu_to_user(userid,'richmenu-d503ea71dbb45fdc0fb7a4ff99c0bc00')
+    line_bot_api.link_rich_menu_to_user(userid,'richmenu-ed876f98f927b19ebd7c35b729d72bd3')
 
     button_1 = QuickReplyButton(action=MessageAction(lable='IQXUSTB',text='IQXUSTB'))
     button_2 = QuickReplyButton(action=MessageAction(lable='IQXGL',text='IQXGL'))
     button_3 = QuickReplyButton(action=MessageAction(lable='IQXWTI',text='IQXWTI'))
     button_4 = QuickReplyButton(action=MessageAction(lable='SET',text='SET'))
     button_5 = QuickReplyButton(action=MessageAction(lable='TFEX',text='TFEX'))
+    button_6 = QuickReplyButton(action=MessageAction(lable='Hello Bot',text='บอตตื่นอยู่ไหม'))
 
-    answer_button = QuickReply(items=[button_1,button_2,button_3,button_4,button_5])
+    answer_button = QuickReply(items=[button_1,button_2,button_3,button_4,button_5,button_6])
             
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))

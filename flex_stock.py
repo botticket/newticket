@@ -1,246 +1,3 @@
-def flex_stock(text,price_now,notice,change,open,buy,stop,avg,target):
-  Change_color = ['#EE0000' if '-' in str(change) else '#23D500'][0]
-  trend = ['#EE0000' if '-' in str(avg) else '#23D500'][0]
-  bubble ={
-    "type": "flex",
-    "altText": "Flex Message",
-    "contents": {
-      "type": "bubble",
-      "size": "giga",
-      "body": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "filler"
-              }
-            ],
-            "flex": 1,
-            "backgroundColor": "#3c3c3c"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "filler"
-              }
-            ],
-            "flex": 2
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "image",
-                "url": "https://media.brstatic.com/2017/03/20172321/stock-market-ticker-charts_573x300.jpg",
-                "aspectMode": "cover",
-                "size": "sm"
-              }
-            ],
-            "borderWidth": "2px",
-            "borderColor": "#FFFFFF",
-            "cornerRadius": "55px",
-            "position": "absolute",
-            "offsetTop": "5%",
-            "offsetStart": "5px"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "{}".format(text),
-                    "weight": "bold",
-                    "align": "start",
-                    "color": "{}".format(Change_color),
-                    "wrap": True,
-                    "size": "xl",
-                    "gravity": "center"
-                  },
-                  {
-                    "type": "text",
-                    "text": "{}".format(price_now),
-                    "align": "end",
-                    "color": "{}".format(Change_color),
-                    "gravity": "center",
-                    "size": "md",
-                    "offsetEnd": "10%"
-                  }
-                ],
-                "paddingStart": "100px",
-                "paddingTop": "1%"
-              },
-              {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "{}".format(notice),
-                    "weight": "regular",
-                    "align": "start",
-                    "color": "#F8F9F9",
-                    "wrap": True,
-                    "size": "md",
-                    "gravity": "center"
-                  },
-                  {
-                    "type": "text",
-                    "text": "{}".format(change),
-                    "align": "end",
-                    "color": "{}".format(Change_color),
-                    "gravity": "center",
-                    "size": "md",
-                    "offsetEnd": "10%"
-                  }
-                ],
-                "paddingStart": "100px",
-                "paddingTop": "5px",
-                "width": "100%"
-              }
-            ],
-            "width": "100%",
-            "position": "absolute",
-            "flex": 3
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "Buy",
-                    "weight": "bold",
-                    "align": "start",
-                    "color": "#959595",
-                    "size": "sm"
-                  },
-                  {
-                    "type": "text",
-                    "text": "{} | {}".format(open,buy),
-                    "weight": "regular",
-                    "align": "start",
-                    "color": "#000000",
-                    "size": "lg",
-                    "wrap": True
-                  }
-                ],
-                "spacing": "xs"
-              },
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "Stop",
-                    "weight": "bold",
-                    "align": "start",
-                    "color": "#959595",
-                    "size": "sm"
-                  },
-                  {
-                    "type": "text",
-                    "text": "{}".format(stop),
-                    "weight": "regular",
-                    "align": "start",
-                    "color": "#000000",
-                    "size": "lg",
-                    "wrap": True,
-                    "offsetBottom": "5%"
-                  }
-                ],
-                "spacing": "md"
-              }
-            ],
-            "flex": 3,
-            "position": "absolute",
-            "width": "50%",
-            "paddingTop": "65%",
-            "paddingStart": "8%"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "Avg",
-                    "weight": "bold",
-                    "align": "start",
-                    "color": "{}".format(trend),
-                    "size": "sm"
-                  },
-                  {
-                    "type": "text",
-                    "text": "{}%".format(avg),
-                    "weight": "regular",
-                    "align": "start",
-                    "color": "{}".format(trend),
-                    "size": "lg",
-                    "wrap": True
-                  }
-                ],
-                "spacing": "xs"
-              }
-            ],
-            "flex": 3,
-            "position": "absolute",
-            "width": "50%",
-            "paddingTop": "65%",
-            "paddingStart": "15%",
-            "offsetEnd": "5px"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "Target",
-                "size": "sm",
-                "color": "#959595",
-                "weight": "bold"
-              },
-              {
-                "type": "text",
-                "text": "{}".format(target),
-                "size": "lg",
-                "color": "#000000",
-                "wrap": True
-              }
-            ],
-            "offsetStart": "4%",
-            "offsetBottom": "5%"
-          }
-        ],
-        "height": "270px",
-        "paddingAll": "0px"
-      }
-    }
-  }
-  return bubble
-
-
 def flex_usdcheck(text,price_now,change,chgp,notice,start,buy,stop,target):
     Change_color = ['#EE0000' if '-' in str(change) else '#23D500'][0]
     bubble ={
@@ -1591,5 +1348,308 @@ def flex_setcheck(text,price_now,change,chgp,notice,start,buy,stop,target):
     }
     return bubble
 
-
-
+def flex_stock(text,price_now,change,chgp,notice,start,buy,stop,target,avg):
+    Change_color = ['#EE0000' if '-' in str(change) else '#23D500'][0]
+    trend = ['#EE0000' if '-' in str(avg) else '#3c3c3c'][0]
+    bubble ={
+    "type": "flex",
+    "altText": "Flex Message",
+    "contents": {
+        "type": "bubble",
+        "size": "kilo",
+        "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+            {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                {
+                    "type": "filler"
+                }
+                ],
+                "flex": 1,
+                "backgroundColor": "#3c3c3c",
+                "height": "32%"
+            },
+            {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                {
+                    "type": "filler"
+                }
+                ],
+                "flex": 2,
+                "height": "75%"
+            },
+            {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                {
+                    "type": "image",
+                    "url": "https://www.knowtechbetter.com/wp-content/uploads/2018/05/Software-for-Stock-Buying-and-selling.jpg",
+                    "aspectMode": "cover"
+                }
+                ],
+                "borderWidth": "3px",
+                "borderColor": "#FFFFFF",
+                "cornerRadius": "55px",
+                "position": "absolute",
+                "offsetTop": "3%",
+                "offsetStart": "3%"
+            },
+            {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": "{}".format(text),
+                        "weight": "bold",
+                        "color": "#F8F9F9",
+                        "wrap": True,
+                        "size": "lg",
+                        "align": "end"
+                    }
+                    ],
+                    "paddingStart": "150px",
+                    "paddingTop": "5px",
+                    "offsetEnd": "5%"
+                },
+                {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": "{}".format(price_now),
+                        "align": "end",
+                        "color": "{}".format(Change_color),
+                        "gravity": "center",
+                        "size": "lg",
+                        "wrap": True
+                    }
+                    ],
+                    "paddingStart": "150px",
+                    "paddingTop": "5px",
+                    "offsetEnd": "5%"
+                },
+                {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": "{}".format(change),
+                        "align": "end",
+                        "color": "{}".format(Change_color),
+                        "gravity": "center",
+                        "size": "md",
+                        "wrap": True
+                    }
+                    ],
+                    "paddingStart": "150px",
+                    "paddingTop": "5px",
+                    "offsetEnd": "5%"
+                },
+                {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                    {
+                        "type": "text",
+                        "text": "({})".format(chgp),
+                        "align": "end",
+                        "color": "{}".format(Change_color),
+                        "gravity": "center",
+                        "size": "md",
+                        "wrap": True
+                    }
+                    ],
+                    "paddingStart": "150px",
+                    "paddingTop": "5px",
+                    "offsetEnd": "5%"
+                }
+                ],
+                "width": "100%",
+                "position": "absolute",
+                "flex": 3
+            },
+            {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                {
+                    "type": "text",
+                    "text": "Alert",
+                    "flex": 3,
+                    "size": "sm"
+                }
+                ],
+                "position": "absolute",
+                "offsetTop": "35%",
+                "offsetStart": "5%",
+                "width": "100%"
+            },
+            {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                {
+                    "type": "text",
+                    "text": "{}".format(notice),
+                    "flex": 3,
+                    "color": "{}".format(trend),
+                    "size": "lg"
+                }
+                ],
+                "position": "absolute",
+                "offsetTop": "40%",
+                "offsetStart": "5%",
+                "width": "100%"
+            },
+            {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                {
+                    "type": "text",
+                    "text": "Buy >",
+                    "flex": 3,
+                    "size": "sm"
+                }
+                ],
+                "position": "absolute",
+                "offsetTop": "47%",
+                "offsetStart": "5%",
+                "width": "100%"
+            },
+            {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                {
+                    "type": "text",
+                    "text": "{} ~ {}".format(start,buy),
+                    "flex": 3,
+                    "size": "lg"
+                }
+                ],
+                "position": "absolute",
+                "offsetTop": "52%",
+                "offsetStart": "5%",
+                "width": "100%"
+            },
+            {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                {
+                    "type": "text",
+                    "text": "Stop <",
+                    "flex": 3,
+                    "size": "sm"
+                }
+                ],
+                "position": "absolute",
+                "offsetTop": "59%",
+                "offsetStart": "5%",
+                "width": "100%"
+            },
+            {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                {
+                    "type": "text",
+                    "text": "{}".format(stop),
+                    "flex": 3,
+                    "size": "lg"
+                }
+                ],
+                "position": "absolute",
+                "offsetTop": "64%",
+                "offsetStart": "5%",
+                "width": "100%"
+            },
+            {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                {
+                    "type": "text",
+                    "text": "Target",
+                    "flex": 3,
+                    "size": "sm"
+                }
+                ],
+                "position": "absolute",
+                "offsetTop": "71%",
+                "offsetStart": "5%",
+                "width": "100%"
+            },
+            {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                {
+                    "type": "text",
+                    "text": "{}".format(target),
+                    "flex": 3,
+                    "size": "lg",
+                    "wrap": True
+                }
+                ],
+                "position": "absolute",
+                "offsetTop": "76%",
+                "offsetStart": "5%",
+                "width": "95%"
+            },
+            {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                {
+                    "type": "text",
+                    "text": "Avg.",
+                    "flex": 3,
+                    "size": "sm"
+                }
+                ],
+                "position": "absolute",
+                "offsetTop": "83%",
+                "offsetStart": "5%",
+                "width": "100%"
+            },
+            {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                {
+                    "type": "text",
+                    "text": "{}%".format(avg),
+                    "flex": 3,
+                    "color": "{}".format(trend),
+                    "size": "lg",
+                    "wrap": True
+                }
+                ],
+                "position": "absolute",
+                "offsetTop": "88%",
+                "offsetStart": "5%",
+                "width": "95%"
+            }
+            ],
+            "height": "400px",
+            "paddingAll": "0px"
+            }
+        }
+    }
+    return bubble

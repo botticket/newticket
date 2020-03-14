@@ -55,7 +55,7 @@ def handle_message(event):
     linechat(request_text)
 
     try:
-        if 'บอตตื่นอยู่ไหม' in text_from_user:
+        if 'Hello Bot' in text_from_user:
         
             text_list = [
                 'สวัสดีค่ะ คุณ {} วันนี้อยากได้ข้อมูลตัวไหนคะ'.format(disname),
@@ -72,7 +72,7 @@ def handle_message(event):
                     messages=[text_to_reply]
                 )
 
-        elif 'IQXUSTB' in text_from_user:
+        elif 'IQUSTB' in text_from_user:
             from urllib.request import Request, urlopen
             from bs4 import BeautifulSoup as soup 
             from pandas_datareader import data
@@ -991,12 +991,12 @@ def RegisRichmenu(event):
     disname = line_bot_api.get_profile(user_id=userid).display_name
     line_bot_api.link_rich_menu_to_user(userid,'richmenu-ed876f98f927b19ebd7c35b729d72bd3')
 
-    button_1 = QuickReplyButton(action=MessageAction(lable='IQXUSTB',text='IQXUSTB'))
+    button_1 = QuickReplyButton(action=MessageAction(lable='IQUSTB',text='IQUSTB'))
     button_2 = QuickReplyButton(action=MessageAction(lable='IQXGL',text='IQXGL'))
     button_3 = QuickReplyButton(action=MessageAction(lable='IQXWTI',text='IQXWTI'))
     button_4 = QuickReplyButton(action=MessageAction(lable='SET',text='SET'))
     button_5 = QuickReplyButton(action=MessageAction(lable='TFEX',text='TFEX'))
-    button_6 = QuickReplyButton(action=MessageAction(lable='Hello Bot',text='บอตตื่นอยู่ไหม'))
+    button_6 = QuickReplyButton(action=MessageAction(lable='Hello Bot',text='Hello Bot'))
 
     answer_button = QuickReply(items=[button_1,button_2,button_3,button_4,button_5,button_6])
             

@@ -815,7 +815,7 @@ def handle_message(event):
 
                     text = r[0]
                     price_now = r[1] 
-                    change = r[2] +' ({}%)'.format(r[3])
+                    change = r[2] +' ({})'.format(r[3])
 
                     if float(value) > 7500000:
                         if barY > 3.00:

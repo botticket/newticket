@@ -192,7 +192,7 @@ def flex_stock(text,price_now,notice,change,open,buy,stop,avg,target):
                   },
                   {
                     "type": "text",
-                    "text": "{}%".format(avg),
+                    "text": "{}".format(avg),
                     "weight": "regular",
                     "align": "start",
                     "color": "{}".format(trend),

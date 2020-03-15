@@ -1145,10 +1145,8 @@ def Greeting(event):
 
     reply_token = event.reply_token
     userid = event.source.user_id
-
     text = TextSendMessage(text="สวัสดีค่ะ วันนี้เล่นอะไรดี")
     line_bot_api.reply_message(reply_token,messages=text)
-
 
 # if __name__ == '__main__':
 #     port = int(os.getenv('PORT', 5000))

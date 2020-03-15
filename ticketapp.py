@@ -117,7 +117,7 @@ def handle_message(event):
                     list = self.code
 
                     dfY = data.DataReader(f'{list}', data_source="yahoo", start='2020-01-01', end=end)
-                    dfW = data.DataReader(f'{list}', data_source="yahoo", start='2020-03-16', end=end)
+                    dfW = data.DataReader(f'{list}', data_source="yahoo", start='2020-03-13', end=end)
                     #2020-01-01 = Y M D
 
                     OpenY = dfY['Open'].iloc[1]

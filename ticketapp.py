@@ -101,7 +101,7 @@ def handle_message(event):
                     list = self.code
 
                     dfY = data.DataReader(f'{list}', data_source="yahoo", start='2020-01-01', end=end)
-                    dfW = data.DataReader(f'{list}', data_source="yahoo", start='2020-03-15', end=end)
+                    dfW = data.DataReader(f'{list}', data_source="yahoo", start='2020-03-13', end=end)
                     #2020-01-01 = Y M D
 
                     OpenY = dfY['Open'].iloc[1]
@@ -1139,8 +1139,16 @@ def RegisRichmenu(event):
     button_4 = QuickReplyButton(action=MessageAction(lable='SET',text='SET'))
     button_5 = QuickReplyButton(action=MessageAction(lable='TFEX',text='TFEX'))
     button_6 = QuickReplyButton(action=MessageAction(lable='Hello Bot',text='Hello Bot'))
-
     answer_button = QuickReply(items=[button_1,button_2,button_3,button_4,button_5,button_6])
+
+def Greeting(event):
+
+    reply_token = event.reply_token
+    userid = event.source.user_id
+
+    text = TextSendMessage(text="สวัสดีค่ะ วันนี้เล่นอะไรดี")
+    line_bot_api.reply_message(reply_token,messages=text)
+
 
 # if __name__ == '__main__':
 #     port = int(os.getenv('PORT', 5000))

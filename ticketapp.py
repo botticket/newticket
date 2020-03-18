@@ -952,7 +952,7 @@ def handle_message(event):
                     support1 = '%.2f'%support1
                     support1 = str(support1)
 
-                    support2 = float(OpenY) * 0.65
+                    support2 = float(OpenY) * 0.60
                     support2 = '%.2f'%support2
                     support2 = str(support2)
 

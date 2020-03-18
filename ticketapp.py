@@ -140,15 +140,15 @@ def handle_message(event):
                     stop_longY = '%.2f'%stop_longY
                     stop_longY = str(stop_longY)
 
-                    exit_long1 = float(OpenD) * 1.07
+                    exit_long1 = float(OpenD) * 1.04
                     exit_long1 = '%.2f'%exit_long1
                     exit_long1 = str(exit_long1)
 
-                    exit_long2 = float(OpenD) * 1.14
+                    exit_long2 = float(OpenD) * 1.08
                     exit_long2 = '%.2f'%exit_long2
                     exit_long2 = str(exit_long2)
 
-                    exit_long3 = float(OpenD) * 1.21
+                    exit_long3 = float(OpenD) * 1.12
                     exit_long3 = '%.2f'%exit_long3
                     exit_long3 = str(exit_long3)
 
@@ -160,15 +160,15 @@ def handle_message(event):
                     stop_shortY = '%.2f'%stop_shortY
                     stop_shortY = str(stop_shortY)
 
-                    exit_short1 = float(OpenD) * 0.93
+                    exit_short1 = float(OpenD) * 0.96
                     exit_short1 = '%.2f'%exit_short1
                     exit_short1 = str(exit_short1)
 
-                    exit_short2 = float(OpenD) * 0.86
+                    exit_short2 = float(OpenD) * 0.92
                     exit_short2 = '%.2f'%exit_short2
                     exit_short2 = str(exit_short2)
 
-                    exit_short3 = float(OpenD) * 0.79
+                    exit_short3 = float(OpenD) * 0.88
                     exit_short3 = '%.2f'%exit_short3
                     exit_short3 = str(exit_short3)
                 
@@ -302,15 +302,15 @@ def handle_message(event):
                 stop_longY = '%.2f'%stop_longY
                 stop_longY = str(stop_longY)
 
-                exit_long1 = float(OpenD) * 1.05
+                exit_long1 = float(OpenD) * 1.04
                 exit_long1 = '%.2f'%exit_long1
                 exit_long1 = str(exit_long1)
 
-                exit_long2 = float(OpenD) * 1.10
+                exit_long2 = float(OpenD) * 1.08
                 exit_long2 = '%.2f'%exit_long2
                 exit_long2 = str(exit_long2)
 
-                exit_long3 = float(OpenD) * 1.15
+                exit_long3 = float(OpenD) * 1.12
                 exit_long3 = '%.2f'%exit_long3
                 exit_long3 = str(exit_long3)
 
@@ -322,15 +322,15 @@ def handle_message(event):
                 stop_shortY = '%.2f'%stop_shortY
                 stop_shortY = str(stop_shortY)
 
-                exit_short1 = float(OpenD) * 0.95
+                exit_short1 = float(OpenD) * 0.96
                 exit_short1 = '%.2f'%exit_short1
                 exit_short1 = str(exit_short1)
 
-                exit_short2 = float(OpenD) * 0.90
+                exit_short2 = float(OpenD) * 0.92
                 exit_short2 = '%.2f'%exit_short2
                 exit_short2 = str(exit_short2)
 
-                exit_short3 = float(OpenD) * 0.85
+                exit_short3 = float(OpenD) * 0.88
                 exit_short3 = '%.2f'%exit_short3
                 exit_short3 = str(exit_short3)
             
@@ -535,22 +535,22 @@ def handle_message(event):
             def wticheck():
                 wti = wtiscrapt()
 
-                exit_long1 = float(wti[0]) * 1.05
+                exit_long1 = float(wti[0]) * 1.04
                 exit_long1 = '%.2f'%exit_long1
 
-                exit_long2 = float(wti[0]) * 1.10
+                exit_long2 = float(wti[0]) * 1.08
                 exit_long2 = '%.2f'%exit_long2
 
-                exit_long3 = float(wti[0]) * 1.15
+                exit_long3 = float(wti[0]) * 1.12
                 exit_long3 = '%.2f'%exit_long3      
 
-                exit_short1 = float(wti[0]) * 0.95
+                exit_short1 = float(wti[0]) * 0.96
                 exit_short1 = '%.2f'%exit_short1
 
-                exit_short2 = float(wti[0]) * 0.90
+                exit_short2 = float(wti[0]) * 0.92
                 exit_short2 = '%.2f'%exit_short2
 
-                exit_short3 = float(wti[0]) * 0.85
+                exit_short3 = float(wti[0]) * 0.88
                 exit_short3 = '%.2f'%exit_short3
 
                 LongY = float(IQXWTI) * 1.01

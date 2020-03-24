@@ -20,10 +20,10 @@ channel_access_token = line_access_token
 line_bot_api = LineBotApi(channel_access_token)
 handler = WebhookHandler(channel_secret)
 
-IQXGL = '1699.79'
-IQXWTI = '32.87'
+IQXGL = '1585.95'
+IQXWTI = '45.25'
 tfexx = '913.40'
-sett = '1271.20'
+sett = '1356.30'
 #Monthly
 
 def linechat(text):
@@ -57,7 +57,7 @@ def handle_message(event):
     userid = event.source.user_id
     
     disname = line_bot_api.get_profile(user_id=userid).display_name
-    request_text= (' ticket'+'\n' + '>> {} : {}'+'\n'+ '>> {}').format(disname,text_from_user,userid)
+    request_text= (' ticket'+'\n' + '>> {} : {}').format(disname,text_from_user)
 
     print(request_text)
     linechat(request_text)
@@ -101,7 +101,7 @@ def handle_message(event):
                     list = self.code
 
                     dfY = data.DataReader(f'{list}', data_source="yahoo", start='2020-01-01', end=end)
-                    dfW = data.DataReader(f'{list}', data_source="yahoo", start='2020-03-13', end=end)
+                    dfW = data.DataReader(f'{list}', data_source="yahoo", start='2020-03-20', end=end)
                     #2020-01-01 = Y M D
 
                     OpenY = dfY['Open'].iloc[1]
@@ -225,8 +225,8 @@ def handle_message(event):
 
                     word_to_reply = '{}'.format(text) + '\n' + 'now {} {} ({}%)'.format(price_now,change,chgp)
                     result = 'Position: {}'.format(notice) + '\n' + 'Range: {} - {} '.format(start,buy) + '\n' + 'Stop: {}'.format(stop) + '\n' + 'Target: {}'.format(target)
-                    print(word_to_reply)
-                    print(result)
+                    # print(word_to_reply)
+                    # print(result)
                     print(number)
                     bubble = flex_crypto(text,price_now,change,chgp,notice,start,buy,stop,target)
                     
@@ -254,6 +254,7 @@ def handle_message(event):
             return 'OK'
 
         elif 'IQUSTB' in text_from_user:
+            
             from urllib.request import Request, urlopen
             from bs4 import BeautifulSoup as soup 
             from pandas_datareader import data
@@ -388,7 +389,7 @@ def handle_message(event):
                 word_to_reply = '{}'.format(text) + '\n' + 'now {} {} ({}%)'.format(price_now,change,chgp)
                 result = 'Position: {}'.format(notice) + '\n' + 'Range: {} - {} '.format(start,buy) + '\n' + 'Stop: {}'.format(stop) + '\n' + 'Target: {}'.format(target)
                 # print(word_to_reply)
-                # print(number)
+                print(number)
 
                 bubble = flex_usdcheck(text,price_now,change,chgp,notice,start,buy,stop,target)
                 flex_to_reply = SetMessage_Object(bubble)
@@ -457,7 +458,7 @@ def handle_message(event):
                 shortY = float(IQXGL) * 0.995
                 shortY = '%.2f'%shortY
 
-                stop_shortY = float(IQXGL) * 1.0025
+                stop_shortY = float(IQXGL) * 1.005
                 stop_shortY = '%.2f'%stop_shortY                    
 
                 price_now = float(gg[0])
@@ -608,6 +609,8 @@ def handle_message(event):
             wticheck()
 
         elif 'TFEX' in text_from_user:
+            text_from_user = text_from_user.upper()
+
             from urllib.request import Request, urlopen
             from bs4 import BeautifulSoup as soup 
 
@@ -667,7 +670,7 @@ def handle_message(event):
                 shortY = float(tfexx) * 0.995
                 shortY = '%.2f'%shortY
 
-                stop_shortY = float(tfexx) * 1.0025
+                stop_shortY = float(tfexx) * 1.005
                 stop_shortY = '%.2f'%stop_shortY                    
 
                 price_now = float(tff[0])
@@ -713,6 +716,8 @@ def handle_message(event):
             tfexcheck()
 
         elif 'SET' in text_from_user:
+            text_from_user = text_from_user.upper()
+
             from urllib.request import Request, urlopen
             from bs4 import BeautifulSoup as soup 
         
@@ -774,7 +779,7 @@ def handle_message(event):
                 shortY = float(sett) * 0.995
                 shortY = '%.2f'%shortY
 
-                stop_shortY = float(sett) * 1.0025
+                stop_shortY = float(sett) * 1.005
                 stop_shortY = '%.2f'%stop_shortY                    
 
                 price_now = float(st[0])
@@ -873,7 +878,7 @@ def handle_message(event):
                     dfQ = data.DataReader(f'{list}', data_source="yahoo", start='2020-01-01', end=end)
                     #chg for Quarter : Jan Apr Jul Sep
 
-                    dfW = data.DataReader(f'{list}', data_source="yahoo", start='2020-03-16', end=end)
+                    dfW = data.DataReader(f'{list}', data_source="yahoo", start='2020-03-20', end=end)
                     #2020-01-01 = Y M D
 
                     list = list.replace('.bk','')
@@ -959,9 +964,7 @@ def handle_message(event):
                     support3 = float(OpenY) * 0.50
                     support3 = '%.2f'%support3
                     support3 = str(support3)
-
-                    chgp = str(r[3])
-
+                    
                     text1 = exit1 + ' | ' + exit2 + ' | ' + exit3 
                     text2 = support1 + ' | ' + support2 + ' | ' + support3  
 
@@ -978,6 +981,7 @@ def handle_message(event):
                     text = r[0]
                     price_now = r[1] 
                     change = r[2] 
+                    chgp = str(r[3])
 
                     if float(value) > 7500000:
                         if barY > 3.00:

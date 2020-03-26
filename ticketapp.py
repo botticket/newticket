@@ -22,7 +22,7 @@ handler = WebhookHandler(channel_secret)
 
 IQXGL = '1585.95'
 IQXWTI = '45.25'
-tfexx = '913.40'
+tfexx = '905.10'
 sett = '1356.30'
 #Monthly
 
@@ -101,7 +101,7 @@ def handle_message(event):
                     list = self.code
 
                     dfY = data.DataReader(f'{list}', data_source="yahoo", start='2020-01-01', end=end)
-                    dfW = data.DataReader(f'{list}', data_source="yahoo", start='2020-03-20', end=end)
+                    dfW = data.DataReader(f'{list}', data_source="yahoo", start='2020-03-23', end=end)
                     #2020-01-01 = Y M D
 
                     OpenY = dfY['Open'].iloc[1]
@@ -609,13 +609,11 @@ def handle_message(event):
             wticheck()
 
         elif 'TFEX' in text_from_user:
-            text_from_user = text_from_user.upper()
-
             from urllib.request import Request, urlopen
             from bs4 import BeautifulSoup as soup 
 
             def tfexupdate():
-                req = Request('https://www.tfex.co.th/tfex/dailySeriesQuotation.html?locale=th_TH&symbol=S50H20', headers={'User-Agent': 'Chrome/78.0'})
+                req = Request('https://www.tfex.co.th/tfex/dailySeriesQuotation.html?locale=th_TH&symbol=S50M20', headers={'User-Agent': 'Chrome/78.0'})
                 webopen = urlopen(req).read()
                 data = soup(webopen, 'html.parser')
                 main = data.findAll('span',{'class':'h2'})
@@ -688,7 +686,7 @@ def handle_message(event):
                 alert3 = 'Short'
                 alert4 = 'กำลังย่อ'
 
-                text = text_from_user
+                text = 'S50M20'
                 change = str(tff[1]) 
 
                 if barW >= 0:
@@ -716,8 +714,6 @@ def handle_message(event):
             tfexcheck()
 
         elif 'SET' in text_from_user:
-            text_from_user = text_from_user.upper()
-
             from urllib.request import Request, urlopen
             from bs4 import BeautifulSoup as soup 
         
@@ -878,7 +874,7 @@ def handle_message(event):
                     dfQ = data.DataReader(f'{list}', data_source="yahoo", start='2020-01-01', end=end)
                     #chg for Quarter : Jan Apr Jul Sep
 
-                    dfW = data.DataReader(f'{list}', data_source="yahoo", start='2020-03-20', end=end)
+                    dfW = data.DataReader(f'{list}', data_source="yahoo", start='2020-03-23', end=end)
                     #2020-01-01 = Y M D
 
                     list = list.replace('.bk','')

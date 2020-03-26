@@ -980,8 +980,8 @@ def handle_message(event):
                     support3 = '%.2f'%support3
                     support3 = str(support3)
                     
-                    text1 = exit1 + ' | ' + exit2 + ' // ' + max_value 
-                    text2 = support1 + ' | ' + support2 + ' // ' + min_value 
+                    text1 = exit1 + ' | ' + exit2 + ' | ' + exit3 + ' // ' + max_value 
+                    text2 = support1 + ' | ' + support2 + ' | ' + support3+ ' // ' + min_value 
 
                     alert1 = 'ชนแนวต้าน'
                     alert2 = 'ไปต่อ'

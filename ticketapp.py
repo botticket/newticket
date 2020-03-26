@@ -949,6 +949,25 @@ def handle_message(event):
                     stopY = '%.2f'%stopY
                     stopY = str(stopY) 
 
+                    max_value = dfY.nlargest(1, columns = 'High')
+                    max_value = max_value['High'].iloc[0]
+                    max_value = '%.2f'%max_value
+                    max_value = str(max_value) 
+
+                    pmax_value = ((float(max_value) - float(OpenY)) / float(OpenY)) * 100
+                    pmax_value = '%.2f'%pmax_value
+                    pmax_value = str(pmax_value)  
+
+                    min_value = dfY.nsmallest(1, columns = 'Low')
+                    min_value = min_value['Low'].iloc[0]
+                    min_value = '%.2f'%min_value
+                    min_value = str(min_value) 
+
+                    pmin_value = ((float(min_value) - float(OpenY)) / float(OpenY)) * 100
+                    pmin_value = '%.2f'%pmin_value
+                    pmin_value = str(pmin_value)                     
+
+
                     support1 = float(OpenY) * 0.75
                     support1 = '%.2f'%support1
                     support1 = str(support1)
@@ -961,8 +980,8 @@ def handle_message(event):
                     support3 = '%.2f'%support3
                     support3 = str(support3)
                     
-                    text1 = exit1 + ' | ' + exit2 + ' | ' + exit3 
-                    text2 = support1 + ' | ' + support2 + ' | ' + support3  
+                    text1 = exit1 + ' | ' + exit2 + ' // ' + max_value 
+                    text2 = support1 + ' | ' + support2 + ' // ' + min_value 
 
                     alert1 = 'ชนแนวต้าน'
                     alert2 = 'ไปต่อ'

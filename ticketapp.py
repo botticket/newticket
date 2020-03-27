@@ -82,7 +82,7 @@ def handle_message(event):
             line_bot_api.reply_message(reply_token,messages=all_text) #reply messageกลับไป
             return 'OK'
 
-        elif action == "crypto_response":
+        elif 'btc' or 'eth' in text_from_user:
             from urllib.request import Request, urlopen
             from bs4 import BeautifulSoup as soup 
             from pandas_datareader import data
@@ -965,8 +965,11 @@ def handle_message(event):
 
                     pmin_value = ((float(min_value) - float(OpenY)) / float(OpenY)) * 100
                     pmin_value = '%.2f'%pmin_value
-                    pmin_value = str(pmin_value)                     
+                    pmin_value = str(pmin_value)
 
+                    buy_min_value = float(min_value) * 1.05
+                    buy_min_value = '%.2f'%buy_min_value
+                    buy_min_value = str(buy_min_value)                     
 
                     support1 = float(OpenY) * 0.75
                     support1 = '%.2f'%support1
@@ -981,7 +984,7 @@ def handle_message(event):
                     support3 = str(support3)
                     
                     text1 = exit1 + ' | ' + exit2 + ' | ' + exit3 + ' // ' + max_value 
-                    text2 = support1 + ' | ' + support2 + ' | ' + support3+ ' // ' + min_value 
+                    text2 = support1 + ' | ' + support2 + ' | ' + support3+ ' // ' + buy_min_value + min_value 
 
                     alert1 = 'ชนแนวต้าน'
                     alert2 = 'ไปต่อ'
@@ -1128,6 +1131,7 @@ def handle_message(event):
                     flex_to_reply = SetMessage_Object(bubble)
                     reply_msg(reply_token,data=flex_to_reply,bot_access_key=channel_access_token)
                     return 'OK'
+
             for symbol in symbols:
                 stock(symbol).ticket()
 

@@ -1,5 +1,5 @@
 def flex_crypto(text,price_now,change,chgp,notice,start,buy,stop,target):
-    Change_color = ['#F4848C' if '-' in str(change) else '#23D500'][0]
+    Change_color = ['#EE0000' if '-' in str(change) else '#23D500'][0]
     bubble ={
     "type": "flex",
     "altText": "Flex Message",
@@ -268,7 +268,7 @@ def flex_crypto(text,price_now,change,chgp,notice,start,buy,stop,target):
     return bubble
 
 def flex_usdcheck(text,price_now,change,chgp,notice,start,buy,stop,target):
-    Change_color = ['#F4848C' if '-' in str(change) else '#23D500'][0]
+    Change_color = ['#EE0000' if '-' in str(change) else '#23D500'][0]
     bubble ={
     "type": "flex",
     "altText": "Flex Message",
@@ -538,7 +538,7 @@ def flex_usdcheck(text,price_now,change,chgp,notice,start,buy,stop,target):
     return bubble
 
 def flex_goldcheck(text,price_now,change,chgp,notice,start,buy,stop,target):
-    Change_color = ['#F4848C' if '-' in str(change) else '#23D500'][0]
+    Change_color = ['#EE0000' if '-' in str(change) else '#23D500'][0]
     bubble ={
     "type": "flex",
     "altText": "Flex Message",
@@ -808,7 +808,7 @@ def flex_goldcheck(text,price_now,change,chgp,notice,start,buy,stop,target):
     return bubble
 
 def flex_wticheck(text,price_now,change,chgp,notice,start,buy,stop,target):
-    Change_color = ['#F4848C' if '-' in str(change) else '#23D500'][0]
+    Change_color = ['#EE0000' if '-' in str(change) else '#23D500'][0]
     bubble ={
     "type": "flex",
     "altText": "Flex Message",
@@ -1078,7 +1078,7 @@ def flex_wticheck(text,price_now,change,chgp,notice,start,buy,stop,target):
     return bubble
 
 def flex_tfexcheck(text,price_now,change,chgp,notice,start,buy,stop,target):
-    Change_color = ['#F4848C' if '-' in str(change) else '#23D500'][0]
+    Change_color = ['#EE0000' if '-' in str(change) else '#23D500'][0]
     bubble ={
     "type": "flex",
     "altText": "Flex Message",
@@ -1348,7 +1348,7 @@ def flex_tfexcheck(text,price_now,change,chgp,notice,start,buy,stop,target):
     return bubble
 
 def flex_setcheck(text,price_now,change,chgp,notice,start,buy,stop,target):
-    Change_color = ['#F4848C' if '-' in str(change) else '#23D500'][0]
+    Change_color = ['#EE0000' if '-' in str(change) else '#23D500'][0]
     bubble ={
     "type": "flex",
     "altText": "Flex Message",
@@ -1618,8 +1618,8 @@ def flex_setcheck(text,price_now,change,chgp,notice,start,buy,stop,target):
     return bubble
 
 def flex_stock(text,price_now,change,chgp,notice,start,buy,stop,target,avg):
-    Change_color = ['#F4848C' if '-' in str(change) else '#23D500'][0]
-    trend = ['#F4848C' if '-' in str(avg) else '#3c3c3c'][0]
+    Change_color = ['#EE0000' if '-' in str(change) else '#23D500'][0]
+    trend = ['#EE0000' if '-' in str(avg) else '#3c3c3c'][0]
     switch = ['Fibo Support' if '-' in str(avg) else 'Target'][0]
     bubble ={
     "type": "flex",

@@ -1102,7 +1102,7 @@ def handle_message(event):
     except:
         text_list = [
             'คุณ {} รอสักครู่นะคะ กำลังค้นหา {} ในฐานข้อมูล'.format(disname, text_from_user),
-            '{} ค้นหา {} ไม่ถูกต้อง ลองใหม่อีกครั้ง'.format(disname, text_from_user),
+            '{} สะกด {} ไม่ถูกต้อง ลองใหม่อีกครั้ง'.format(disname, text_from_user),
         ]
 
         from random import choice

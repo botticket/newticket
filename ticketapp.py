@@ -21,10 +21,10 @@ channel_access_token = line_access_token
 line_bot_api = LineBotApi(channel_access_token)
 handler = WebhookHandler(channel_secret)
 
-IQXGL = '1585.95'
-IQXWTI = '20.14'
-tfex_value = '742.90'
-set_value = '1125.86'
+IQXGL = '1576.70'
+IQXWTI = '20.10'
+tfex_value = '736.00'
+set_value = '1171.51'
 #Monthly
 
 today = date.today()
@@ -43,7 +43,6 @@ elif today.month >= 4 :
 else:
     quarter = '{}-01-01'.format(today.year)
     tfex_code = 'S50H20'
-
 
 def linechat(text):    
     ACCESS_TOKEN = "oK2sk4w1eidfRyOVfgIcln38TBS8JmL0PgfbbQ8t0Zv"
@@ -71,7 +70,7 @@ def handle_message(event):
     userid = event.source.user_id
     
     disname = line_bot_api.get_profile(user_id=userid).display_name
-    request_text= (' ticket'+'\n' + '>> {} : {}').format(disname,text_from_user)
+    request_text= ('ticket'+'\n' + '>> {} : {}').format(disname,text_from_user)
     print(request_text)
     linechat(request_text)
 
@@ -669,7 +668,7 @@ def handle_message(event):
                     list = self.code
 
                     dfY = data.DataReader(f'{list}', data_source="yahoo", start=yearly, end=end)
-                    dfM = data.DataReader(f'{list}', data_source="yahoo", start=quarter, end=end)
+                    dfM = data.DataReader(f'{list}', data_source="yahoo", start=monthly, end=end)
                     #2020-01-01 = Y M D
 
                     OpenY = dfY['Open'].iloc[1]
@@ -838,8 +837,8 @@ def handle_message(event):
                     list = self.stock
 
                     dfY = data.DataReader(f'{list}', data_source="yahoo", start=yearly, end=end)
-                    dfQ = data.DataReader(f'{list}', data_source="yahoo", start='2020-01-01', end=end)
-                    dfM = data.DataReader(f'{list}', data_source="yahoo", start='2020-03-01', end=end)
+                    dfQ = data.DataReader(f'{list}', data_source="yahoo", start=quarter, end=end)
+                    dfM = data.DataReader(f'{list}', data_source="yahoo", start=monthly, end=end)
                     list = list.replace('.bk','')
                                 
                     OpenY = dfY['Open'].iloc[0]
@@ -870,8 +869,8 @@ def handle_message(event):
                     barM = '%.2f'%barM
                     barM = float(barM)
 
-                    Volume1 = dfQ['Volume'].iloc[-1]
-                    Volume2 = dfQ['Volume'].iloc[-2]
+                    Volume1 = dfY['Volume'].iloc[-1]
+                    Volume2 = dfY['Volume'].iloc[-2]
 
                     Volume = (float(Volume1)+float(Volume2))/2
                     Volume  = '%.0f'%Volume
@@ -931,10 +930,6 @@ def handle_message(event):
                     pmin_value = '%.2f'%pmin_value
                     pmin_value = str(pmin_value)
 
-                    buy_min_value = float(min_value) * 1.05
-                    buy_min_value = '%.2f'%buy_min_value
-                    buy_min_value = str(buy_min_value)                     
-
                     support1 = float(OpenY) * 0.75
                     support1 = '%.2f'%support1
                     support1 = str(support1)
@@ -947,8 +942,8 @@ def handle_message(event):
                     support3 = '%.2f'%support3
                     support3 = str(support3)
                     
-                    text1 = exit1 + ' | ' + exit2 + ' | ' + exit3 + '\n'  + ' >> ' + max_value 
-                    text2 = support1 + ' | ' + support2 + ' | ' + support3 + '\n' + 'Low ' + min_value 
+                    text1 = exit1 + ' | ' + exit2 + ' | ' + exit3 + '\n'  + 'high ' + max_value 
+                    text2 = support1 + ' | ' + support2 + ' | ' + support3 + '\n' + 'low ' + min_value 
 
                     alert1 = 'ชนแนวต้าน'
                     alert2 = 'ไปต่อ'
@@ -966,8 +961,8 @@ def handle_message(event):
                     chgp = str(r[3])
 
                     if float(value) > 7500000:
-                        if barY > 4.00:
-                            if barQ > 8.00:
+                        if barY > 6.00:
+                            if barQ > 6.00:
                                 notice = alert1
                                 stop = stopQ
                                 start = OpenQ
@@ -1035,7 +1030,7 @@ def handle_message(event):
                                 target = text2
                                 avg = barY
                         else:
-                            if barQ > 8.00:
+                            if barQ > 6.00:
                                 notice = alert1
                                 stop = stopQ
                                 start = OpenQ

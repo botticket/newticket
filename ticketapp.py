@@ -23,6 +23,7 @@ handler = WebhookHandler(channel_secret)
 
 IQXGL = '1576.70'
 IQXWTI = '20.10'
+IQUSTB = '32.77'
 tfex_value = '736.00'
 set_value = '1171.51'
 #Monthly
@@ -111,92 +112,80 @@ def handle_message(event):
 
         elif 'IQUSTB' in text_from_user:        
             from urllib.request import Request, urlopen
-            from bs4 import BeautifulSoup as soup 
-            from pandas_datareader import data
-            from datetime import datetime     
+            from bs4 import BeautifulSoup as soup
+
+            def thbscrapt():
+
+                req = Request('https://th.investing.com/currencies/usd-thb', headers={'User-Agent': 'Chrome/78.0'})
+                webopen = urlopen(req).read()
+                data = soup(webopen, 'html.parser')
+
+                thb_now = data.findAll('div',{'class':'top bold inlineblock'})
+                thb_now = thb_now[0].text
+                thb_now = thb_now.replace('\n',' ')
+                thb_now = thb_now.replace(',','')
+                thb_now = thb_now.replace(' ','')
+                thb_now = thb_now.replace('\xa0','')
+                thb_now = thb_now[0:6]
+
+                thb_chg = data.findAll('div',{'class':'top bold inlineblock'})
+                thb_chg = thb_chg[0].text
+                thb_chg = thb_chg.replace('\n',' ')
+                thb_chg = thb_chg.replace(',','')
+                thb_chg = thb_chg.replace(' ','')
+                thb_chg = thb_chg.replace('\xa0','')
+                thb_chg = thb_chg[6:12]
+
+                thb_pchg = data.findAll('div',{'class':'top bold inlineblock'})
+                thb_pchg = thb_pchg[0].text
+                thb_pchg = thb_pchg.replace('\n',' ')
+                thb_pchg = thb_pchg.replace(',','')
+                thb_pchg = thb_pchg.replace(' ','')
+                thb_pchg = thb_pchg.replace('\xa0','')
+                thb_pchg = thb_pchg[13:18]
+                
+                return[thb_now,thb_chg,thb_pchg]
 
             def usdcheck():
-                end = datetime.now()
-                start = datetime(end.year,end.month,end.day)
-                dfY = data.DataReader('THB=X', data_source="yahoo", start=yearly, end=end)
-                dfQ = data.DataReader('THB=X', data_source="yahoo", start=quarter, end=end)
+                thb = thbscrapt()
 
-                OpenY = dfY['Open'].iloc[1]
-                OpenY  = '%.2f'%OpenY
-                OpenY = str(OpenY)
-
-                OpenQ = dfQ['Open'].iloc[1]
-                OpenQ  = '%.2f'%OpenQ
-                OpenQ = str(OpenQ)
-
-                OpenD = dfY['Open'].iloc[-1]
-                OpenD  = '%.2f'%OpenD
-                OpenD = str(OpenD)
-
-                Close = dfY['Close'].iloc[-1]
-                Close  = '%.3f'%Close
-                Close = str(Close)
-
-                Prev = dfY['Close'].iloc[-2]
-                Prev  = '%.2f'%Prev
-                Prev = str(Prev)
-                
-                barY = ((float(Close) - float(OpenY)) / float(OpenY) )*100
-                barY = '%.2f'%barY
-                barY = float(barY)
-
-                barQ = ((float(Close) - float(OpenQ)) / float(OpenQ) )*100
-                barQ = '%.2f'%barQ
-                barQ = float(barQ)
-
-                LongY = float(OpenM) * 1.01
-                LongY = '%.2f'%LongY
-                LongY = str(LongY) 
-
-                stop_longY = float(OpenQ) * 0.985
-                stop_longY = '%.2f'%stop_longY
-                stop_longY = str(stop_longY)
-
-                exit_long1 = float(OpenD) * 1.04
+                exit_long1 = float(thb[0]) * 1.015
                 exit_long1 = '%.2f'%exit_long1
-                exit_long1 = str(exit_long1)
 
-                exit_long2 = float(OpenD) * 1.08
+                exit_long2 = float(thb[0]) * 1.03
                 exit_long2 = '%.2f'%exit_long2
-                exit_long2 = str(exit_long2)
 
-                exit_long3 = float(OpenD) * 1.12
-                exit_long3 = '%.2f'%exit_long3
-                exit_long3 = str(exit_long3)
+                exit_long3 = float(thb[0]) * 1.045
+                exit_long3 = '%.2f'%exit_long3      
 
-                shortY = float(OpenQ) * 0.985
-                shortY = '%.2f'%shortY
-                shortY = str(shortY) 
-
-                stop_shortY = float(OpenQ) * 1.01
-                stop_shortY = '%.2f'%stop_shortY
-                stop_shortY = str(stop_shortY)
-
-                exit_short1 = float(OpenD) * 0.96
+                exit_short1 = float(thb[0]) * 0.985
                 exit_short1 = '%.2f'%exit_short1
-                exit_short1 = str(exit_short1)
 
-                exit_short2 = float(OpenD) * 0.92
+                exit_short2 = float(thb[0]) * 0.97
                 exit_short2 = '%.2f'%exit_short2
-                exit_short2 = str(exit_short2)
 
-                exit_short3 = float(OpenD) * 0.88
+                exit_short3 = float(thb[0]) * 0.955
                 exit_short3 = '%.2f'%exit_short3
-                exit_short3 = str(exit_short3)
-            
-                change = float(Close) - float(Prev)
-                change = '%.3f'%change
-                change = str(change) 
 
-                chgp = (float(change)/ float(Prev))*100
-                chgp = '%.2f'%chgp
-                chgp = str(chgp) 		
+                LongY = float(IQUSTB) * 1.005
+                LongY = '%.2f'%LongY
+
+                stop_longY = float(IQUSTB) * 0.995
+                stop_longY = '%.2f'%stop_longY     
+
+                shortY = float(IQUSTB) * 0.995
+                shortY = '%.2f'%shortY
+
+                stop_shortY = float(IQUSTB) * 1.005
+                stop_shortY = '%.2f'%stop_shortY                    
+
+                price_now = float(thb[0])
+                price_now = '%.2f'%price_now
+                price_now = str(price_now)
                 
+                barM = float(price_now) - float(IQUSTB)
+                chgp = str(thb[2])
+
                 text1 = exit_long1 + ' | ' + exit_long2 + ' | ' + exit_long3 
                 text2 = exit_short1 + ' | ' + exit_short2 + ' | ' + exit_short3 
 
@@ -204,19 +193,18 @@ def handle_message(event):
                 alert2 = 'Short'
 
                 text = text_from_user
-                price_now = float(Close) 
-                change = str(change) 
+                change = str(thb[1]) 
 
-                if barQ >= 0:
+                if barM >= 0:
                     notice = alert1
-                    start = OpenQ
+                    start = IQUSTB
                     buy = LongY
                     stop = stop_longY
                     target = text1
                     number = '1'
                 else:
                     notice = alert2
-                    start = OpenQ
+                    start = IQUSTB
                     buy = shortY
                     stop = stop_shortY
                     target = text2 

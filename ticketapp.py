@@ -210,7 +210,7 @@ def handle_message(event):
                     target = text2 
                     number = '2'
                 
-                word_to_reply = '{}'.format(text) + '\n' + 'now {} {} ({})'.format(price_now,change,chgp)
+                word_to_reply = '{}'.format(text) + '\n' + 'now {} {} ({}%)'.format(price_now,change,chgp)
                 result = 'Position: {}'.format(notice) + '\n' + 'Range: {} - {} '.format(start,buy) + '\n' + 'Stop: {}'.format(stop) + '\n' + 'Target: {}'.format(target)
                 print(word_to_reply)
                 print(number)

@@ -930,8 +930,8 @@ def handle_message(event):
                     support3 = '%.2f'%support3
                     support3 = str(support3)
                     
-                    text1 = exit1 + ' | ' + exit2 + ' | ' + exit3 + '\n' + 'Y {} : Q {} : H {}'.format(OpenY,OpenQ,max_value)
-                    text2 = support3 + ' | ' + support2 + ' | ' + support1 + '\n' + 'Y {} : Q {} : L {}'.format(OpenY,OpenQ,min_value)
+                    text1 = exit1 + ' | ' + exit2 + ' | ' + exit3 + '\n' + 'Y {} : H {}'.format(OpenY,max_value)
+                    text2 = support3 + ' | ' + support2 + ' | ' + support1 + '\n' + 'Y {} : L {}'.format(OpenY,min_value)
 
                     alert1 = 'ชนแนวต้าน'
                     alert2 = 'ไปต่อ'

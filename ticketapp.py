@@ -930,8 +930,8 @@ def handle_message(event):
                     support3 = '%.2f'%support3
                     support3 = str(support3)
                     
-                    text1 = exit1 + ' | ' + exit2 + ' | ' + exit3 + '\n'  + 'high ' + max_value 
-                    text2 = support1 + ' | ' + support2 + ' | ' + support3 + '\n' + 'low ' + min_value 
+                    text1 = exit1 + ' | ' + exit2 + ' | ' + exit3 + '\n' + 'Y {} : Q {} : H {}'.format(OpenY,OpenQ,max_value)
+                    text2 = support3 + ' | ' + support2 + ' | ' + support1 + '\n' + 'Y {} : Q {} : L {}'.format(OpenY,OpenQ,min_value)
 
                     alert1 = 'ชนแนวต้าน'
                     alert2 = 'ไปต่อ'
@@ -939,108 +939,49 @@ def handle_message(event):
                     alert4 = 'อย่าเพิ่งเข้า'
                     alert5 = 'กำลังย่อ'
                     alert6 = 'ห้ามพลาด'
-                    alert7 = 'รอเข้า'
-                    alert8 = 'รอต่ำ'
+                    alert7 = 'เด้ง'
+                    alert8 = 'ลงต่อ'
                     alert9 = 'Vol น้อย'
 
                     text = r[0]
                     price_now = r[1] 
                     change = r[2] 
                     chgp = str(r[3])
+                    re_avg = '{}% > {}%'.format(pmin_value,barY)
 
                     if float(value) > 7500000:
-                        if barY > 6.00:
+                        if  barY >= 0.00:
                             if barQ > 6.00:
                                 notice = alert1
-                                stop = stopQ
                                 start = OpenQ
                                 buy = buyQ
+                                stop = stopQ
                                 target = text1
-                                avg = barQ
-                            elif barQ >= 4.00:
-                                if barM >= 0.00:
-                                    notice = alert2
-                                    stop = stopQ
-                                    start = OpenQ
-                                    buy = buyQ
-                                    target = text1
-                                    avg = barQ
-                                else:
-                                    notice = alert7
-                                    stop = stopQ
-                                    start = OpenQ
-                                    buy = buyQ
-                                    target = text1
-                                    avg = barQ
+                                avg = re_avg
                             elif barQ >= 0.00:
                                 if barM >= 0.00:
                                     notice = alert3
-                                    stop = stopQ
                                     start = OpenQ
                                     buy = buyQ
+                                    stop = stopQ
                                     target = text1
-                                    avg = barQ
+                                    avg = re_avg
                                 else:
-                                    notice = alert7
-                                    stop = stopQ
+                                    notice = alert5
                                     start = OpenQ
                                     buy = buyQ
+                                    stop = stopQ
                                     target = text1
-                                    avg = barQ
+                                    avg = re_avg
                             else:
                                 notice = alert4
-                                stop = stopQ
                                 start = OpenQ
                                 buy = buyQ
+                                stop = stopQ
                                 target = text2
-                                avg = barQ
-                        elif barY >= 0.00:
-                            if barQ >= 0:
-                                if barM > 0.00:
-                                    notice = alert6
-                                    stop = stopY
-                                    start = OpenY
-                                    buy = buyY
-                                    target = text1
-                                    avg = barY
-                                else:
-                                    notice = alert7
-                                    stop = stopY
-                                    start = OpenY
-                                    buy = buyY
-                                    target = text1
-                                    avg = barY
-                            else:
-                                notice = alert5
-                                stop = stopY
-                                start = OpenY
-                                buy = buyY
-                                target = text2
-                                avg = barY
+                                avg = re_avg
                         else:
-                            if barQ > 6.00:
-                                notice = alert1
-                                stop = stopQ
-                                start = OpenQ
-                                buy = buyQ
-                                target = text1
-                                avg = barQ
-                            elif barQ >= 4.00:
-                                if barM >= 0.00:
-                                    notice = alert2
-                                    stop = stopQ
-                                    start = OpenQ
-                                    buy = buyQ
-                                    target = text1
-                                    avg = barQ
-                                else:
-                                    notice = alert8
-                                    stop = stopQ
-                                    start = OpenQ
-                                    buy = buyQ
-                                    target = text1
-                                    avg = barQ
-                            elif barQ >= 0.00:
+                            if barQ >= 0.00:
                                 if barM >= 0.00:
                                     notice = alert3
                                     stop = stopQ
@@ -1049,14 +990,14 @@ def handle_message(event):
                                     target = text1
                                     avg = barQ
                                 else:
-                                    notice = alert8
+                                    notice = alert5
                                     stop = stopQ
                                     start = OpenQ
                                     buy = buyQ
                                     target = text1
                                     avg = barQ
                             else:
-                                notice = alert4
+                                notice = alert8
                                 stop = stopQ
                                 start = OpenQ
                                 buy = buyQ

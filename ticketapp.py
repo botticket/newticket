@@ -22,7 +22,7 @@ line_bot_api = LineBotApi(channel_access_token)
 handler = WebhookHandler(channel_secret)
 
 IQXGL = '1576.70'
-IQXWTI = '20.10'
+IQXBRT = '25.95'
 IQUSTB = '32.77'
 tfex_value = '736.00'
 set_value = '1171.51'
@@ -376,23 +376,23 @@ def handle_message(event):
                 exit_short3 = float(wti[0]) * 0.88
                 exit_short3 = '%.2f'%exit_short3
 
-                LongY = float(IQXWTI) * 1.01
+                LongY = float(IQXBRT) * 1.01
                 LongY = '%.2f'%LongY
 
-                stop_longY = float(IQXWTI) * 0.985
+                stop_longY = float(IQXBRT) * 0.985
                 stop_longY = '%.2f'%stop_longY     
 
-                shortY = float(IQXWTI) * 0.985
+                shortY = float(IQXBRT) * 0.985
                 shortY = '%.2f'%shortY
 
-                stop_shortY = float(IQXWTI) * 1.01
+                stop_shortY = float(IQXBRT) * 1.01
                 stop_shortY = '%.2f'%stop_shortY                    
 
                 price_now = float(wti[0])
                 price_now = '%.2f'%price_now
                 price_now = str(price_now)
                 
-                barQ = float(price_now) - float(IQXWTI)
+                barQ = float(price_now) - float(IQXBRT)
                 chgp = str(wti[2])
 
                 text1 = exit_long1 + ' | ' + exit_long2 + ' | ' + exit_long3 
@@ -406,14 +406,14 @@ def handle_message(event):
 
                 if barQ >= 0:
                     notice = alert1
-                    start = IQXWTI
+                    start = IQXBRT
                     buy = LongY
                     stop = stop_longY
                     target = text1
                     number = '1'
                 else:
                     notice = alert2
-                    start = IQXWTI
+                    start = IQXBRT
                     buy = shortY
                     stop = stop_shortY
                     target = text2 

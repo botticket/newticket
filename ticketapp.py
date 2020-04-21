@@ -226,7 +226,7 @@ def handle_message(event):
             from bs4 import BeautifulSoup as soup 
 
             def goldscrapt():
-                req = Request('https://th.investing.com/currencies/xau-usd', headers={'User-Agent': 'Chrome/78.0'})
+                req = Request('https://investing.com/currencies/xau-usd', headers={'User-Agent': 'Chrome/78.0'})
                 webopen = urlopen(req).read()
                 data = soup(webopen, 'html.parser')
 
@@ -325,12 +325,12 @@ def handle_message(event):
                 return 'OK'
             goldcheck()
 
-        elif 'IQXWTI' in text_from_user:
+        elif 'IQXBRT' in text_from_user:
             from urllib.request import Request, urlopen
             from bs4 import BeautifulSoup as soup 
 
             def wtiscrapt():
-                req = Request('https://th.investing.com/commodities/crude-oil', headers={'User-Agent': 'Chrome/78.0'})
+                req = Request('https://www.investing.com/commodities/brent-oil', headers={'User-Agent': 'Chrome/78.0'})
                 webopen = urlopen(req).read()
                 data = soup(webopen, 'html.parser')
 
@@ -1041,11 +1041,11 @@ def handle_message(event):
 def RegisRichmenu(event):
     userid = event.source.user_id
     disname = line_bot_api.get_profile(user_id=userid).display_name
-    line_bot_api.link_rich_menu_to_user(userid,'richmenu-ed876f98f927b19ebd7c35b729d72bd3')
+    line_bot_api.link_rich_menu_to_user(userid,'richmenu-f90b8248dcba881183ab69d8d0441bfd')
 
     button_1 = QuickReplyButton(action=MessageAction(lable='IQUSTB',text='IQUSTB'))
     button_2 = QuickReplyButton(action=MessageAction(lable='IQXGL',text='IQXGL'))
-    button_3 = QuickReplyButton(action=MessageAction(lable='IQXWTI',text='IQXWTI'))
+    button_3 = QuickReplyButton(action=MessageAction(lable='IQXBRT',text='IQXBRT'))
     button_4 = QuickReplyButton(action=MessageAction(lable='SET',text='SET'))
     button_5 = QuickReplyButton(action=MessageAction(lable='TFEX',text='TFEX'))
     button_6 = QuickReplyButton(action=MessageAction(lable='Hello Bot',text='Hello Bot'))

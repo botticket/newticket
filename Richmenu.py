@@ -40,7 +40,7 @@ richdata ={
       },
       "action": {
         "type": "message",
-        "text": "IQXWTI"
+        "text": "IQXBRT"
       }
     },
     {

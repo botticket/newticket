@@ -934,7 +934,8 @@ def handle_message(event):
                     support3 = '%.2f'%support3
                     support3 = str(support3)
                     
-                    text1 = exit1 + ' | ' + exit2 + ' | ' + exit3 + '\n' + 'Y {} : H {}'.format(OpenY,max_value)
+                    textY = exit1 + ' | ' + exit2 + ' | ' + exit3 + '\n' + 'Y {} : H {}'.format(OpenY,max_value)
+                    textQ = exit1 + ' | ' + exit2 + ' | ' + exit3 + '\n' + 'Q {} : H {}'.format(OpenQ,max_value)
                     text2 = support3 + ' | ' + support2 + ' | ' + support1 + '\n' + 'Y {} : L {}'.format(OpenY,min_value)
 
                     alert1 = 'ชนแนวต้าน'
@@ -955,12 +956,19 @@ def handle_message(event):
 
                     if float(value) > 7500000:
                         if  barY >= 0.00:
-                            if barQ > 6.00:
+                            if 0.00 < barY < 6.00:
+                                notice = alert6
+                                start = OpenY
+                                buy = buyY
+                                stop = stopY
+                                target = textY
+                                avg = re_avg      
+                            elif barQ > 12.00:
                                 notice = alert1
                                 start = OpenQ
                                 buy = buyQ
                                 stop = stopQ
-                                target = text1
+                                target = textQ
                                 avg = re_avg
                             elif barQ >= 0.00:
                                 if barM >= 0.00:
@@ -968,14 +976,14 @@ def handle_message(event):
                                     start = OpenQ
                                     buy = buyQ
                                     stop = stopQ
-                                    target = text1
+                                    target = textQ
                                     avg = re_avg
                                 else:
                                     notice = alert5
                                     start = OpenQ
                                     buy = buyQ
                                     stop = stopQ
-                                    target = text1
+                                    target = textQ
                                     avg = re_avg
                             else:
                                 notice = alert4
@@ -991,29 +999,29 @@ def handle_message(event):
                                     stop = stopQ
                                     start = OpenQ
                                     buy = buyQ
-                                    target = text1
-                                    avg = barQ
+                                    target = textQ
+                                    avg = re_avg
                                 else:
                                     notice = alert5
                                     stop = stopQ
                                     start = OpenQ
                                     buy = buyQ
-                                    target = text1
-                                    avg = barQ
+                                    target = textQ
+                                    avg = re_avg
                             else:
                                 notice = alert8
                                 stop = stopQ
                                 start = OpenQ
                                 buy = buyQ
                                 target = text2
-                                avg = barQ
+                                avg = re_avg
                     else:
                         notice = alert9
                         stop = stopQ
                         start = OpenQ
                         buy = buyQ
                         target = text2
-                        avg = barQ
+                        avg = re_avg
 
                     word_to_reply = str('{} {}'.format(text,notice))
                     print(word_to_reply)

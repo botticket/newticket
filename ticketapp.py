@@ -837,6 +837,10 @@ def handle_message(event):
                     OpenQ  = '%.2f'%OpenQ
                     OpenQ = str(OpenQ)
 
+                    p_openQ = ((float(OpenQ) - float(OpenY)) / float(OpenY))*100
+                    p_openQ  = '%.2f'%p_openQ
+                    p_openQ = str(p_openQ)
+
                     OpenM = dfM['Open'].iloc[0]
                     OpenM  = '%.2f'%OpenM
                     OpenM = str(OpenM)
@@ -872,31 +876,31 @@ def handle_message(event):
                     request_val  = '{:,.0f}'.format(request_val)
                     request_val = str(request_val)
                     
-                    exit1 = float(r[1]) * 1.06
+                    exit1 = float(OpenQ) * 1.12
                     exit1 = '%.2f'%exit1
                     exit1 = str(exit1)
 
-                    exit2 = float(r[1]) * 1.12
+                    exit2 = float(OpenQ) * 1.24
                     exit2 = '%.2f'%exit2
                     exit2 = str(exit2)
 
-                    exit3 = float(r[1]) * 1.18
+                    exit3 = float(OpenQ) * 1.36
                     exit3 = '%.2f'%exit3
                     exit3 = str(exit3)
 
-                    buyQ = float(OpenQ) * 1.01
+                    buyQ = float(OpenQ) * 1.02
                     buyQ = '%.2f'%buyQ
                     buyQ = str(buyQ) 
 
-                    stopQ = float(OpenQ) * 0.985
+                    stopQ = float(OpenQ) * 0.98
                     stopQ = '%.2f'%stopQ
                     stopQ = str(stopQ) 
 
-                    buyY = float(OpenY) * 1.01
+                    buyY = float(OpenY) * 1.02
                     buyY = '%.2f'%buyY
                     buyY = str(buyY) 
 
-                    stopY = float(OpenY) * 0.985
+                    stopY = float(OpenY) * 0.98
                     stopY = '%.2f'%stopY
                     stopY = str(stopY) 
 
@@ -918,7 +922,7 @@ def handle_message(event):
                     pmin_value = '%.2f'%pmin_value
                     pmin_value = str(pmin_value)
 
-                    support1 = float(OpenY) * 0.75
+                    support1 = float(OpenY) * 0.70
                     support1 = '%.2f'%support1
                     support1 = str(support1)
 
@@ -947,7 +951,7 @@ def handle_message(event):
                     price_now = r[1] 
                     change = r[2] 
                     chgp = str(r[3])
-                    re_avg = '{}% > {}%'.format(pmin_value,barY)
+                    re_avg = '{}% > {}%'.format(p_openQ,barY)
 
                     if float(value) > 7500000:
                         if  barY >= 0.00:

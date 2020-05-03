@@ -26,7 +26,7 @@ IQXBRT = '25.95'
 IQUSTB = '32.77'
 tfex_value = '736.00'
 set_value = '1171.51'
-#Monthly
+#Quarter
 
 today = date.today()
 yearly = '{}-01-01'.format(today.year)
@@ -762,9 +762,6 @@ def handle_message(event):
 
                     word_to_reply = '{}'.format(text) + '\n' + 'now {} {} ({}%)'.format(price_now,change,chgp)
                     result = 'Position: {}'.format(notice) + '\n' + 'Range: {} - {} '.format(start,buy) + '\n' + 'Stop: {}'.format(stop) + '\n' + 'Target: {}'.format(target)
-                    #print(word_to_reply)
-                    print(result)
-                    print(number)
                     bubble = flex_crypto(text,price_now,change,chgp,notice,start,buy,stop,target)
                     
                     flex_to_reply = SetMessage_Object(bubble)
@@ -814,7 +811,6 @@ def handle_message(event):
                 return [title,stockprice,change,pchange,stockupdate]
 
             r = request(code)
-            # text_request = '{} {} ({})'.format(r[0], r[1], r[2])
 
             class stock:
                 def __init__(self,stock):
@@ -934,9 +930,9 @@ def handle_message(event):
                     support3 = '%.2f'%support3
                     support3 = str(support3)
                     
-                    textY = exit1 + ' | ' + exit2 + ' | ' + exit3 + '\n' + 'Y {} : H {}'.format(OpenY,max_value)
-                    textQ = exit1 + ' | ' + exit2 + ' | ' + exit3 + '\n' + 'Q {} : H {}'.format(OpenQ,max_value)
-                    text2 = support3 + ' | ' + support2 + ' | ' + support1 + '\n' + 'Y {} : L {}'.format(OpenY,min_value)
+                    textY = exit1 + ' | ' + exit2 + ' | ' + exit3 + '\n' + 'Y {} H {} L {}'.format(OpenY,max_value,min_value)
+                    textQ = exit1 + ' | ' + exit2 + ' | ' + exit3 + '\n' + 'Y {} H {} L {}'.format(OpenY,max_value,min_value)
+                    text2 = support3 + ' | ' + support2 + ' | ' + support1 + '\n' + 'Y {} H {} L {}'.format(OpenY,max_value,min_value)
 
                     alert1 = 'ชนแนวต้าน'
                     alert2 = 'ไปต่อ'
@@ -952,11 +948,11 @@ def handle_message(event):
                     price_now = r[1] 
                     change = r[2] 
                     chgp = str(r[3])
-                    re_avg = '{}% > {}%'.format(p_openQ,barY)
+                    re_avg = '{}%'.format(barY)
 
                     if float(value) > 7500000:
                         if  barY >= 0.00:
-                            if 0.00 < barY < 6.00:
+                            if 0.00 < barY < 10.00:
                                 notice = alert6
                                 start = OpenY
                                 buy = buyY
@@ -1068,11 +1064,6 @@ def Greeting(event):
     userid = event.source.user_id
     text = TextSendMessage(text="สวัสดีค่ะ วันนี้เล่นอะไรดี")
     line_bot_api.reply_message(reply_token,messages=text)
-
-# if __name__ == '__main__':
-#     port = int(os.getenv('PORT', 5000))
-#     #print("Starting app on port %d" % port)
-#     app.run(debug=False, port=port, host='0.0.0.0', threaded=True)
 
 if __name__ == '__main__':
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "Credentials.json"

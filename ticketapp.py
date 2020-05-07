@@ -905,6 +905,11 @@ def handle_message(event):
                     max_value = '%.2f'%max_value
                     max_value = str(max_value) 
 
+                    max_valueQ = dfQ.nlargest(1, columns = 'High')
+                    max_valueQ = max_valueQ['High'].iloc[0]
+                    max_valueQ = '%.2f'%max_valueQ
+                    max_valueQ = str(max_valueQ) 
+
                     pmax_value = ((float(max_value) - float(OpenY)) / float(OpenY)) * 100
                     pmax_value = '%.2f'%pmax_value
                     pmax_value = str(pmax_value)  
@@ -930,9 +935,9 @@ def handle_message(event):
                     support3 = '%.2f'%support3
                     support3 = str(support3)
                     
-                    textY = exit1 + ' | ' + exit2 + ' | ' + exit3 + '\n' + 'Y {} H {} L {}'.format(OpenY,max_value,min_value)
-                    textQ = exit1 + ' | ' + exit2 + ' | ' + exit3 + '\n' + 'Y {} H {} L {}'.format(OpenY,max_value,min_value)
-                    text2 = support3 + ' | ' + support2 + ' | ' + support1 + '\n' + 'Y {} H {} L {}'.format(OpenY,max_value,min_value)
+                    textY = exit1 + ' | ' + exit2 + ' | ' + exit3 + '\n' + 'Y {} HQ {} L {}'.format(OpenY,max_valueQ,min_value)
+                    textQ = exit1 + ' | ' + exit2 + ' | ' + exit3 + '\n' + 'Y {} HQ {} L {}'.format(OpenY,max_valueQ,min_value)
+                    text2 = support3 + ' | ' + support2 + ' | ' + support1 + '\n' + 'Y {} HQ {} L {}'.format(OpenY,max_valueQ,min_value)
 
                     alert1 = 'ชนแนวต้าน'
                     alert2 = 'ไปต่อ'

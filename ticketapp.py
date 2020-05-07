@@ -935,9 +935,9 @@ def handle_message(event):
                     support3 = '%.2f'%support3
                     support3 = str(support3)
                     
-                    textY = exit1 + ' | ' + exit2 + ' | ' + exit3 + '\n' + 'Y {} HQ {} L {}'.format(OpenY,max_valueQ,min_value)
-                    textQ = exit1 + ' | ' + exit2 + ' | ' + exit3 + '\n' + 'Y {} HQ {} L {}'.format(OpenY,max_valueQ,min_value)
-                    text2 = support3 + ' | ' + support2 + ' | ' + support1 + '\n' + 'Y {} HQ {} L {}'.format(OpenY,max_valueQ,min_value)
+                    textY = exit1 + ' | ' + exit2 + ' | ' + exit3 + '\n' + 'Y {} M {} H {}'.format(OpenY,OpenM,max_valueQ)
+                    textQ = exit1 + ' | ' + exit2 + ' | ' + exit3 + '\n' + 'Y {} M {} H {}'.format(OpenY,OpenM,max_valueQ)
+                    text2 = support3 + ' | ' + support2 + ' | ' + support1 + '\n' + 'Y {} M {} H {}'.format(OpenY,OpenM,max_valueQ)
 
                     alert1 = 'ชนแนวต้าน'
                     alert2 = 'ไปต่อ'

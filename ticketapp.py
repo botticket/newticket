@@ -939,14 +939,14 @@ def handle_message(event):
                     textQ = exit1 + ' | ' + exit2 + ' | ' + exit3 + '\n' + 'Y {} M {} H {}'.format(OpenY,OpenM,max_valueQ)
                     text2 = support3 + ' | ' + support2 + ' | ' + support1 + '\n' + 'Y {} M {} H {}'.format(OpenY,OpenM,max_valueQ)
 
-                    alert1 = 'ชนแนวต้าน'
-                    alert2 = 'ไปต่อ'
-                    alert3 = 'ซื้อ'
-                    alert4 = 'อย่าเพิ่งเข้า'
-                    alert5 = 'กำลังย่อ'
-                    alert6 = 'ห้ามพลาด'
-                    alert7 = 'เด้ง'
-                    alert8 = 'ลงต่อ'
+                    alert1 = 'ชนแนวต้าน ({}%)'.format(barQ)
+                    alert2 = 'ไปต่อ ({}%)'.format(barQ)
+                    alert3 = 'ซื้อ ({}%)'.format(barQ)
+                    alert4 = 'อย่าเพิ่งเข้า ({}%)'.format(barQ)
+                    alert5 = 'กำลังย่อ ({}%)'.format(barQ)
+                    alert6 = 'ห้ามพลาด ({}%)'.format(barQ)
+                    alert7 = 'เด้ง ({}%)'.format(barQ)
+                    alert8 = 'ลงต่อ ({}%)'.format(barQ)
                     alert9 = 'Vol น้อย'
 
                     text = r[0]

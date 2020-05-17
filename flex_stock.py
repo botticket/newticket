@@ -1620,7 +1620,7 @@ def flex_setcheck(text,price_now,change,chgp,notice,start,buy,stop,target):
 def flex_stock(text,price_now,change,chgp,notice,start,buy,stop,target,avg):
     Change_color = ['#EE0000' if '-' in str(change) else '#23D500'][0]
     trend = ['#EE0000' if '-' in str(avg) else '#3c3c3c'][0]
-    switch = ['Fibo Support' if '-' in str(avg) else 'Target'][0]
+    switch = ['แนวรับ' if '-' in str(avg) else 'แนวต้าน'][0]
     bubble ={
     "type": "flex",
     "altText": "Flex Message",
@@ -1758,13 +1758,13 @@ def flex_stock(text,price_now,change,chgp,notice,start,buy,stop,target,avg):
                 "contents": [
                 {
                     "type": "text",
-                    "text": "Alert",
+                    "text": "สถานะ",
                     "flex": 3,
                     "size": "sm"
                 }
                 ],
                 "position": "absolute",
-                "offsetTop": "35%",
+                "offsetTop": "32%",
                 "offsetStart": "5%",
                 "width": "100%"
             },
@@ -1781,7 +1781,7 @@ def flex_stock(text,price_now,change,chgp,notice,start,buy,stop,target,avg):
                 }
                 ],
                 "position": "absolute",
-                "offsetTop": "40%",
+                "offsetTop": "38%",
                 "offsetStart": "5%",
                 "width": "100%"
             },
@@ -1791,13 +1791,13 @@ def flex_stock(text,price_now,change,chgp,notice,start,buy,stop,target,avg):
                 "contents": [
                 {
                     "type": "text",
-                    "text": "Buy >",
+                    "text": "ราคาซื้อ",
                     "flex": 3,
                     "size": "sm"
                 }
                 ],
                 "position": "absolute",
-                "offsetTop": "47%",
+                "offsetTop": "45%",
                 "offsetStart": "5%",
                 "width": "100%"
             },
@@ -1813,7 +1813,7 @@ def flex_stock(text,price_now,change,chgp,notice,start,buy,stop,target,avg):
                 }
                 ],
                 "position": "absolute",
-                "offsetTop": "52%",
+                "offsetTop": "50%",
                 "offsetStart": "5%",
                 "width": "100%"
             },
@@ -1823,13 +1823,13 @@ def flex_stock(text,price_now,change,chgp,notice,start,buy,stop,target,avg):
                 "contents": [
                 {
                     "type": "text",
-                    "text": "Stop <",
+                    "text": "คัท",
                     "flex": 3,
                     "size": "sm"
                 }
                 ],
                 "position": "absolute",
-                "offsetTop": "59%",
+                "offsetTop": "57%",
                 "offsetStart": "5%",
                 "width": "100%"
             },
@@ -1845,7 +1845,7 @@ def flex_stock(text,price_now,change,chgp,notice,start,buy,stop,target,avg):
                 }
                 ],
                 "position": "absolute",
-                "offsetTop": "64%",
+                "offsetTop": "62%",
                 "offsetStart": "5%",
                 "width": "100%"
             },
@@ -1861,7 +1861,7 @@ def flex_stock(text,price_now,change,chgp,notice,start,buy,stop,target,avg):
                 }
                 ],
                 "position": "absolute",
-                "offsetTop": "71%",
+                "offsetTop": "69%",
                 "offsetStart": "5%",
                 "width": "100%"
             },
@@ -1879,7 +1879,7 @@ def flex_stock(text,price_now,change,chgp,notice,start,buy,stop,target,avg):
                 }
                 ],
                 "position": "absolute",
-                "offsetTop": "76%",
+                "offsetTop": "74%",
                 "offsetStart": "5%",
                 "width": "95%"
             },
@@ -1889,13 +1889,13 @@ def flex_stock(text,price_now,change,chgp,notice,start,buy,stop,target,avg):
                 "contents": [
                 {
                     "type": "text",
-                    "text": "Avg.",
+                    "text": "ตอบแทนเฉลี่ย",
                     "flex": 3,
                     "size": "sm"
                 }
                 ],
                 "position": "absolute",
-                "offsetTop": "88%",
+                "offsetTop": "80%",
                 "offsetStart": "5%",
                 "width": "100%"
             },
@@ -1913,7 +1913,7 @@ def flex_stock(text,price_now,change,chgp,notice,start,buy,stop,target,avg):
                 }
                 ],
                 "position": "absolute",
-                "offsetTop": "92%",
+                "offsetTop": "85%",
                 "offsetStart": "5%",
                 "width": "95%"
             }

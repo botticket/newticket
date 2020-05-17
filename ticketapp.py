@@ -935,9 +935,9 @@ def handle_message(event):
                     support3 = '%.2f'%support3
                     support3 = str(support3)
                     
-                    textY = exit1 + ' | ' + exit2 + ' | ' + exit3 + '\n' + 'Y {} M {} H {}'.format(OpenY,OpenM,max_valueQ)
-                    textQ = exit1 + ' | ' + exit2 + ' | ' + exit3 + '\n' + 'Y {} M {} H {}'.format(OpenY,OpenM,max_valueQ)
-                    text2 = support3 + ' | ' + support2 + ' | ' + support1 + '\n' + 'Y {} M {} H {}'.format(OpenY,OpenM,max_valueQ)
+                    textY = exit1 + ' | ' + exit2 + ' | ' + exit3 
+                    textQ = exit1 + ' | ' + exit2 + ' | ' + exit3 
+                    text2 = support3 + ' | ' + support2 + ' | ' + support1 
 
                     alert1 = 'ชนแนวต้าน ({}%)'.format(barQ)
                     alert2 = 'ไปต่อ ({}%)'.format(barQ)
@@ -953,7 +953,7 @@ def handle_message(event):
                     price_now = r[1] 
                     change = r[2] 
                     chgp = str(r[3])
-                    re_avg = '{}%'.format(barY)
+                    re_avg = 'Y {} ({}%)'.format(OpenY,barY) + '\n' + 'M {} H {} L {}'.format(OpenM,max_valueQ,min_value)
 
                     if float(value) > 7500000:
                         if  barY >= 0.00:

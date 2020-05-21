@@ -939,21 +939,21 @@ def handle_message(event):
                     textQ = exit1 + ' | ' + exit2 + ' | ' + exit3 
                     text2 = support3 + ' | ' + support2 + ' | ' + support1 
 
-                    alert1 = 'ชนแนวต้าน ({}%)'.format(barQ)
-                    alert2 = 'ไปต่อ ({}%)'.format(barQ)
-                    alert3 = 'ซื้อ ({}%)'.format(barQ)
-                    alert4 = 'อย่าเพิ่งเข้า ({}%)'.format(barQ)
-                    alert5 = 'กำลังย่อ ({}%)'.format(barQ)
-                    alert6 = 'ห้ามพลาด ({}%)'.format(barQ)
-                    alert7 = 'เด้ง ({}%)'.format(barQ)
-                    alert8 = 'ลงต่อ ({}%)'.format(barQ)
+                    alert1 = 'ชนแนวต้าน'
+                    alert2 = 'ไปต่อ'
+                    alert3 = 'ซื้อ'
+                    alert4 = 'อย่าเพิ่งเข้า'
+                    alert5 = 'กำลังย่อ'
+                    alert6 = 'ห้ามพลาด'
+                    alert7 = 'เด้ง'
+                    alert8 = 'ลงต่อ'
                     alert9 = 'Vol น้อย'
 
                     text = r[0]
                     price_now = r[1] 
                     change = r[2] 
                     chgp = str(r[3])
-                    re_avg = 'Y {} ({}%)'.format(OpenY,barY) + '\n' + 'M {} H {} L {}'.format(OpenM,max_valueQ,min_value)
+                    re_avg = '{}%'.format(barQ) + '\n' + 'H {} L {}'.format(max_valueQ,min_value)
 
                     if float(value) > 7500000:
                         if  barY >= 0.00:

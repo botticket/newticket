@@ -570,7 +570,6 @@ def handle_message(event):
                 st = setnow()                
 
                 price_now = float(st[0])
-                price_now = '%.2f'%price_now
                 price_now = str(price_now)
 
                 change = str(st[1]) 
@@ -615,8 +614,7 @@ def handle_message(event):
                 alert1 = 'Long'
                 alert2 = 'Short'
 
-                text = text_from_user
-                
+                text = text_from_user                
 
                 if barQ >= 0:
                     notice = alert1

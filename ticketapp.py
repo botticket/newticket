@@ -514,14 +514,14 @@ def handle_message(event):
                     buy = LongY
                     stop = stop_longY
                     target = text1
-                    number = '1'
+                    number = '11'
                 else:
                     notice = alert2
                     start = tfex_value
                     buy = shortY
                     stop = stop_shortY
                     target = text2 
-                    number = '2'
+                    number = '22'
                 
                 word_to_reply = '{}'.format(text) + '\n' + 'now {} {} ({}%)'.format(price_now,change,chgp)
                 result = 'Position: {}'.format(notice) + '\n' + 'Range: {} - {} '.format(start,buy) + '\n' + 'Stop: {}'.format(stop) + '\n' + 'Target: {}'.format(target)

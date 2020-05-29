@@ -568,7 +568,7 @@ def handle_message(event):
         def setcheck():
             st = setnow()                
 
-            price_now = float(st[0])
+            price_now = st[0]
             price_now = str(price_now)
 
             change = str(st[1]) 

@@ -25,7 +25,7 @@ IQXGL = '1576.70'
 IQXBRT = '25.95'
 IQUSTB = '32.77'
 tfex_value = '736.00'
-set_value = '1171.51'
+set_value = '1118.14'
 #Quarter
 
 today = date.today()
@@ -537,25 +537,26 @@ def handle_message(event):
             from bs4 import BeautifulSoup as soup 
 
             def setnow():
+
                 req = Request('https://www.settrade.com/C13_MarketSummary.jsp?detail=SET', headers={'User-Agent': 'Chrome/78.0'})
                 webopen = urlopen(req).read()
                 data = soup(webopen, 'html.parser')
                 currency = data.findAll('div',{'class':'col-xs-12'})
 
-                set_now = currency[0].text
-                set_now = set_now.replace('\n',' ')
-                set_now = set_now.replace('\r',' ')
-                set_now = set_now.replace('\n',' ')
-                set_now = set_now[3316:]
-                set_now = set_now[0:9]
-                set_now = set_now.replace(',','')
+                price_now = currency[0].text
+                price_now = price_now.replace('\n',' ')
+                price_now = price_now.replace('\r',' ')
+                price_now = price_now.replace('\n',' ')
+                price_now = price_now[3316:]
+                price_now = price_now[0:9]
+                price_now = price_now.replace(',','')
 
                 chg = currency[0].text
                 chg = chg.replace('\n',' ')
                 chg = chg.replace('\r',' ')
                 chg = chg.replace('\n',' ')
                 chg = chg[3325:]
-                chg = chg[0:7]
+                chg = chg[0:6]
 
                 chgp = currency[0].text
                 chgp = chgp.replace('\n',' ')
@@ -563,26 +564,34 @@ def handle_message(event):
                 chgp = chgp.replace('\n',' ')
                 chgp = chgp[3370:]
                 chgp = chgp[0:5]
-                return[set_now,chg,chgp]
+                return[price_now,chg,chgp]
 
             def setcheck():
-                st = setnow()
-                exit_long1 = float(st[0]) * 1.04
+                st = setnow()                
+
+                price_now = float(st[0])
+                price_now = '%.2f'%price_now
+                price_now = str(price_now)
+
+                change = str(st[1]) 
+                chgp = str(st[2])
+
+                exit_long1 = float(price_now) * 1.05
                 exit_long1 = '%.2f'%exit_long1
 
-                exit_long2 = float(st[0]) * 1.08
+                exit_long2 = float(price_now) * 1.10
                 exit_long2 = '%.2f'%exit_long2
 
-                exit_long3 = float(st[0]) * 1.12
+                exit_long3 = float(price_now) * 1.20
                 exit_long3 = '%.2f'%exit_long3      
 
-                exit_short1 = float(st[0]) * 0.96
+                exit_short1 = float(price_now) * 0.95
                 exit_short1 = '%.2f'%exit_short1
 
-                exit_short2 = float(st[0]) * 0.92
+                exit_short2 = float(price_now) * 0.90
                 exit_short2 = '%.2f'%exit_short2
 
-                exit_short3 = float(st[0]) * 0.88
+                exit_short3 = float(price_now) * 0.80
                 exit_short3 = '%.2f'%exit_short3
 
                 LongY = float(set_value) * 1.005
@@ -596,13 +605,9 @@ def handle_message(event):
 
                 stop_shortY = float(set_value) * 1.005
                 stop_shortY = '%.2f'%stop_shortY                    
-
-                price_now = float(st[0])
-                price_now = '%.2f'%price_now
-                price_now = str(price_now)
                 
                 barQ = float(price_now) - float(set_value)
-                chgp = str(st[2])
+                barQ = float(barQ)                
 
                 text1 = exit_long1 + ' | ' + exit_long2 + ' | ' + exit_long3 
                 text2 = exit_short1 + ' | ' + exit_short2 + ' | ' + exit_short3 
@@ -611,7 +616,7 @@ def handle_message(event):
                 alert2 = 'Short'
 
                 text = text_from_user
-                change = str(st[1]) 
+                
 
                 if barQ >= 0:
                     notice = alert1
@@ -872,15 +877,15 @@ def handle_message(event):
                     request_val  = '{:,.0f}'.format(request_val)
                     request_val = str(request_val)
                     
-                    exit1 = float(OpenQ) * 1.12
+                    exit1 = float(OpenQ) * 1.20
                     exit1 = '%.2f'%exit1
                     exit1 = str(exit1)
 
-                    exit2 = float(OpenQ) * 1.24
+                    exit2 = float(OpenQ) * 1.40
                     exit2 = '%.2f'%exit2
                     exit2 = str(exit2)
 
-                    exit3 = float(OpenQ) * 1.36
+                    exit3 = float(OpenQ) * 1.60
                     exit3 = '%.2f'%exit3
                     exit3 = str(exit3)
 
@@ -910,9 +915,9 @@ def handle_message(event):
                     max_valueQ = '%.2f'%max_valueQ
                     max_valueQ = str(max_valueQ) 
 
-                    pmax_value = ((float(max_value) - float(OpenY)) / float(OpenY)) * 100
-                    pmax_value = '%.2f'%pmax_value
-                    pmax_value = str(pmax_value)  
+                    pmax_valueQ = ((float(max_valueQ) - float(OpenQ)) / float(OpenQ)) * 100
+                    pmax_valueQ = '%.2f'%pmax_valueQ
+                    pmax_valueQ = str(pmax_valueQ)  
 
                     min_value = dfY.nsmallest(1, columns = 'Low')
                     min_value = min_value['Low'].iloc[0]
@@ -923,15 +928,15 @@ def handle_message(event):
                     pmin_value = '%.2f'%pmin_value
                     pmin_value = str(pmin_value)
 
-                    support1 = float(OpenY) * 0.70
+                    support1 = float(OpenY) * 0.80
                     support1 = '%.2f'%support1
                     support1 = str(support1)
 
-                    support2 = float(OpenY) * 0.60
+                    support2 = float(OpenY) * 0.70
                     support2 = '%.2f'%support2
                     support2 = str(support2)
 
-                    support3 = float(OpenY) * 0.50
+                    support3 = float(OpenY) * 0.60
                     support3 = '%.2f'%support3
                     support3 = str(support3)
                     
@@ -991,37 +996,37 @@ def handle_message(event):
                                 start = OpenQ
                                 buy = buyQ
                                 stop = stopQ
-                                target = text2
+                                target = textQ
                                 avg = re_avg
                         else:
                             if barQ >= 0.00:
                                 if barM >= 0.00:
                                     notice = alert3
-                                    stop = stopQ
                                     start = OpenQ
                                     buy = buyQ
+                                    stop = text2
                                     target = textQ
                                     avg = re_avg
                                 else:
                                     notice = alert5
-                                    stop = stopQ
                                     start = OpenQ
                                     buy = buyQ
+                                    stop = text2
                                     target = textQ
                                     avg = re_avg
                             else:
                                 notice = alert8
-                                stop = stopQ
                                 start = OpenQ
                                 buy = buyQ
-                                target = text2
+                                stop = text2
+                                target = textQ
                                 avg = re_avg
                     else:
                         notice = alert9
-                        stop = stopQ
                         start = OpenQ
                         buy = buyQ
-                        target = text2
+                        stop = text2
+                        target = textQ
                         avg = re_avg
 
                     word_to_reply = str('{} {}'.format(text,notice))

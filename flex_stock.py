@@ -1781,7 +1781,7 @@ def flex_stock(text,price_now,change,chgp,notice,start,buy,stop,target,avg):
                 }
                 ],
                 "position": "absolute",
-                "offsetTop": "38%",
+                "offsetTop": "37%",
                 "offsetStart": "5%",
                 "width": "100%"
             },
@@ -1823,7 +1823,7 @@ def flex_stock(text,price_now,change,chgp,notice,start,buy,stop,target,avg):
                 "contents": [
                 {
                     "type": "text",
-                    "text": "คัท",
+                    "text": "แนวรับ",
                     "flex": 3,
                     "size": "sm"
                 }

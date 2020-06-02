@@ -1463,7 +1463,7 @@ def flex_setcheck(text,price_now,change,chgp,notice,start,buy,stop,target):
                     "contents": [
                     {
                         "type": "text",
-                        "text": "({}%)".format(chgp),
+                        "text": "({})".format(chgp),
                         "align": "end",
                         "color": "{}".format(Change_color),
                         "gravity": "center",

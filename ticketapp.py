@@ -536,39 +536,42 @@ def handle_message(event):
             from urllib.request import Request, urlopen
             from bs4 import BeautifulSoup as soup 
 
-            def setnow():
-                req = Request('https://www.settrade.com/C13_MarketSummary.jsp?detail=SET', headers={'User-Agent': 'Chrome/78.0'})
+            def setscrapt():
+                req = Request('https://www.investing.com/indices/thailand-set', headers={'User-Agent': 'Chrome/78.0'})
                 webopen = urlopen(req).read()
                 data = soup(webopen, 'html.parser')
-                currency = data.findAll('div',{'class':'col-xs-12'})
 
-                price_now = currency[0].text
-                price_now = price_now.replace('\n',' ')
-                price_now = price_now.replace('\r',' ')
-                price_now = price_now.replace('\n',' ')
-                price_now = price_now[3316:]
-                price_now = price_now[0:9]
-                price_now = price_now.replace(',','')
+                set_now = data.findAll('div',{'class':'top bold inlineblock'})
+                set_now = set_now[0].text
+                set_now = set_now.replace('\n',' ')
+                set_now = set_now.replace(',','')
+                set_now = set_now.replace(' ','')
+                set_now = set_now.replace('\xa0','')
+                set_now = set_now[0:7]
 
-                chg = currency[0].text
-                chg = chg.replace('\n',' ')
-                chg = chg.replace('\r',' ')
-                chg = chg.replace('\n',' ')
-                chg = chg[3325:]
-                chg = chg[0:6]
+                set_chg = data.findAll('div',{'class':'top bold inlineblock'})
+                set_chg = set_chg[0].text
+                set_chg = set_chg.replace('\n',' ')
+                set_chg = set_chg.replace(',','')
+                set_chg = set_chg.replace(' ','')
+                set_chg = set_chg.replace('\xa0','')
+                set_chg = set_chg[7:13]
 
-                chgp = currency[0].text
-                chgp = chgp.replace('\n',' ')
-                chgp = chgp.replace('\r',' ')
-                chgp = chgp.replace('\n',' ')
-                chgp = chgp[3370:]
-                chgp = chgp[0:5]
-                return[price_now,chg,chgp]
+                set_pchg = data.findAll('div',{'class':'top bold inlineblock'})
+                set_pchg = set_pchg[0].text
+                set_pchg = set_pchg.replace('\n',' ')
+                set_pchg = set_pchg.replace(',','')
+                set_pchg = set_pchg.replace(' ','')
+                set_pchg = set_pchg.replace('\xa0','')
+                set_pchg = set_pchg[14:20]
+
+                return[set_now,set_chg,set_pchg]
 
             def setcheck():
-                st = setnow()                
+                st = setscrapt()                
 
-                price_now = st[0]
+                price_now = float(st[0])
+                price_now = '%.2f'%price_now
                 price_now = str(price_now)
 
                 change = str(st[1]) 
@@ -1065,12 +1068,6 @@ def RegisRichmenu(event):
     button_5 = QuickReplyButton(action=MessageAction(lable='TFEX',text='TFEX'))
     button_6 = QuickReplyButton(action=MessageAction(lable='Hello Bot',text='Hello Bot'))
     answer_button = QuickReply(items=[button_1,button_2,button_3,button_4,button_5,button_6])
-
-def Greeting(event):
-    reply_token = event.reply_token
-    userid = event.source.user_id
-    text = TextSendMessage(text="สวัสดีค่ะ วันนี้เล่นอะไรดี")
-    line_bot_api.reply_message(reply_token,messages=text)
 
 if __name__ == '__main__':
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "Credentials.json"

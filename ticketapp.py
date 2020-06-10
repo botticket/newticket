@@ -87,15 +87,7 @@ def handle_message(event):
     print("response : " + str(response))
 
     try:
-        if action == "Welcome_response":
-            all_text = []
-            for each in response:
-                text = TextSendMessage(text=each)
-                all_text.append(text)
-            line_bot_api.reply_message(reply_token,messages=all_text) #reply messageกลับไป
-            return 'OK'
-
-        elif 'Hello Bot' in text_from_user:    
+        if 'Hello Bot' in text_from_user:    
             text_list = [
                 'สวัสดีจ้า คุณ {} '.format(disname),
                 'สวัสดีจ้า คุณ {} วันนี้จะเล่นตัวไหนดี'.format(disname),
@@ -928,15 +920,15 @@ def handle_message(event):
                     pmin_value = '%.2f'%pmin_value
                     pmin_value = str(pmin_value)
 
-                    support1 = float(OpenY) * 0.80
+                    support1 = float(max_value) * 0.80
                     support1 = '%.2f'%support1
                     support1 = str(support1)
 
-                    support2 = float(OpenY) * 0.70
+                    support2 = float(max_value) * 0.70
                     support2 = '%.2f'%support2
                     support2 = str(support2)
 
-                    support3 = float(OpenY) * 0.60
+                    support3 = float(max_value) * 0.60
                     support3 = '%.2f'%support3
                     support3 = str(support3)
                     

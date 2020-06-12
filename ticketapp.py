@@ -920,15 +920,15 @@ def handle_message(event):
                     pmin_value = '%.2f'%pmin_value
                     pmin_value = str(pmin_value)
 
-                    support1 = float(max_value) * 0.80
+                    support1 = float(OpenY) * 0.80
                     support1 = '%.2f'%support1
                     support1 = str(support1)
 
-                    support2 = float(max_value) * 0.70
+                    support2 = float(OpenY) * 0.70
                     support2 = '%.2f'%support2
                     support2 = str(support2)
 
-                    support3 = float(max_value) * 0.60
+                    support3 = float(OpenY) * 0.60
                     support3 = '%.2f'%support3
                     support3 = str(support3)
                     

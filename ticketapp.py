@@ -46,7 +46,7 @@ else:
     tfex_code = 'S50H20'
 
 def linechat(text):    
-    ACCESS_TOKEN = "oK2sk4w1eidfRyOVfgIcln38TBS8JmL0PgfbbQ8t0Zv"
+    ACCESS_TOKEN = "qh4YLKs18Z4RYKLvsFnLmgtVWmSpi7pY7KS112AFl7C"
     notify = LineNotify(ACCESS_TOKEN)
     notify.send(text)
 

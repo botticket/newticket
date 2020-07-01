@@ -21,11 +21,11 @@ channel_access_token = line_access_token
 line_bot_api = LineBotApi(channel_access_token)
 handler = WebhookHandler(channel_secret)
 
-IQXGL = '1576.70'
-IQXBRT = '25.95'
-IQUSTB = '32.77'
-tfex_value = '736.00'
-set_value = '1118.14'
+IQXGL = '1780.50'
+IQXBRT = '41.61'
+IQUSTB = '30.89'
+tfex_value = '880.00'
+set_value = '1345.60'
 #Quarter
 
 today = date.today()
@@ -204,7 +204,7 @@ def handle_message(event):
                 
                 word_to_reply = '{}'.format(text) + '\n' + 'now {} {} ({}%)'.format(price_now,change,chgp)
                 result = 'Position: {}'.format(notice) + '\n' + 'Range: {} - {} '.format(start,buy) + '\n' + 'Stop: {}'.format(stop) + '\n' + 'Target: {}'.format(target)
-                print(word_to_reply)
+                linechat(word_to_reply)
                 print(number)
 
                 bubble = flex_usdcheck(text,price_now,change,chgp,notice,start,buy,stop,target)
@@ -310,6 +310,7 @@ def handle_message(event):
                 
                 word_to_reply = '{}'.format(text) + '\n' + 'now {} {} ({}%)'.format(price_now,change,chgp)
                 result = 'Position: {}'.format(notice) + '\n' + 'Range: {} - {} '.format(start,buy) + '\n' + 'Stop: {}'.format(stop) + '\n' + 'Target: {}'.format(target)
+                linechat(word_to_reply)
                 bubble = flex_goldcheck(text,price_now,change,chgp,notice,start,buy,stop,target)
                 
                 flex_to_reply = SetMessage_Object(bubble)
@@ -413,6 +414,7 @@ def handle_message(event):
                 
                 word_to_reply = '{}'.format(text) + '\n' + 'now {} {} ({}%)'.format(price_now,change,chgp)
                 result = 'Position: {}'.format(notice) + '\n' + 'Range: {} - {} '.format(start,buy) + '\n' + 'Stop: {}'.format(stop) + '\n' + 'Target: {}'.format(target)
+                linechat(word_to_reply)
                 bubble = flex_wticheck(text,price_now,change,chgp,notice,start,buy,stop,target)
                 
                 flex_to_reply = SetMessage_Object(bubble)
@@ -517,6 +519,8 @@ def handle_message(event):
                 
                 word_to_reply = '{}'.format(text) + '\n' + 'now {} {} ({}%)'.format(price_now,change,chgp)
                 result = 'Position: {}'.format(notice) + '\n' + 'Range: {} - {} '.format(start,buy) + '\n' + 'Stop: {}'.format(stop) + '\n' + 'Target: {}'.format(target)
+                linechat(word_to_reply)
+
                 bubble = flex_tfexcheck(text,price_now,change,chgp,notice,start,buy,stop,target)
                 
                 flex_to_reply = SetMessage_Object(bubble)
@@ -627,6 +631,7 @@ def handle_message(event):
                 
                 word_to_reply = '{}'.format(text) + '\n' + 'now {} {} ({}%)'.format(price_now,change,chgp)
                 result = 'Position: {}'.format(notice) + '\n' + 'Range: {} - {} '.format(start,buy) + '\n' + 'Stop: {}'.format(stop) + '\n' + 'Target: {}'.format(target)
+                linechat(word_to_reply)
                 bubble = flex_setcheck(text,price_now,change,chgp,notice,start,buy,stop,target)
                 
                 flex_to_reply = SetMessage_Object(bubble)
@@ -759,6 +764,8 @@ def handle_message(event):
 
                     word_to_reply = '{}'.format(text) + '\n' + 'now {} {} ({}%)'.format(price_now,change,chgp)
                     result = 'Position: {}'.format(notice) + '\n' + 'Range: {} - {} '.format(start,buy) + '\n' + 'Stop: {}'.format(stop) + '\n' + 'Target: {}'.format(target)
+                    linechat(word_to_reply)
+
                     bubble = flex_crypto(text,price_now,change,chgp,notice,start,buy,stop,target)
                     
                     flex_to_reply = SetMessage_Object(bubble)
@@ -1022,7 +1029,8 @@ def handle_message(event):
                         avg = re_avg
 
                     word_to_reply = str('{} {}'.format(text,notice))
-                    print(word_to_reply)
+                    linechat(word_to_reply)
+
                     bubbles = []
                     bubble = flex_stock(text,price_now,change,chgp,notice,start,buy,stop,target,avg)
                     

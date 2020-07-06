@@ -1807,7 +1807,7 @@ def flex_stock(text,price_now,change,chgp,notice,start,buy,stop,target,avg):
                 "contents": [
                 {
                     "type": "text",
-                    "text": "{} ~ {}".format(start,buy),
+                    "text": "{} + 2 ช่อง".format(start),
                     "flex": 3,
                     "size": "lg"
                 }

@@ -1660,7 +1660,7 @@ def flex_stock(text,price_now,change,chgp,notice,start,buy,stop,target,avg):
                 "contents": [
                 {
                     "type": "image",
-                    "url": "https://www.knowtechbetter.com/wp-content/uploads/2018/05/Software-for-Stock-Buying-and-selling.jpg",
+                    "url": "https://www.shareicon.net/data/256x256/2015/09/20/104063_circle_512x512.png",
                     "aspectMode": "cover"
                 }
                 ],

@@ -10,7 +10,6 @@ from linebot.models import MessageEvent, TextMessage, TextSendMessage,FollowEven
 from line_notify import LineNotify
 from reply import reply_msg , SetMessage_Object
 from flex_stock import *
-# from dialogflow_uncle import detect_intent_texts
 from datetime import datetime,date
 
 app = Flask(__name__)
@@ -74,17 +73,6 @@ def handle_message(event):
     request_text= ('ticket'+'\n' + '>> {} : {}').format(disname,text_from_user)
     print(request_text)
     linechat(request_text)
-
-    # result_from_dialogflow = detect_intent_texts(project_id="worldstock-iardyn",
-    #                                     session_id=userid ,
-    #                                     text=text_from_user , 
-    #                                     language_code="th")
-    
-    # action = result_from_dialogflow["action"]
-    # response = result_from_dialogflow["fulfillment_messages"] #as list
-
-    # print("action : " + action)
-    # print("response : " + str(response))
 
     try:
         if 'Hello Bot' in text_from_user:    

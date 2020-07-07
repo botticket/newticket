@@ -1660,7 +1660,7 @@ def flex_stock(text,price_now,change,chgp,notice,start,buy,stop,target,avg):
                 "contents": [
                 {
                     "type": "image",
-                    "url": "https://www.shareicon.net/data/256x256/2015/09/20/104063_circle_512x512.png",
+                    "url": "https://images.yourstory.com/cs/1/2c5ce4f07adc11e9ac5fc599b2efcdfd/UnicoinCryptocurrency1569309883726jpg",
                     "aspectMode": "cover"
                 }
                 ],

@@ -75,16 +75,16 @@ def handle_message(event):
     print(request_text)
     linechat(request_text)
 
-    result_from_dialogflow = detect_intent_texts(project_id="worldstock-iardyn",
-                                        session_id=userid ,
-                                        text=text_from_user , 
-                                        language_code="th")
+    # result_from_dialogflow = detect_intent_texts(project_id="worldstock-iardyn",
+    #                                     session_id=userid ,
+    #                                     text=text_from_user , 
+    #                                     language_code="th")
     
-    action = result_from_dialogflow["action"]
-    response = result_from_dialogflow["fulfillment_messages"] #as list
+    # action = result_from_dialogflow["action"]
+    # response = result_from_dialogflow["fulfillment_messages"] #as list
 
-    print("action : " + action)
-    print("response : " + str(response))
+    # print("action : " + action)
+    # print("response : " + str(response))
 
     try:
         if 'Hello Bot' in text_from_user:    
@@ -1071,6 +1071,6 @@ def RegisRichmenu(event):
 
 if __name__ == '__main__':
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "Credentials.json"
-    os.environ["DIALOGFLOW_PROJECT_ID"] = "worldstock-iardyn"
+    # os.environ["DIALOGFLOW_PROJECT_ID"] = "worldstock-iardyn"
     port = int(os.getenv('PORT', 2000))
     app.run(debug=False, port=port, host='0.0.0.0', threaded=True)

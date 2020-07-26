@@ -52,12 +52,9 @@ def linechat(text):
 
 @app.route("/callback", methods=['POST'])
 def callback():
-	# get X-Line-Signature header value
 	signature = request.headers['X-Line-Signature']
-	# get request body as text
 	body = request.get_data(as_text=True)
 	app.logger.info("Request body: " + body)
-	# handle webhook body
 	try:
 		handler.handle(body, signature)
 	except InvalidSignatureError:
@@ -825,22 +822,15 @@ def handle_message(event):
 
                     if float(value) > 7500000:
                         if  barY >= 0.00:
-                            if 0.00 < barY < 10.00:
-                                notice = alert6
-                                start = OpenY
-                                buy = buyY
-                                stop = stopY
-                                target = textY
-                                avg = re_avg      
-                            elif barQ > 12.00:
-                                notice = alert1
-                                start = OpenQ
-                                buy = buyQ
-                                stop = stopQ
-                                target = textQ
-                                avg = re_avg
-                            elif barQ >= 0.00:
-                                if barM >= 0.00:
+                            if barQ >= 0.00:
+                                if 0.00 < barY < 3.00:
+                                    notice = alert6
+                                    start = OpenY
+                                    buy = buyY
+                                    stop = stopY
+                                    target = textY
+                                    avg = re_avg      
+                                elif 0.00 < barQ < 3.00:
                                     notice = alert3
                                     start = OpenQ
                                     buy = buyQ
@@ -848,7 +838,7 @@ def handle_message(event):
                                     target = textQ
                                     avg = re_avg
                                 else:
-                                    notice = alert5
+                                    notice = alert2
                                     start = OpenQ
                                     buy = buyQ
                                     stop = stopQ
@@ -863,7 +853,7 @@ def handle_message(event):
                                 avg = re_avg
                         else:
                             if barQ >= 0.00:
-                                if barM >= 0.00:
+                                if 0.00 < barQ < 3.00:
                                     notice = alert3
                                     start = OpenQ
                                     buy = buyQ
@@ -871,14 +861,14 @@ def handle_message(event):
                                     target = textQ
                                     avg = re_avg
                                 else:
-                                    notice = alert5
+                                    notice = alert2
                                     start = OpenQ
                                     buy = buyQ
                                     stop = text2
                                     target = textQ
                                     avg = re_avg
                             else:
-                                notice = alert8
+                                notice = alert4
                                 start = OpenQ
                                 buy = buyQ
                                 stop = text2
@@ -935,6 +925,6 @@ def RegisRichmenu(event):
 
 if __name__ == '__main__':
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "Credentials.json"
-    # os.environ["DIALOGFLOW_PROJECT_ID"] = "worldstock-iardyn"
+    os.environ["DIALOGFLOW_PROJECT_ID"] = "worldstock-iardyn"
     port = int(os.getenv('PORT', 2000))
     app.run(debug=False, port=port, host='0.0.0.0', threaded=True)

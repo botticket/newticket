@@ -244,22 +244,22 @@ def handle_message(event):
             def goldcheck():
                 gg = goldscrapt()
 
-                exit_long1 = float(gg[0]) * 1.015
+                exit_long1 = float(gg[0]) * 1.01
                 exit_long1 = '%.2f'%exit_long1
 
-                exit_long2 = float(gg[0]) * 1.03
+                exit_long2 = float(gg[0]) * 1.02
                 exit_long2 = '%.2f'%exit_long2
 
-                exit_long3 = float(gg[0]) * 1.045
+                exit_long3 = float(gg[0]) * 1.03
                 exit_long3 = '%.2f'%exit_long3      
 
-                exit_short1 = float(gg[0]) * 0.985
+                exit_short1 = float(gg[0]) * 0.99
                 exit_short1 = '%.2f'%exit_short1
 
-                exit_short2 = float(gg[0]) * 0.97
+                exit_short2 = float(gg[0]) * 0.98
                 exit_short2 = '%.2f'%exit_short2
 
-                exit_short3 = float(gg[0]) * 0.955
+                exit_short3 = float(gg[0]) * 0.97
                 exit_short3 = '%.2f'%exit_short3
 
                 LongY = float(IQXGL) * 1.005

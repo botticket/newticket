@@ -21,11 +21,11 @@ channel_access_token = line_access_token
 line_bot_api = LineBotApi(channel_access_token)
 handler = WebhookHandler(channel_secret)
 
-IQXGL = '1780.50'
-IQXBRT = '41.61'
-IQUSTB = '30.89'
-tfex_value = '880.00'
-set_value = '1345.60'
+IQXGL = '1883.05'
+IQXBRT = '41.28'
+IQUSTB = '31.66'
+tfex_value = '778.60'
+set_value = '1237.00'
 #Quarter
 
 today = date.today()
@@ -570,22 +570,22 @@ def handle_message(event):
                 change = str(st[1]) 
                 chgp = str(st[2])
 
-                exit_long1 = float(price_now) * 1.05
+                exit_long1 = float(price_now) * 1.03
                 exit_long1 = '%.2f'%exit_long1
 
-                exit_long2 = float(price_now) * 1.10
+                exit_long2 = float(price_now) * 1.06
                 exit_long2 = '%.2f'%exit_long2
 
-                exit_long3 = float(price_now) * 1.20
+                exit_long3 = float(price_now) * 1.09
                 exit_long3 = '%.2f'%exit_long3      
 
-                exit_short1 = float(price_now) * 0.95
+                exit_short1 = float(price_now) * 0.97
                 exit_short1 = '%.2f'%exit_short1
 
-                exit_short2 = float(price_now) * 0.90
+                exit_short2 = float(price_now) * 0.94
                 exit_short2 = '%.2f'%exit_short2
 
-                exit_short3 = float(price_now) * 0.80
+                exit_short3 = float(price_now) * 0.91
                 exit_short3 = '%.2f'%exit_short3
 
                 LongY = float(set_value) * 1.005

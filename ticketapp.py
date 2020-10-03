@@ -21,11 +21,11 @@ channel_access_token = line_access_token
 line_bot_api = LineBotApi(channel_access_token)
 handler = WebhookHandler(channel_secret)
 
-IQXGL = '1883.05'
-IQXBRT = '41.28'
-IQUSTB = '31.66'
-tfex_value = '778.60'
-set_value = '1237.00'
+IQXGL = '1885.40'
+IQXBRT = '42.12'
+IQUSTB = '31.60'
+tfex_value = '783.30'
+set_value = '1244.00'
 #Quarter
 
 today = date.today()

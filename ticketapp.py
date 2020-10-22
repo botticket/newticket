@@ -46,7 +46,7 @@ else:
     tfex_code = 'S50H20'
 
 def linechat(text):    
-    ACCESS_TOKEN = "qh4YLKs18Z4RYKLvsFnLmgtVWmSpi7pY7KS112AFl7C"
+    ACCESS_TOKEN = "12CiN1mDzj3q93N5aTYvtWX63XlQOqDs6FWizTRUx1y"
     notify = LineNotify(ACCESS_TOKEN)
     notify.send(text)
 
@@ -820,17 +820,17 @@ def handle_message(event):
                     chgp = str(r[3])
                     re_avg = '{}%'.format(barQ) + '\n' + 'H {} L {}'.format(max_valueQ,min_value)
 
-                    if float(value) > 7500000:
+                    if float(value) > 5000000:
                         if  barY >= 0.00:
                             if barQ >= 0.00:
-                                if 0.00 < barY < 3.00:
+                                if 0.00 < barY < 5.00:
                                     notice = alert6
                                     start = OpenY
                                     buy = buyY
                                     stop = stopY
                                     target = textY
                                     avg = re_avg      
-                                elif 0.00 < barQ < 3.00:
+                                elif 0.00 < barQ < 5.00:
                                     notice = alert3
                                     start = OpenQ
                                     buy = buyQ
@@ -853,7 +853,7 @@ def handle_message(event):
                                 avg = re_avg
                         else:
                             if barQ >= 0.00:
-                                if 0.00 < barQ < 3.00:
+                                if 0.00 < barQ < 5.00:
                                     notice = alert3
                                     start = OpenQ
                                     buy = buyQ

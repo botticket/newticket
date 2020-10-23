@@ -749,21 +749,13 @@ def handle_message(event):
                     exit3 = '%.2f'%exit3
                     exit3 = str(exit3)
 
-                    buyQ = float(OpenQ) * 1.02
-                    buyQ = '%.2f'%buyQ
-                    buyQ = str(buyQ) 
+                    buyM = float(OpenM) * 1.02
+                    buyM = '%.2f'%buyM
+                    buyM = str(buyM) 
 
-                    stopQ = float(OpenQ) * 0.98
-                    stopQ = '%.2f'%stopQ
-                    stopQ = str(stopQ) 
-
-                    buyY = float(OpenY) * 1.02
-                    buyY = '%.2f'%buyY
-                    buyY = str(buyY) 
-
-                    stopY = float(OpenY) * 0.98
-                    stopY = '%.2f'%stopY
-                    stopY = str(stopY) 
+                    stopM = float(OpenM) * 0.98
+                    stopM = '%.2f'%stopM
+                    stopM = str(stopM) 
 
                     max_value = dfY.nlargest(1, columns = 'High')
                     max_value = max_value['High'].iloc[0]
@@ -800,86 +792,61 @@ def handle_message(event):
                     support3 = '%.2f'%support3
                     support3 = str(support3)
                     
-                    textY = exit1 + ' | ' + exit2 + ' | ' + exit3 
-                    textQ = exit1 + ' | ' + exit2 + ' | ' + exit3 
+                    text = exit1 + ' | ' + exit2 + ' | ' + exit3 
                     text2 = support3 + ' | ' + support2 + ' | ' + support1 
 
-                    alert1 = 'ชนแนวต้าน'
-                    alert2 = 'ไปต่อ'
-                    alert3 = 'ซื้อ'
-                    alert4 = 'อย่าเพิ่งเข้า'
-                    alert5 = 'กำลังย่อ'
-                    alert6 = 'ห้ามพลาด'
-                    alert7 = 'เด้ง'
-                    alert8 = 'ลงต่อ'
-                    alert9 = 'Vol น้อย'
+                    alert1 = 'ซื้อ'
+                    alert2 = 'กำลังย่อ'
+                    alert3 = 'ลงต่อ'
 
                     text = r[0]
                     price_now = r[1] 
                     change = r[2] 
                     chgp = str(r[3])
+
+                    mValue = (float(r[1]) * float(r[2])) / 1000
+                    mValue = '%.2f'%mValue
+                    mValue = str(mValue)
+
                     re_avg = '{}%'.format(barQ) + '\n' + 'H {} L {}'.format(max_valueQ,min_value)
 
-                    if float(value) > 5000000:
+                    if float(mValue) > 0:
                         if  barY >= 0.00:
-                            if barQ >= 0.00:
-                                if 0.00 < barY < 5.00:
-                                    notice = alert6
-                                    start = OpenY
-                                    buy = buyY
-                                    stop = stopY
-                                    target = textY
-                                    avg = re_avg      
-                                elif 0.00 < barQ < 5.00:
-                                    notice = alert3
-                                    start = OpenQ
-                                    buy = buyQ
-                                    stop = stopQ
-                                    target = textQ
-                                    avg = re_avg
-                                else:
-                                    notice = alert2
-                                    start = OpenQ
-                                    buy = buyQ
-                                    stop = stopQ
-                                    target = textQ
-                                    avg = re_avg
+                            if barM >= 0.00:
+                                notice = alert1
+                                start = OpenM
+                                buy = buyM
+                                stop = stopM
+                                target = text
+                                avg = re_avg      
                             else:
-                                notice = alert4
-                                start = OpenQ
-                                buy = buyQ
-                                stop = stopQ
-                                target = textQ
+                                notice = alert2
+                                start = OpenM
+                                buy = buyM
+                                stop = stopM
+                                target = text
                                 avg = re_avg
                         else:
-                            if barQ >= 0.00:
-                                if 0.00 < barQ < 5.00:
-                                    notice = alert3
-                                    start = OpenQ
-                                    buy = buyQ
-                                    stop = text2
-                                    target = textQ
-                                    avg = re_avg
-                                else:
-                                    notice = alert2
-                                    start = OpenQ
-                                    buy = buyQ
-                                    stop = text2
-                                    target = textQ
-                                    avg = re_avg
+                            if barM >= 0.00:
+                                notice = alert1
+                                start = OpenM
+                                buy = buyM
+                                stop = stopM
+                                target = text
+                                avg = re_avg      
                             else:
-                                notice = alert4
-                                start = OpenQ
-                                buy = buyQ
-                                stop = text2
-                                target = textQ
+                                notice = alert2
+                                start = OpenM
+                                buy = buyM
+                                stop = stopM
+                                target = text
                                 avg = re_avg
                     else:
-                        notice = alert9
-                        start = OpenQ
-                        buy = buyQ
+                        notice = alert3
+                        start = OpenM
+                        buy = buyM
                         stop = text2
-                        target = textQ
+                        target = text
                         avg = re_avg
 
                     word_to_reply = str('{} {}'.format(text,notice))

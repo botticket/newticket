@@ -792,8 +792,8 @@ def handle_message(event):
                     support3 = '%.2f'%support3
                     support3 = str(support3)
                     
-                    text = exit1 + ' | ' + exit2 + ' | ' + exit3 
-                    text2 = support3 + ' | ' + support2 + ' | ' + support1 
+                    text_up = exit1 + ' | ' + exit2 + ' | ' + exit3 
+                    text_down = support3 + ' | ' + support2 + ' | ' + support1 
 
                     alert1 = 'ซื้อ'
                     alert2 = 'กำลังย่อ'
@@ -810,21 +810,21 @@ def handle_message(event):
 
                     re_avg = '{}%'.format(barQ) + '\n' + 'H {} L {}'.format(max_valueQ,min_value)
 
-                    if float(mValue) > 0:
+                    if float(mValue) >= 0:
                         if  barY >= 0.00:
                             if barM >= 0.00:
                                 notice = alert1
                                 start = OpenM
                                 buy = buyM
                                 stop = stopM
-                                target = text
+                                target = text_up
                                 avg = re_avg      
                             else:
                                 notice = alert2
                                 start = OpenM
                                 buy = buyM
                                 stop = stopM
-                                target = text
+                                target = text_down
                                 avg = re_avg
                         else:
                             if barM >= 0.00:
@@ -832,21 +832,21 @@ def handle_message(event):
                                 start = OpenM
                                 buy = buyM
                                 stop = stopM
-                                target = text
+                                target = text_up
                                 avg = re_avg      
                             else:
                                 notice = alert2
                                 start = OpenM
                                 buy = buyM
                                 stop = stopM
-                                target = text
+                                target = text_down
                                 avg = re_avg
                     else:
                         notice = alert3
                         start = OpenM
                         buy = buyM
-                        stop = text2
-                        target = text
+                        stop = text_down
+                        target = text_up
                         avg = re_avg
 
                     word_to_reply = str('{} {}'.format(text,notice))
